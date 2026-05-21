@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+# portfolio-site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Kişisel portfolio sitesi — Muhammet Saraç
 
-Currently, two official plugins are available:
+## Özellikler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Çoklu Dil**: TR / EN geçiş butonu
+- **Karanlık / Aydınlık Mod**: Sistem tercihini okur, manuel geçiş
+- **Ziyaretçi Loglama**: LocalStorage tabanlı, soyut servis katmanı sayesinde Google Analytics / Umami entegrasyonu kolayca eklenebilir
+- **Docker Desteği**: Multi-stage build ile hazır
 
-## React Compiler
+## Geliştirme
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+bun dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Build
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+bun run build
 ```
+
+## Docker ile Çalıştırma
+
+```bash
+docker compose up -d --build
+# http://localhost:8080
+```
+
+## Proje Yapısı
+
+```
+src/
+├── features/        # Her özellik kendi klasöründe
+│   ├── about/
+│   ├── contact/
+│   ├── hero/
+│   ├── i18n/        # Dil sistemi + çeviriler
+│   ├── logging/     # Ziyaretçi loglama (genişletilebilir)
+│   ├── skills/
+│   └── theme/       # Dark/Light mod
+├── components/      # Ortak UI bileşenleri
+├── hooks/           # Custom hook'lar
+└── types/           # TypeScript tip tanımları
+```
+
+## Lisans
+
+MIT
