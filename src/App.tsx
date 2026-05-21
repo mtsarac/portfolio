@@ -15,9 +15,11 @@ function createLogger(): LoggingService {
   const umamiUrl = import.meta.env.VITE_UMAMI_URL
 
   if (siteId && umamiUrl) {
+    console.info('[Portfolio] UmamiLogger active', { siteId, umamiUrl })
     return new UmamiLogger(siteId, umamiUrl)
   }
 
+  console.info('[Portfolio] Umami not configured (VITE_UMAMI_SITE_ID missing), using LocalStorageLogger')
   return new LocalStorageLogger()
 }
 

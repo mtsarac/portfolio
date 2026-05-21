@@ -46,6 +46,10 @@ export class UmamiLogger extends LoggingService {
     script.defer = true
     script.onload = () => {
       this.#initialized = true
+      console.info('[UmamiLogger] Script loaded, tracking active')
+    }
+    script.onerror = () => {
+      console.warn('[UmamiLogger] Script failed to load from', this.#umamiUrl)
     }
     document.head.appendChild(script)
   }
