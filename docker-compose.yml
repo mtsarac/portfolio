@@ -7,3 +7,5 @@ services:
     ports:
       - "8000:80"
     restart: unless-stopped
+    # volumes:
+    #   - ./cv:/usr/share/nginx/html/cv   # CV güncellemek için aktifleştir, rebuild gerekmez
