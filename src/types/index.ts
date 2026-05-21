@@ -11,6 +11,7 @@ export interface Translations {
   hero: {
     title: string
     subtitle: string
+    cv: string
     description: string
   }
   about: {
