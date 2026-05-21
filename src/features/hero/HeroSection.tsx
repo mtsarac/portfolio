@@ -1,7 +1,8 @@
 import { useI18n } from "../../hooks/useI18n";
 
 export function HeroSection() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const cvHref = lang === "en" ? "/cv/CV_English.pdf" : "/cv/CV.pdf";
 
   return (
     <section
@@ -32,7 +33,7 @@ export function HeroSection() {
           {t("nav.about")}
         </a>
         <a
-          href="/cv/CV.pdf"
+          href={cvHref}
           download
           data-umami-event="download-cv"
           className="px-6 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
