@@ -1,15 +1,19 @@
 import { LoggingService } from './LoggingService'
 import type { LogEvent } from '../../types'
 
-interface UmamiWindow {
-  umami?: {
-    track: (event: string, data?: Record<string, unknown>) => void
-  }
+type TrackPayload = Record<string, unknown>
+
+interface Umami {
+  track(): void
+  track(payload: TrackPayload): void
+  track(callback: (props: TrackPayload) => TrackPayload): void
+  track(eventName: string): void
+  track(eventName: string, data: TrackPayload): void
 }
 
 declare global {
   interface Window {
-    umami?: UmamiWindow['umami']
+    umami?: Umami
   }
 }
 
@@ -50,12 +54,13 @@ export class UmamiLogger extends LoggingService {
     if (!this.#initialized) return
 
     if (event.type === 'pageview') {
-      window.umami?.track('pageview', {
+      window.umami?.track((props) => ({
+        ...props,
         url: event.name,
         title: event.name,
-      })
+      }))
     } else {
-      window.umami?.track(event.name, event.data)
+      window.umami?.track(event.name, event.data ?? {})
     }
   }
 }

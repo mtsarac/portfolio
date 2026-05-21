@@ -26,11 +26,17 @@ services:
     restart: unless-stopped
     networks:
       - traefik-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U umami -d umami"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   umami:
     image: ghcr.io/umami-software/umami:latest
     container_name: umami
     restart: unless-stopped
+    init: true
     networks:
       - traefik-net
     labels:
@@ -39,12 +45,17 @@ services:
       - "traefik.http.services.umami.loadbalancer.server.port=3000"
     environment:
       DATABASE_URL: postgresql://umami:${UMAMI_DB_PASSWORD:?}@umami-db:5432/umami
-      TRACKER_SCRIPT_NAME: script
-      HASH_SALT: ${UMAMI_HASH_SALT:?UMAMI_HASH_SALT is required}
+      APP_SECRET: ${UMAMI_APP_SECRET:?UMAMI_APP_SECRET is required}
       CORS_ORIGINS: ${UMAMI_CORS_ORIGINS:-https://msarac.me}
     depends_on:
       umami-db:
-        condition: service_started
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:3000/api/heartbeat || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
 
 volumes:
   umami-db-data:
