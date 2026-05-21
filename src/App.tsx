@@ -7,9 +7,22 @@ import { AboutSection } from './features/about/AboutSection'
 import { SkillsSection } from './features/skills/SkillsSection'
 import { ContactSection } from './features/contact/ContactSection'
 import { LocalStorageLogger } from './features/logging/LocalStorageLogger'
+import { UmamiLogger } from './features/logging/UmamiLogger'
+import type { LoggingService } from './features/logging/LoggingService'
+
+function createLogger(): LoggingService {
+  const siteId = import.meta.env.VITE_UMAMI_SITE_ID
+  const umamiUrl = import.meta.env.VITE_UMAMI_URL
+
+  if (siteId && umamiUrl) {
+    return new UmamiLogger(siteId, umamiUrl)
+  }
+
+  return new LocalStorageLogger()
+}
 
 function AppContent() {
-  const loggerRef = useRef(new LocalStorageLogger())
+  const loggerRef = useRef(createLogger())
 
   useEffect(() => {
     loggerRef.current.logPageView('home')

@@ -9,3 +9,32 @@ services:
     restart: unless-stopped
     # volumes:
     #   - ./cv:/usr/share/nginx/html/cv   # CV güncellemek için aktifleştir, rebuild gerekmez
+
+  umami-db:
+    image: postgres:16-alpine
+    container_name: umami-db
+    environment:
+      POSTGRES_DB: umami
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: ${UMAMI_DB_PASSWORD:?UMAMI_DB_PASSWORD is required}
+    volumes:
+      - umami-db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  umami:
+    image: ghcr.io/umami-software/umami:latest
+    container_name: umami
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://umami:${UMAMI_DB_PASSWORD:?}@umami-db:5432/umami
+      TRACKER_SCRIPT_NAME: script
+      HASH_SALT: ${UMAMI_HASH_SALT:?UMAMI_HASH_SALT is required}
+      CORS_ORIGINS: ${UMAMI_CORS_ORIGINS:-http://localhost:8000}
+    depends_on:
+      umami-db:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  umami-db-data:
