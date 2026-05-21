@@ -4,9 +4,13 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: portfolio-site
-    ports:
-      - "8000:80"
     restart: unless-stopped
+    networks:
+      - traefik-proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portfolio.rule=Host(`msarac.me`)"
+      - "traefik.http.services.portfolio.loadbalancer.server.port=80"
     # volumes:
     #   - ./cv:/usr/share/nginx/html/cv   # CV güncellemek için aktifleştir, rebuild gerekmez
 
@@ -20,21 +24,31 @@ services:
     volumes:
       - umami-db-data:/var/lib/postgresql/data
     restart: unless-stopped
+    networks:
+      - traefik-proxy
 
   umami:
     image: ghcr.io/umami-software/umami:latest
     container_name: umami
-    ports:
-      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - traefik-proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.umami.rule=Host(`umami.msarac.me`)"
+      - "traefik.http.services.umami.loadbalancer.server.port=3000"
     environment:
       DATABASE_URL: postgresql://umami:${UMAMI_DB_PASSWORD:?}@umami-db:5432/umami
       TRACKER_SCRIPT_NAME: script
       HASH_SALT: ${UMAMI_HASH_SALT:?UMAMI_HASH_SALT is required}
-      CORS_ORIGINS: ${UMAMI_CORS_ORIGINS:-http://localhost:8000}
+      CORS_ORIGINS: ${UMAMI_CORS_ORIGINS:-https://msarac.me}
     depends_on:
       umami-db:
         condition: service_started
-    restart: unless-stopped
 
 volumes:
   umami-db-data:
+
+networks:
+  traefik-proxy:
+    external: true
