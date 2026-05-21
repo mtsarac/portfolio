@@ -6,7 +6,7 @@ services:
     container_name: portfolio-site
     restart: unless-stopped
     networks:
-      - traefik-proxy
+      - traefik-net
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.portfolio.rule=Host(`msarac.me`)"
@@ -25,14 +25,14 @@ services:
       - umami-db-data:/var/lib/postgresql/data
     restart: unless-stopped
     networks:
-      - traefik-proxy
+      - traefik-net
 
   umami:
     image: ghcr.io/umami-software/umami:latest
     container_name: umami
     restart: unless-stopped
     networks:
-      - traefik-proxy
+      - traefik-net
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.umami.rule=Host(`umami.msarac.me`)"
@@ -50,5 +50,5 @@ volumes:
   umami-db-data:
 
 networks:
-  traefik-proxy:
+  traefik-net:
     external: true
