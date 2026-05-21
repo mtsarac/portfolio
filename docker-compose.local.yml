@@ -1,0 +1,11 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_UMAMI_SITE_ID: ${VITE_UMAMI_SITE_ID}
+        VITE_UMAMI_URL: ${VITE_UMAMI_URL}
+    container_name: portfolio-site-local
+    ports:
+      - "8000:80"
