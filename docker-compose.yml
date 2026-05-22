@@ -51,6 +51,7 @@ services:
       APP_SECRET: ${UMAMI_APP_SECRET:?UMAMI_APP_SECRET is required}
       CORS_ORIGINS: ${UMAMI_CORS_ORIGINS:-https://msarac.me}
       CLIENT_IP_HEADER: CF-Connecting-IP
+      SKIP_LOCATION_HEADERS: 1
     depends_on:
       umami-db:
         condition: service_healthy
