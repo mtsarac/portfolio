@@ -50,7 +50,7 @@ services:
       DATABASE_URL: postgresql://umami:${UMAMI_DB_PASSWORD:?}@umami-db:5432/umami
       APP_SECRET: ${UMAMI_APP_SECRET:?UMAMI_APP_SECRET is required}
       CORS_ORIGINS: ${UMAMI_CORS_ORIGINS:-https://msarac.me}
-      CLIENT_IP_HEADER: CF-Connecting-IP
+      CLIENT_IP_HEADER: X-Forwarded-For
       SKIP_LOCATION_HEADERS: 1
     depends_on:
       umami-db:
