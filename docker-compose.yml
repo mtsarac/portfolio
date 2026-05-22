@@ -51,12 +51,12 @@ services:
       APP_SECRET: ${UMAMI_APP_SECRET:?UMAMI_APP_SECRET is required}
       CORS_ORIGINS: ${UMAMI_CORS_ORIGINS:-https://msarac.me}
       CLIENT_IP_HEADER: X-Forwarded-For
-      SKIP_LOCATION_HEADERS: 1
     depends_on:
       umami-db:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "curl -s http://localhost:3000/api/heartbeat || exit 1"]
+      test:
+        ["CMD-SHELL", "curl -s http://localhost:3000/api/heartbeat || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
