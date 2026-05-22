@@ -1,32 +1,20 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { ThemeProvider } from './features/theme/ThemeProvider'
 import { I18nProvider } from './features/i18n/I18nProvider'
+import { LoggingProvider } from './features/logging/LoggingProvider'
 import { Layout } from './components/Layout'
 import { HeroSection } from './features/hero/HeroSection'
 import { AboutSection } from './features/about/AboutSection'
 import { SkillsSection } from './features/skills/SkillsSection'
 import { ContactSection } from './features/contact/ContactSection'
-import { LocalStorageLogger } from './features/logging/LocalStorageLogger'
-import { UmamiLogger } from './features/logging/UmamiLogger'
-import type { LoggingService } from './features/logging/LoggingService'
-
-function createLogger(): LoggingService {
-  const siteId = import.meta.env.VITE_UMAMI_SITE_ID
-  const umamiUrl = import.meta.env.VITE_UMAMI_URL
-
-  if (siteId && umamiUrl) {
-    return new UmamiLogger(siteId, umamiUrl)
-  }
-
-  return new LocalStorageLogger()
-}
+import { useLogger } from './hooks/useLogger'
 
 function AppContent() {
-  const loggerRef = useRef(createLogger())
+  const { logger } = useLogger()
 
   useEffect(() => {
-    loggerRef.current.logPageView('home')
-  }, [])
+    logger.logPageView('home')
+  }, [logger])
 
   return (
     <Layout>
@@ -42,7 +30,9 @@ function App() {
   return (
     <ThemeProvider>
       <I18nProvider>
-        <AppContent />
+        <LoggingProvider>
+          <AppContent />
+        </LoggingProvider>
       </I18nProvider>
     </ThemeProvider>
   )
