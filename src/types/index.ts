@@ -34,15 +34,11 @@ export interface Translations {
     title: string
     email: string
     phone: string
-    location: string
   }
   footer: {
     builtWith: string
   }
-  theme: {
-    light: string
-    dark: string
-  }
+
 }
 
 export interface LogEvent {
@@ -57,10 +53,3 @@ export interface SkillCategory {
   items: string[]
 }
 
-export interface ContactInfo {
-  email: string
-  phone: string
-  location: string
-  github: string
-  linkedin: string
-}

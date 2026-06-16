@@ -29,14 +29,9 @@
   "contact": {
     "title": "İletişim",
     "email": "E-posta",
-    "phone": "Telefon",
-    "location": "Konum"
+    "phone": "Telefon"
   },
   "footer": {
     "builtWith": "React & Tailwind CSS ile yapıldı"
-  },
-  "theme": {
-    "light": "Aydınlık",
-    "dark": "Karanlık"
   }
 }

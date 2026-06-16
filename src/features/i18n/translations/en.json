@@ -29,14 +29,9 @@
   "contact": {
     "title": "Contact",
     "email": "Email",
-    "phone": "Phone",
-    "location": "Location"
+    "phone": "Phone"
   },
   "footer": {
     "builtWith": "Built with React & Tailwind CSS"
-  },
-  "theme": {
-    "light": "Light",
-    "dark": "Dark"
   }
 }
