@@ -1,4 +1,4 @@
-import { createContext, useState, type ReactNode } from 'react'
+import { createContext, useState, useEffect, type ReactNode } from 'react'
 import type { Language, Translations } from '../../types'
 import tr from './translations/tr.json'
 import en from './translations/en.json'
@@ -40,6 +40,10 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }
 
   const t = (path: string) => getValue(translations[lang] as unknown as Record<string, unknown>, path)
+
+  useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
 
   return (
     <I18nContext.Provider value={{ lang, t, toggleLang }}>
