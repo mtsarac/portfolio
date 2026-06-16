@@ -44,7 +44,7 @@ src/
 │   ├── contact/                     # ContactSection — contact links with Umami event tracking
 │   ├── theme/                       # ThemeProvider + ThemeToggle (dark/light)
 │   ├── i18n/                        # I18nProvider + LangToggle + translations/
-│   └── logging/                     # LoggingProvider + UmamiLogger + abstract LoggingService
+│   └── logging/                     # LoggingProvider + UmamiLogger + LoggingService interface
 └── hooks/                           # Context-consuming hooks with guard
     ├── useTheme.ts
     ├── useI18n.ts
@@ -55,12 +55,7 @@ src/
 
 ### Feature-based organization
 
-Each feature lives in `src/features/<name>/` and exports via a barrel `index.ts`:
-```
-features/contact/
-├── ContactSection.tsx    # Component implementation
-└── index.ts              # Re-exports (e.g., export { ContactSection } from './ContactSection')
-```
+Each feature lives in `src/features/<name>/` as a single file or directory with its implementation directly importable.
 
 ### Provider nesting order (in App.tsx)
 
@@ -81,7 +76,7 @@ features/contact/
 No external state library. Uses **Context + Provider** pattern exclusively:
 - `ThemeContext` — dark/light toggle, persisted to `localStorage('portfolio_theme')`, respects `prefers-color-scheme`
 - `I18nContext` — TR/EN toggle, persisted to `localStorage('portfolio_lang')`, respects `navigator.language`
-- `LoggingContext` — provides `LoggingService` instance; no localStorage, conditionally creates `UmamiLogger` if env vars are set, otherwise `NoopLogger`
+- `LoggingContext` — provides `LoggingService` instance; no localStorage, conditionally creates `UmamiLogger` if env vars are set, otherwise `noopLogger` object literal
 
 ### Custom hook pattern
 
@@ -101,7 +96,7 @@ export function useLogger(): LoggingContextType {
 
 ### Logging system
 
-Abstract base class `LoggingService` (`src/features/logging/LoggingService.ts`) with `log()`, `logPageView()`, `logEvent()`. `UmamiLogger` extends it and dynamically injects the Umami script. When `VITE_UMAMI_SITE_ID` or `VITE_UMAMI_URL` env vars are missing, a `NoopLogger` is used instead (no-op). `LoggingProvider` decides which implementation to instantiate.
+`LoggingService` interface (`src/features/logging/LoggingService.ts`) with `log()`, `logPageView()`, `logEvent()`. `UmamiLogger` implements it and dynamically injects the Umami script. When `VITE_UMAMI_SITE_ID` or `VITE_UMAMI_URL` env vars are missing, a `noopLogger` object literal is used instead. `LoggingProvider` decides which implementation to instantiate.
 
 ### i18n
 
@@ -109,7 +104,7 @@ Translation JSON files in `src/features/i18n/translations/`. The `t()` function 
 
 ### Types
 
-All shared types in `src/types/index.ts`. Notable: `LogEvent` (tagged union with `type: 'pageview' | 'event'`), `Translations` (nested object matching JSON structure), `SkillCategory`, `ContactInfo`.
+All shared types in `src/types/index.ts`. Notable: `LogEvent` (tagged union with `type: 'pageview' | 'event'`), `Translations` (nested object matching JSON structure), `SkillCategory`.
 
 ## Deployment
 
@@ -148,6 +143,6 @@ No React Router. All navigation uses **hash anchors** (`href="#about"`, `href="#
 - **`noUnusedLocals` / `noUnusedParameters`** are on — TypeScript build fails on unused variables.
 - **LocalStorage keys** are `portfolio_theme` and `portfolio_lang` (prefixed with `portfolio_`).
 - **Tailwind CSS 4** — uses the new Vite plugin (`@tailwindcss/vite`), not the PostCSS config approach from v3. Custom variants use `@custom-variant dark (&:where(.dark, .dark *));` syntax. No `tailwind.config.js`.
-- **`<html lang="en">` is hardcoded** — the `<html>` lang attribute is not synced to the i18n language state.
+- **`<html lang>`** is synced to i18n state via `useEffect` in `I18nProvider`.
 - **Commit messages use Turkish** in commit body (e.g., "eklendi", "kaldırıldı", "temizlendi") — this is intentional by the author.
 - **Umami tracking** is implemented both via the programmatic `UmamiLogger` class and via inline `data-umami-event` HTML attributes (see `HeroSection.tsx` download button).
