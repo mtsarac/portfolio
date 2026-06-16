@@ -1,7 +1,6 @@
 import { createContext, type ReactNode } from 'react'
-import { LoggingService } from './LoggingService'
+import type { LoggingService } from './LoggingService'
 import { UmamiLogger } from './UmamiLogger'
-import type { LogEvent } from '../../types'
 
 export interface LoggingContextType {
   logger: LoggingService
@@ -9,8 +8,10 @@ export interface LoggingContextType {
 
 export const LoggingContext = createContext<LoggingContextType | null>(null)
 
-class NoopLogger extends LoggingService {
-  log(_event: LogEvent): void {}
+const noopLogger: LoggingService = {
+  log() {},
+  logPageView() {},
+  logEvent() {},
 }
 
 function createLogger(): LoggingService {
@@ -21,7 +22,7 @@ function createLogger(): LoggingService {
     return new UmamiLogger(siteId, umamiUrl)
   }
 
-  return new NoopLogger()
+  return noopLogger
 }
 
 export function LoggingProvider({ children }: { children: ReactNode }) {

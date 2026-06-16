@@ -1,4 +1,4 @@
-import { LoggingService } from './LoggingService'
+import type { LoggingService } from './LoggingService'
 import type { LogEvent } from '../../types'
 
 type TrackPayload = Record<string, unknown>
@@ -17,13 +17,12 @@ declare global {
   }
 }
 
-export class UmamiLogger extends LoggingService {
+export class UmamiLogger implements LoggingService {
   #initialized = false
   #siteId: string
   #umamiUrl: string
 
   constructor(siteId: string, umamiUrl: string) {
-    super()
     this.#siteId = siteId
     this.#umamiUrl = umamiUrl
     if (!siteId || !umamiUrl) return
@@ -51,6 +50,14 @@ export class UmamiLogger extends LoggingService {
       this.#initialized = false
     }
     document.head.appendChild(script)
+  }
+
+  logPageView(page: string): void {
+    this.log({ type: 'pageview', name: page, timestamp: new Date().toISOString() })
+  }
+
+  logEvent(name: string, data?: Record<string, unknown>): void {
+    this.log({ type: 'event', name, data, timestamp: new Date().toISOString() })
   }
 
   log(event: LogEvent): void {
