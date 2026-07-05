@@ -10,11 +10,17 @@ export function HeroSection() {
       className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center text-center px-4"
     >
       <div className="w-28 h-28 rounded-full overflow-hidden mb-8 shadow-sm">
-        <img
-          src="/myself.jpg"
-          alt="Muhammet Saraç"
-          className="w-full h-full object-cover scale-150"
-        />
+        <picture>
+          <source srcSet="/myself.webp" type="image/webp" />
+          <img
+            src="/myself.jpg"
+            alt="Muhammet Saraç"
+            width={336}
+            height={336}
+            className="w-full h-full object-cover scale-150"
+            fetchPriority="high"
+          />
+        </picture>
       </div>
       <h1 className="text-5xl sm:text-6xl font-bold mb-4 text-neutral-900 dark:text-neutral-100">
         {t("hero.title")}
