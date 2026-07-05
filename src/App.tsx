@@ -8,18 +8,22 @@ import { HeroSection } from './features/hero/HeroSection'
 import { AboutSection } from './features/about/AboutSection'
 import { SkillsSection } from './features/skills/SkillsSection'
 import { ContactSection } from './features/contact/ContactSection'
+import { useTheme } from './hooks/useTheme'
 import { useLogger } from './hooks/useLogger'
 
 function AppContent() {
+  const { theme } = useTheme()
   const { logger } = useLogger()
 
   useEffect(() => {
     logger.logPageView('home')
   }, [logger])
 
+  const sparkColor = theme === 'dark' ? '#d4d4d4' : '#525252'
+
   return (
     <ClickSpark
-      sparkColor="var(--color-neutral-400, #a3a3a3)"
+      sparkColor={sparkColor}
       sparkSize={8}
       sparkRadius={20}
       sparkCount={10}
