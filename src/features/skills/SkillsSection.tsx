@@ -1,5 +1,7 @@
 import { useI18n } from "../../hooks/useI18n";
 import { Section } from "../../components/Section";
+import { LogoLoop } from "../../components/LogoLoop";
+import type { LogoItem } from "../../components/LogoLoop";
 import type { SkillCategory } from "../../types";
 
 const skillData: SkillCategory[] = [
@@ -23,32 +25,47 @@ const skillData: SkillCategory[] = [
   },
 ];
 
+function SkillBadge({ name }: { name: string }) {
+  return (
+    <span className="px-4 py-2 text-sm font-medium rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 whitespace-nowrap">
+      {name}
+    </span>
+  );
+}
+
 export function SkillsSection() {
   const { t } = useI18n();
 
+  const logos = skillData.flatMap((cat) =>
+    cat.items.map(
+      (skill): LogoItem => ({
+        node: <SkillBadge name={skill} />,
+        title: skill,
+      }),
+    ),
+  );
+
   return (
     <Section id="skills" title={t("skills.title")}>
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {skillData.map((cat) => (
-          <div
-            key={cat.title}
-            className="p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900"
-          >
-            <h3 className="font-semibold mb-3 text-neutral-900 dark:text-neutral-100">
-              {t(cat.title)}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {cat.items.map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1 text-sm rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
+      <div className="space-y-8">
+        <LogoLoop
+          logos={logos}
+          speed={80}
+          direction="left"
+          logoHeight={36}
+          gap={16}
+          fadeOut
+          pauseOnHover
+        />
+        <LogoLoop
+          logos={logos}
+          speed={60}
+          direction="right"
+          logoHeight={36}
+          gap={16}
+          fadeOut
+          pauseOnHover
+        />
       </div>
     </Section>
   );
