@@ -149,3 +149,4 @@ No React Router. All navigation uses **hash anchors** (`href="#about"`, `href="#
 - **No co-author or contributors** - never include `Co-authored-by` or `Contributors` lines. All commits must be authored as `mtsarac` only.
 - **Umami tracking** is implemented both via the programmatic `UmamiLogger` class and via inline `data-umami-event` HTML attributes (see `HeroSection.tsx` download button).
 - **No em dash (`—`)** - the em dash character must never appear in any source file, translation file, or documentation in this project. Use a regular hyphen (`-`) instead.
+- **No pushing without explicit request** - do not run `git push` unless the user explicitly says "push" or "push it". Committing is fine, but pushing requires approval.
