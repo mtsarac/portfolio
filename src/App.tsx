@@ -3,6 +3,7 @@ import { ThemeProvider } from './features/theme/ThemeProvider'
 import { I18nProvider } from './features/i18n/I18nProvider'
 import { LoggingProvider } from './features/logging/LoggingProvider'
 import { Layout } from './components/Layout'
+import { ClickSpark } from './components/ClickSpark'
 import { HeroSection } from './features/hero/HeroSection'
 import { AboutSection } from './features/about/AboutSection'
 import { SkillsSection } from './features/skills/SkillsSection'
@@ -17,12 +18,20 @@ function AppContent() {
   }, [logger])
 
   return (
-    <Layout>
-      <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ContactSection />
-    </Layout>
+    <ClickSpark
+      sparkColor="var(--color-neutral-400, #a3a3a3)"
+      sparkSize={8}
+      sparkRadius={20}
+      sparkCount={10}
+      duration={500}
+    >
+      <Layout>
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ContactSection />
+      </Layout>
+    </ClickSpark>
   )
 }
 
