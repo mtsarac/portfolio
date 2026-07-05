@@ -15,14 +15,11 @@ const skillData: SkillCategory[] = [
       ".NET Web API",
       "MS SQL Server",
       "PostgreSQL",
-      "Bootstrap",
-      "Shadcn",
-      "Tailwind CSS",
     ],
   },
   {
     title: "skills.tools",
-    items: ["Git/GitHub", "AWS", "Docker"],
+    items: ["Git/GitHub", "AWS", "Docker", "Linux"],
   },
 ];
 

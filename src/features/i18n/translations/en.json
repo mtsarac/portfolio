@@ -18,7 +18,11 @@
     "gpa": "GPA: 3.32",
     "erasmus": "Erasmus — University of Maribor",
     "erasmusDesc": "During February 2025 – July 2025, I studied at the University of Maribor as part of the Erasmus program. I worked with C++ and 3D animation using OpenGL, and gained experience with Blender.",
-    "description": "I am a Computer Engineering student at Pamukkale University. I am a responsible, adaptable person who is eager to learn. With my strong problem-solving skills and creative perspective, I enjoy being an efficient member of a team."
+    "description": "I am a Computer Engineering student at Pamukkale University. I am a responsible, adaptable person who is eager to learn. With my strong problem-solving skills and creative perspective, I enjoy being an efficient member of a team.",
+    "interests": "Areas of Interest",
+    "fullstack": "I focus on backend-heavy full-stack development — building scalable APIs, database design, and end-to-end web applications.",
+    "devops": "I am interested in Docker and DevOps practices, working on CI/CD pipelines, containerization, and infrastructure automation.",
+    "linux": "I have experience with Linux system administration and shell scripting. I work on server configuration, security, and performance optimization."
   },
   "skills": {
     "title": "Skills",

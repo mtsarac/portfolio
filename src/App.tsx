@@ -4,6 +4,7 @@ import { I18nProvider } from './features/i18n/I18nProvider'
 import { LoggingProvider } from './features/logging/LoggingProvider'
 import { Layout } from './components/Layout'
 import { HeroSection } from './features/hero/HeroSection'
+import { AnimationDemo } from './features/animations/AnimationDemo'
 import { AboutSection } from './features/about/AboutSection'
 import { SkillsSection } from './features/skills/SkillsSection'
 import { ContactSection } from './features/contact/ContactSection'
@@ -19,6 +20,7 @@ function AppContent() {
   return (
     <Layout>
       <HeroSection />
+      <AnimationDemo />
       <AboutSection />
       <SkillsSection />
       <ContactSection />

@@ -23,6 +23,10 @@ export interface Translations {
     erasmus: string
     erasmusDesc: string
     description: string
+    interests: string
+    fullstack: string
+    devops: string
+    linux: string
   }
   skills: {
     title: string

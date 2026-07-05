@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useI18n } from "../../hooks/useI18n";
 
 export function HeroSection() {
@@ -5,11 +6,14 @@ export function HeroSection() {
   const cvHref = lang === "en" ? "/cv/CV_English.pdf" : "/cv/CV.pdf";
 
   return (
-    <section
+    <motion.section
       id="hero"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
       className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center text-center px-4"
     >
-      <div className="w-60 h-60 rounded-full overflow-hidden mb-8 shadow-sm">
+      <div className="w-56 h-56 rounded-full overflow-hidden mb-8 shadow-sm">
         <picture>
           <source srcSet="/myself.webp" type="image/webp" />
           <img
@@ -53,6 +57,6 @@ export function HeroSection() {
           {t("nav.contact")}
         </a>
       </div>
-    </section>
+    </motion.section>
   );
 }

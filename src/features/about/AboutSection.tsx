@@ -37,6 +37,29 @@ export function AboutSection() {
             </div>
           </div>
         </div>
+
+        <div>
+          <h3 className="text-xl font-semibold mb-4 text-neutral-900 dark:text-neutral-100">
+            {t('about.interests')}
+          </h3>
+          <div className="space-y-4">
+            <div className="border-l-2 border-sky-500/50 dark:border-sky-400/50 pl-4">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                {t('about.fullstack')}
+              </p>
+            </div>
+            <div className="border-l-2 border-emerald-500/50 dark:border-emerald-400/50 pl-4">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                {t('about.devops')}
+              </p>
+            </div>
+            <div className="border-l-2 border-amber-500/50 dark:border-amber-400/50 pl-4">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                {t('about.linux')}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </Section>
   )
