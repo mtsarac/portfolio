@@ -17,8 +17,8 @@ export function HeroSection() {
             <img
               src="/myself.jpg"
               alt="Muhammet Saraç"
-              width={336}
-              height={336}
+              width={1008}
+              height={1008}
               className="w-full h-full object-cover scale-150"
               fetchPriority="high"
             />

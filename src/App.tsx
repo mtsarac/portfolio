@@ -4,6 +4,7 @@ import { I18nProvider } from './features/i18n/I18nProvider'
 import { LoggingProvider } from './features/logging/LoggingProvider'
 import { Layout } from './components/Layout'
 import { ClickSpark } from './components/ClickSpark'
+import { LightRays } from './components/LightRays'
 import { HeroSection } from './features/hero/HeroSection'
 import { AboutSection } from './features/about/AboutSection'
 import { SkillsSection } from './features/skills/SkillsSection'
@@ -20,6 +21,7 @@ function AppContent() {
   }, [logger])
 
   const sparkColor = theme === 'dark' ? '#d4d4d4' : '#525252'
+  const raysColor = theme === 'dark' ? '#c8d8ff' : '#fce8d0'
 
   return (
     <ClickSpark
@@ -29,12 +31,26 @@ function AppContent() {
       sparkCount={10}
       duration={500}
     >
-      <Layout>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ContactSection />
-      </Layout>
+      <div className="relative">
+        <div className="fixed inset-x-0 top-16 bottom-0 -z-10">
+          <LightRays
+            raysOrigin="top-center"
+            raysColor={raysColor}
+            raysSpeed={0.6}
+            lightSpread={0.8}
+            rayLength={2.5}
+            saturation={0.8}
+            mouseInfluence={0.05}
+            fadeDistance={0.6}
+          />
+        </div>
+        <Layout>
+          <HeroSection />
+          <AboutSection />
+          <SkillsSection />
+          <ContactSection />
+        </Layout>
+      </div>
     </ClickSpark>
   )
 }
