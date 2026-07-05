@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { FadeContent } from "../../components/FadeContent";
 import { useI18n } from "../../hooks/useI18n";
 
 export function HeroSection() {
@@ -6,26 +6,24 @@ export function HeroSection() {
   const cvHref = lang === "en" ? "/cv/CV_English.pdf" : "/cv/CV.pdf";
 
   return (
-    <motion.section
+    <section
       id="hero"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center text-center px-4"
+      className="min-h-[calc(100vh-4rem)] px-4"
     >
-      <div className="w-56 h-56 rounded-full overflow-hidden mb-8 shadow-sm">
-        <picture>
-          <source srcSet="/myself.webp" type="image/webp" />
-          <img
-            src="/myself.jpg"
-            alt="Muhammet Saraç"
-            width={336}
-            height={336}
-            className="w-full h-full object-cover scale-150"
-            fetchPriority="high"
-          />
-        </picture>
-      </div>
+      <FadeContent className="flex flex-col items-center justify-center text-center min-h-[calc(100vh-4rem)]">
+        <div className="w-56 h-56 rounded-full overflow-hidden mb-8 shadow-sm">
+          <picture>
+            <source srcSet="/myself.webp" type="image/webp" />
+            <img
+              src="/myself.jpg"
+              alt="Muhammet Saraç"
+              width={336}
+              height={336}
+              className="w-full h-full object-cover scale-150"
+              fetchPriority="high"
+            />
+          </picture>
+        </div>
       <h1 className="text-5xl sm:text-6xl font-bold mb-4 text-neutral-900 dark:text-neutral-100">
         {t("hero.title")}
       </h1>
@@ -57,6 +55,7 @@ export function HeroSection() {
           {t("nav.contact")}
         </a>
       </div>
-    </motion.section>
+      </FadeContent>
+    </section>
   );
 }
