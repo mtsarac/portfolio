@@ -40,6 +40,12 @@ export function AnimatedContent({
     const el = ref.current
     if (!el) return
 
+    // ponytail: global media query, per-element check if perf matters
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(el, { visibility: 'visible', opacity: 1 })
+      return
+    }
+
     const axis = direction === 'horizontal' ? 'x' : 'y'
     const offset = reverse ? -distance : distance
     const startPct = (1 - threshold) * 100
@@ -64,7 +70,6 @@ export function AnimatedContent({
     const st = ScrollTrigger.create({
       trigger: el,
       start: `top ${startPct}%`,
-      toggleActions: 'play none none reverse',
       onEnter: () => tl.play(),
       onLeaveBack: () => tl.reverse(),
     })
@@ -72,6 +77,7 @@ export function AnimatedContent({
     return () => {
       st.kill()
       tl.kill()
+      gsap.killTweensOf(el)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
