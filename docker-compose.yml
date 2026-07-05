@@ -50,7 +50,6 @@ services:
       DATABASE_URL: postgresql://umami:${UMAMI_DB_PASSWORD:?}@umami-db:5432/umami
       APP_SECRET: ${UMAMI_APP_SECRET:?UMAMI_APP_SECRET is required}
       CORS_ORIGINS: ${UMAMI_CORS_ORIGINS:-https://msarac.me}
-      CLIENT_IP_HEADER: X-Forwarded-For
     depends_on:
       umami-db:
         condition: service_healthy
