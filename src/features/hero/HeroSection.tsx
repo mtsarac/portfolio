@@ -1,4 +1,4 @@
-import { FadeContent } from "../../components/FadeContent";
+import { AnimatedContent } from "../../components/AnimatedContent";
 import { useI18n } from "../../hooks/useI18n";
 
 export function HeroSection() {
@@ -10,7 +10,7 @@ export function HeroSection() {
       id="hero"
       className="min-h-[calc(100vh-4rem)] px-4"
     >
-      <FadeContent className="flex flex-col items-center justify-center text-center min-h-[calc(100vh-4rem)]">
+      <AnimatedContent distance={40} duration={0.7} threshold={0.12} className="flex flex-col items-center justify-center text-center min-h-[calc(100vh-4rem)]">
         <div className="w-56 h-56 rounded-full overflow-hidden mb-8 shadow-sm isolate">
           <picture>
             <source srcSet="/myself.webp" type="image/webp" />
@@ -55,7 +55,7 @@ export function HeroSection() {
           {t("nav.contact")}
         </a>
       </div>
-      </FadeContent>
+      </AnimatedContent>
     </section>
   );
 }
