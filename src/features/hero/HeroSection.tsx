@@ -11,7 +11,7 @@ export function HeroSection() {
       className="min-h-[calc(100vh-4rem)] px-4"
     >
       <FadeContent className="flex flex-col items-center justify-center text-center min-h-[calc(100vh-4rem)]">
-        <div className="w-56 h-56 rounded-full overflow-hidden mb-8 shadow-sm">
+        <div className="w-56 h-56 rounded-full overflow-hidden mb-8 shadow-sm isolate">
           <picture>
             <source srcSet="/myself.webp" type="image/webp" />
             <img
