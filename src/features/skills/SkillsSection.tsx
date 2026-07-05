@@ -1,27 +1,36 @@
-import { useI18n } from '../../hooks/useI18n'
-import { Section } from '../../components/Section'
-import type { SkillCategory } from '../../types'
+import { useI18n } from "../../hooks/useI18n";
+import { Section } from "../../components/Section";
+import type { SkillCategory } from "../../types";
 
 const skillData: SkillCategory[] = [
   {
-    title: 'skills.languages',
-    items: ['Java', 'C#', 'Python', 'TypeScript', 'SQL', 'C++', 'HTML', 'CSS'],
+    title: "skills.languages",
+    items: ["Java", "C#", "Python", "TypeScript", "SQL", "C++", "HTML", "CSS"],
   },
   {
-    title: 'skills.frameworks',
-    items: ['React', 'Next.js', '.NET Web API', 'MS SQL Server', 'PostgreSQL', 'Bootstrap', 'Shadcn', 'Docker', 'Tailwind CSS'],
+    title: "skills.frameworks",
+    items: [
+      "React",
+      "Next.js",
+      ".NET Web API",
+      "MS SQL Server",
+      "PostgreSQL",
+      "Bootstrap",
+      "Shadcn",
+      "Tailwind CSS",
+    ],
   },
   {
-    title: 'skills.tools',
-    items: ['Git/GitHub', 'AWS'],
+    title: "skills.tools",
+    items: ["Git/GitHub", "AWS", "Docker"],
   },
-]
+];
 
 export function SkillsSection() {
-  const { t } = useI18n()
+  const { t } = useI18n();
 
   return (
-    <Section id="skills" title={t('skills.title')}>
+    <Section id="skills" title={t("skills.title")}>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {skillData.map((cat) => (
           <div
@@ -45,5 +54,5 @@ export function SkillsSection() {
         ))}
       </div>
     </Section>
-  )
+  );
 }
