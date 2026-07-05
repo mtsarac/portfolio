@@ -9,7 +9,7 @@ export function HeroSection() {
       id="hero"
       className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center text-center px-4"
     >
-      <div className="w-28 h-28 rounded-full overflow-hidden mb-8 shadow-sm">
+      <div className="w-60 h-60 rounded-full overflow-hidden mb-8 shadow-sm">
         <picture>
           <source srcSet="/myself.webp" type="image/webp" />
           <img
