@@ -146,4 +146,5 @@ No React Router. All navigation uses **hash anchors** (`href="#about"`, `href="#
 - **Tailwind CSS 4** — uses the new Vite plugin (`@tailwindcss/vite`), not the PostCSS config approach from v3. Custom variants use `@custom-variant dark (&:where(.dark, .dark *));` syntax. No `tailwind.config.js`.
 - **`<html lang>`** is synced to i18n state via `useEffect` in `I18nProvider`.
 - **Commit messages use Turkish** in commit body (e.g., "eklendi", "kaldırıldı", "temizlendi") — this is intentional by the author.
+- **Commit mesajları kısa özet olarak yazılır** — başlık satırında ne yapıldığı özetlenir, uzun açıklama eklenmez. Semantic prefix kullanılır (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `cleanup:`).
 - **Umami tracking** is implemented both via the programmatic `UmamiLogger` class and via inline `data-umami-event` HTML attributes (see `HeroSection.tsx` download button).
