@@ -1,6 +1,6 @@
 # portfolio-site
 
-Kişisel portfolio sitesi — Muhammet Saraç
+Kişisel portfolio sitesi - Muhammet Saraç
 
 ## Özellikler
 

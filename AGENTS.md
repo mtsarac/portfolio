@@ -1,4 +1,4 @@
-# AGENTS.md — portfolio-site
+# AGENTS.md - portfolio-site
 
 Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page React app with dark mode, i18n (TR/EN), and Umami analytics.
 
@@ -22,13 +22,13 @@ bun run lint      # ESLint on all .ts/.tsx
 bun run preview   # Preview production build locally
 ```
 
-There are **no tests** in this repo — no test framework, no test files, no test-related dependencies in `package.json`.
+There are **no tests** in this repo - no test framework, no test files, no test-related dependencies in `package.json`.
 
 ## Project Structure
 
 ```
 src/
-├── App.tsx                          # Root component — provider nesting & section layout
+├── App.tsx                          # Root component - provider nesting & section layout
 ├── main.tsx                         # Entry point
 ├── index.css                        # Global styles + Tailwind import
 ├── types/index.ts                   # All shared types
@@ -38,10 +38,10 @@ src/
 │   ├── Footer.tsx                   # Year, credit text
 │   └── Section.tsx                  # Generic section wrapper (id, title, children)
 ├── features/                        # Feature modules (each self-contained)
-│   ├── hero/                        # HeroSection — profile photo, title, CTA buttons
-│   ├── about/                       # AboutSection — bio + education timeline
-│   ├── skills/                      # SkillsSection — categorized skill cards
-│   ├── contact/                     # ContactSection — contact links with Umami event tracking
+│   ├── hero/                        # HeroSection - profile photo, title, CTA buttons
+│   ├── about/                       # AboutSection - bio + education timeline
+│   ├── skills/                      # SkillsSection - categorized skill cards
+│   ├── contact/                     # ContactSection - contact links with Umami event tracking
 │   ├── theme/                       # ThemeProvider + ThemeToggle (dark/light)
 │   ├── i18n/                        # I18nProvider + LangToggle + translations/
 │   └── logging/                     # LoggingProvider + UmamiLogger + LoggingService interface
@@ -74,9 +74,9 @@ Each feature lives in `src/features/<name>/` as a single file or directory with 
 ### State management
 
 No external state library. Uses **Context + Provider** pattern exclusively:
-- `ThemeContext` — dark/light toggle, persisted to `localStorage('portfolio_theme')`, respects `prefers-color-scheme`
-- `I18nContext` — TR/EN toggle, persisted to `localStorage('portfolio_lang')`, respects `navigator.language`
-- `LoggingContext` — provides `LoggingService` instance; no localStorage, conditionally creates `UmamiLogger` if env vars are set, otherwise `noopLogger` object literal
+- `ThemeContext` - dark/light toggle, persisted to `localStorage('portfolio_theme')`, respects `prefers-color-scheme`
+- `I18nContext` - TR/EN toggle, persisted to `localStorage('portfolio_lang')`, respects `navigator.language`
+- `LoggingContext` - provides `LoggingService` instance; no localStorage, conditionally creates `UmamiLogger` if env vars are set, otherwise `noopLogger` object literal
 
 ### Custom hook pattern
 
@@ -115,8 +115,8 @@ docker compose up -d --build
 ```
 
 Two-compose-file setup:
-- `docker-compose.yml` — production stack (portfolio + Umami + PostgreSQL behind Traefik)
-- `docker-compose.local.yml` — local override (portfolio only on port 8000, no Umami)
+- `docker-compose.yml` - production stack (portfolio + Umami + PostgreSQL behind Traefik)
+- `docker-compose.local.yml` - local override (portfolio only on port 8000, no Umami)
 
 Dockerfile is multi-stage: `Node 22-alpine` (build) → `nginx:alpine` (serve). Build args `VITE_UMAMI_SITE_ID` and `VITE_UMAMI_URL` are baked into the static JS at build time.
 
@@ -136,15 +136,16 @@ No React Router. All navigation uses **hash anchors** (`href="#about"`, `href="#
 
 ## Important Gotchas
 
-- **Docker işlemleri yasaktır** — agent'lar `docker`, `docker compose` komutlarını çalıştıramaz. Container build/restart/pull işlemleri için kullanıcıya bilgi verilir, kendisi yapar.
-- **No test framework installed** — don't look for `vitest`, `jest`, or test scripts. There are zero tests.
-- **`bun run build` = `tsc -b && vite build`** — TypeScript check runs first and blocks on errors. Use `bun run build` not just `vite build`.
-- **TypeScript 6.0.3** — very new. `erasableSyntaxOnly: true` in tsconfig means type-only imports/exports use `type` keyword explicitly.
-- **`verbatimModuleSyntax: true`** — imports must use `import type` for type-only imports. The pattern is `import type { X } from './y'` not `import { type X } from './y'`.
-- **`noUnusedLocals` / `noUnusedParameters`** are on — TypeScript build fails on unused variables.
+- **Docker işlemleri yasaktır** - agent'lar `docker`, `docker compose` komutlarını çalıştıramaz. Container build/restart/pull işlemleri için kullanıcıya bilgi verilir, kendisi yapar.
+- **No test framework installed** - don't look for `vitest`, `jest`, or test scripts. There are zero tests.
+- **`bun run build` = `tsc -b && vite build`** - TypeScript check runs first and blocks on errors. Use `bun run build` not just `vite build`.
+- **TypeScript 6.0.3** - very new. `erasableSyntaxOnly: true` in tsconfig means type-only imports/exports use `type` keyword explicitly.
+- **`verbatimModuleSyntax: true`** - imports must use `import type` for type-only imports. The pattern is `import type { X } from './y'` not `import { type X } from './y'`.
+- **`noUnusedLocals` / `noUnusedParameters`** are on - TypeScript build fails on unused variables.
 - **LocalStorage keys** are `portfolio_theme` and `portfolio_lang` (prefixed with `portfolio_`).
-- **Tailwind CSS 4** — uses the new Vite plugin (`@tailwindcss/vite`), not the PostCSS config approach from v3. Custom variants use `@custom-variant dark (&:where(.dark, .dark *));` syntax. No `tailwind.config.js`.
+- **Tailwind CSS 4** - uses the new Vite plugin (`@tailwindcss/vite`), not the PostCSS config approach from v3. Custom variants use `@custom-variant dark (&:where(.dark, .dark *));` syntax. No `tailwind.config.js`.
 - **`<html lang>`** is synced to i18n state via `useEffect` in `I18nProvider`.
-- **Commit messages are written in English** — both title and body. Short, one-line summaries only. Use semantic prefixes (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `cleanup:`).
-- **No co-author or contributors** — never include `Co-authored-by` or `Contributors` lines. All commits must be authored as `mtsarac` only.
+- **Commit messages are written in English** - both title and body. Short, one-line summaries only. Use semantic prefixes (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `cleanup:`).
+- **No co-author or contributors** - never include `Co-authored-by` or `Contributors` lines. All commits must be authored as `mtsarac` only.
 - **Umami tracking** is implemented both via the programmatic `UmamiLogger` class and via inline `data-umami-event` HTML attributes (see `HeroSection.tsx` download button).
+- **No em dash (`—`)** - the em dash character must never appear in any source file, translation file, or documentation in this project. Use a regular hyphen (`-`) instead.

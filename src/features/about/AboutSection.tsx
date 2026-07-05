@@ -23,7 +23,7 @@ export function AboutSection() {
                 {t('about.university')}
               </h4>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                {t('about.department')} — {t('about.gpa')}
+                {t('about.department')} - {t('about.gpa')}
               </p>
               <p className="text-sm text-neutral-500 dark:text-neutral-500 mt-1">2022 – 2026</p>
             </div>

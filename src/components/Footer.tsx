@@ -5,7 +5,7 @@ export function Footer() {
 
   return (
     <footer className="py-8 px-4 text-center text-sm text-neutral-500 dark:text-neutral-500 border-t border-neutral-200 dark:border-neutral-800">
-      <p>© {new Date().getFullYear()} Muhammet Saraç — {t('footer.builtWith')}</p>
+      <p>© {new Date().getFullYear()} Muhammet Saraç - {t('footer.builtWith')}</p>
     </footer>
   )
 }
