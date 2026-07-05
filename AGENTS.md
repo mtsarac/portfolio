@@ -136,6 +136,7 @@ No React Router. All navigation uses **hash anchors** (`href="#about"`, `href="#
 
 ## Important Gotchas
 
+- **Docker işlemleri yasaktır** — agent'lar `docker`, `docker compose` komutlarını çalıştıramaz. Container build/restart/pull işlemleri için kullanıcıya bilgi verilir, kendisi yapar.
 - **No test framework installed** — don't look for `vitest`, `jest`, or test scripts. There are zero tests.
 - **`bun run build` = `tsc -b && vite build`** — TypeScript check runs first and blocks on errors. Use `bun run build` not just `vite build`.
 - **TypeScript 6.0.3** — very new. `erasableSyntaxOnly: true` in tsconfig means type-only imports/exports use `type` keyword explicitly.
