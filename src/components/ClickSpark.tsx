@@ -153,6 +153,7 @@ export function ClickSpark({
       <canvas
         ref={canvasRef}
         className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
       />
       {children}
     </div>
