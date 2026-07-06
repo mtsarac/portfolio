@@ -9,11 +9,32 @@ export function Navbar() {
   const { t } = useI18n()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: '-40% 0px -55% 0px' },
+    )
+
+    NAV_ITEMS.forEach((item) => {
+      const el = document.getElementById(item)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
   }, [])
 
   const close = () => setMenuOpen(false)
@@ -34,7 +55,11 @@ export function Navbar() {
             <a
               key={item}
               href={`#${item}`}
-              className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+              className={`text-sm transition-colors ${
+                activeSection === item
+                  ? 'text-sky-600 dark:text-sky-400'
+                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
+              }`}
             >
               {t(`nav.${item}`)}
             </a>
@@ -65,7 +90,11 @@ export function Navbar() {
                 key={item}
                 href={`#${item}`}
                 onClick={close}
-                className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+                className={`text-sm transition-colors ${
+                  activeSection === item
+                    ? 'text-sky-600 dark:text-sky-400'
+                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
+                }`}
               >
                 {t(`nav.${item}`)}
               </a>
