@@ -1,152 +1,145 @@
 # AGENTS.md - portfolio-site
 
-Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page React app with dark mode, i18n (TR/EN), and Umami analytics.
+**Generated:** 2026-07-07
+**Commit:** `5003fc5` (main)
+**Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
 
-## Tech Stack
+Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with dark mode, i18n (TR/EN), Umami analytics, WebGL light rays, canvas click sparkles, and GSAP scroll animations.
 
-| Layer | Choice |
-|---|---|
-| Framework | React 19, TypeScript 6 |
-| Build | Vite 8 + `@vitejs/plugin-react` |
-| Styling | Tailwind CSS 4 (`@tailwindcss/vite` plugin) |
-| Runtime | Bun |
-| Analytics | Umami (self-hosted, behind Traefik) |
-| Deployment | Docker multi-stage (nginx:alpine) + Traefik |
-
-## Essential Commands
+## Commands
 
 ```bash
-bun dev           # Start dev server (Vite)
-bun run build     # TypeScript check + production build
-bun run lint      # ESLint on all .ts/.tsx
-bun run preview   # Preview production build locally
+bun dev           # Vite dev server
+bun run build     # tsc -b && vite build
+bun run lint      # ESLint on .ts/.tsx
+bun run preview   # Preview production build
 ```
 
-There are **no tests** in this repo - no test framework, no test files, no test-related dependencies in `package.json`.
+No test framework. `bun run build` = TypeScript check + production build.
 
-## Project Structure
+## WHERE TO LOOK
+
+| Task | Location |
+|------|----------|
+| Provider nesting, section order | `src/App.tsx` |
+| Entry point, DOM mount | `src/main.tsx` |
+| Shared types (LogEvent, SkillCategory, Translations) | `src/types/index.ts` |
+| Layout shell (Navbar + main + Footer) | `src/components/Layout.tsx` |
+| Fixed top nav with scroll styling | `src/components/Navbar.tsx` |
+| Generic section wrapper | `src/components/Section.tsx` |
+| Canvas click sparkle effect | `src/components/ClickSpark.tsx` |
+| WebGL radial light rays | `src/components/LightRays.tsx` |
+| Infinite logo marquee | `src/components/LogoLoop.tsx` |
+| GSAP scroll-triggered fade-in | `src/components/AnimatedContent.tsx` |
+| Theme (dark/light toggle) | `src/features/theme/ThemeProvider.tsx` |
+| i18n (TR/EN + translations JSON) | `src/features/i18n/` |
+| Logging (Umami / noop) | `src/features/logging/LoggingProvider.tsx` |
+| Context-consuming hooks with guard | `src/hooks/{useTheme,useI18n,useLogger}.ts` |
+| Docker + Traefik config | `docker-compose.yml`, `Dockerfile` |
+| Nginx SPA fallback | `nginx.conf` |
+| Improvement backlog | `IMPROVEMENTS.md` |
+
+## STRUCTURE
 
 ```
-src/
-├── App.tsx                          # Root component - provider nesting & section layout
-├── main.tsx                         # Entry point
-├── index.css                        # Global styles + Tailwind import
-├── types/index.ts                   # All shared types
-├── components/                      # Reusable UI components
-│   ├── Layout.tsx                   # Page shell (Navbar + main + Footer)
-│   ├── Navbar.tsx                   # Fixed top nav with scroll-based styling
-│   ├── Footer.tsx                   # Year, credit text
-│   └── Section.tsx                  # Generic section wrapper (id, title, children)
-├── features/                        # Feature modules (each self-contained)
-│   ├── hero/                        # HeroSection - profile photo, title, CTA buttons
-│   ├── about/                       # AboutSection - bio + education timeline
-│   ├── skills/                      # SkillsSection - categorized skill cards
-│   ├── contact/                     # ContactSection - contact links with Umami event tracking
-│   ├── theme/                       # ThemeProvider + ThemeToggle (dark/light)
-│   ├── i18n/                        # I18nProvider + LangToggle + translations/
-│   └── logging/                     # LoggingProvider + UmamiLogger + LoggingService interface
-└── hooks/                           # Context-consuming hooks with guard
-    ├── useTheme.ts
-    ├── useI18n.ts
-    └── useLogger.ts
+.
+├── src/
+│   ├── App.tsx              # Root: provider nest + section layout
+│   ├── main.tsx             # Entry
+│   ├── index.css            # Tailwind import + custom variants
+│   ├── types/index.ts       # All shared types
+│   ├── components/          # Reusable UI (Layout, Navbar, Footer, Section, ClickSpark, LightRays, LogoLoop, AnimatedContent)
+│   ├── features/            # Self-contained feature modules
+│   │   ├── hero/            # HeroSection: photo, title, CTAs
+│   │   ├── about/           # AboutSection: bio + education
+│   │   ├── skills/          # SkillsSection: badge carousel
+│   │   ├── contact/         # ContactSection: links + Umami events
+│   │   ├── theme/           # ThemeProvider + ThemeToggle
+│   │   ├── i18n/            # I18nProvider + LangToggle + translations/
+│   │   └── logging/         # LoggingProvider + UmamiLogger + LoggingService interface
+│   └── hooks/               # Context hooks (each: useContext + null guard)
+├── docker-compose.yml       # Production stack (portfolio + Umami + PostgreSQL + Traefik)
+├── docker-compose.local.yml # Local (portfolio only, port 8000)
+├── Dockerfile               # Multi-stage: node:22-alpine build → nginx:alpine serve
+├── nginx.conf               # SPA fallback
+└── AGENTS.md                # This file
 ```
 
-## Architecture & Conventions
+## CODE MAP
 
-### Feature-based organization
+| Symbol | Type | File | Refs | Role |
+|--------|------|------|------|------|
+| `App` | component | `src/App.tsx` | entry | Root provider nesting + section rendering |
+| `AppContent` | component | `src/App.tsx` | 1 | Theme-aware content with effects |
+| `Layout` | component | `src/components/Layout.tsx` | 1 | Page shell |
+| `Navbar` | component | `src/components/Navbar.tsx` | 1 | Fixed nav with scroll bg |
+| `Footer` | component | `src/components/Footer.tsx` | 1 | Year + credit |
+| `Section` | component | `src/components/Section.tsx` | 4 | Generic wrapper per section |
+| `ClickSpark` | component | `src/components/ClickSpark.tsx` | 1 | Canvas click particle effect |
+| `LightRays` | component | `src/components/LightRays.tsx` | 1 | WebGL radial rays background |
+| `LogoLoop` | component | `src/components/LogoLoop.tsx` | 1 | Infinite marquee |
+| `AnimatedContent` | component | `src/components/AnimatedContent.tsx` | 4 | GSAP scroll-triggered fade-in |
+| `ThemeProvider` | provider | `src/features/theme/ThemeProvider.tsx` | 1 | Dark/light context + localStorage |
+| `I18nProvider` | provider | `src/features/i18n/I18nProvider.tsx` | 1 | TR/EN context + localStorage |
+| `LoggingProvider` | provider | `src/features/logging/LoggingProvider.tsx` | 1 | Logging service context |
+| `UmamiLogger` | class | `src/features/logging/UmamiLogger.ts` | 1 | Umami script injection + tracking |
+| `useTheme` | hook | `src/hooks/useTheme.ts` | 1 | Consumes ThemeContext |
+| `useI18n` | hook | `src/hooks/useI18n.ts` | 5 | Consumes I18nContext |
+| `useLogger` | hook | `src/hooks/useLogger.ts` | 1 | Consumes LoggingContext |
 
-Each feature lives in `src/features/<name>/` as a single file or directory with its implementation directly importable.
+## ARCHITECTURE
 
-### Provider nesting order (in App.tsx)
+### Provider nesting
 
 ```tsx
-<ThemeProvider>
-  <I18nProvider>
-    <LoggingProvider>
+<ThemeProvider>   {/* outermost - affects everything */}
+  <I18nProvider>  {/* relies on theme */}
+    <LoggingProvider>  {/* innermost - uses i18n + theme */}
       <AppContent />
     </LoggingProvider>
   </I18nProvider>
 </ThemeProvider>
 ```
 
-`ThemeProvider` outermost (affects everything), `LoggingProvider` innermost.
+### State
 
-### State management
+No external lib. Context + Provider only, persisted to `localStorage` (keys: `portfolio_theme`, `portfolio_lang`). `ThemeProvider` respects `prefers-color-scheme`. `I18nProvider` respects `navigator.language`.
 
-No external state library. Uses **Context + Provider** pattern exclusively:
-- `ThemeContext` - dark/light toggle, persisted to `localStorage('portfolio_theme')`, respects `prefers-color-scheme`
-- `I18nContext` - TR/EN toggle, persisted to `localStorage('portfolio_lang')`, respects `navigator.language`
-- `LoggingContext` - provides `LoggingService` instance; no localStorage, conditionally creates `UmamiLogger` if env vars are set, otherwise `noopLogger` object literal
+### Routing
 
-### Custom hook pattern
+No React Router. Hash anchors (`href="#about"`) on one page. Nginx `try_files $uri $uri/ /index.html;` for direct URL access.
 
-Every context has a corresponding hook in `src/hooks/` that:
-1. Calls `useContext(Context)`
-2. Throws if context is `null` (provider missing)
-3. Exports the typed context value
+### Logging
 
-Example (`src/hooks/useLogger.ts`):
-```ts
-export function useLogger(): LoggingContextType {
-  const ctx = useContext(LoggingContext)
-  if (!ctx) throw new Error('useLogger must be used within LoggingProvider')
-  return ctx
-}
-```
+`LoggingService` interface → `UmamiLogger` (injects Umami script) or `noopLogger` object literal. Decision in `LoggingProvider` based on `VITE_UMAMI_SITE_ID` / `VITE_UMAMI_URL` env vars.
 
-### Logging system
+### Hook pattern
 
-`LoggingService` interface (`src/features/logging/LoggingService.ts`) with `log()`, `logPageView()`, `logEvent()`. `UmamiLogger` implements it and dynamically injects the Umami script. When `VITE_UMAMI_SITE_ID` or `VITE_UMAMI_URL` env vars are missing, a `noopLogger` object literal is used instead. `LoggingProvider` decides which implementation to instantiate.
+Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if null (provider missing).
 
-### i18n
+## CONVENTIONS
 
-Translation JSON files in `src/features/i18n/translations/`. The `t()` function accepts dot-notation paths (e.g., `t('nav.about')`). Falls back to raw path string if key not found.
+- Feature-based: each module in `src/features/<name>/` (self-contained)
+- Type-only imports use `import type { X }` syntax (`verbatimModuleSyntax: true`)
+- TypeScript strict: `noUnusedLocals`, `noUnusedParameters`, `erasableSyntaxOnly`
+- LocalStorage keys prefixed `portfolio_`
+- Commit messages in English, one line, semantic prefix (`feat:`, `fix:`, etc.)
 
-### Types
+## ANTI-PATTERNS (THIS PROJECT)
 
-All shared types in `src/types/index.ts`. Notable: `LogEvent` (tagged union with `type: 'pageview' | 'event'`), `Translations` (nested object matching JSON structure), `SkillCategory`.
+- No `docker` / `docker compose` commands from agents
+- No `as any`, `@ts-ignore`, `@ts-expect-error`
+- No em dash (`—`) anywhere in source, translations, or docs
+- No `Co-authored-by` or `Contributors` lines in commits
+- No pushing without explicit request
+- No `vitest` / `jest` / test framework (zero tests)
 
-## Deployment
+## GOTCHAS
 
-### Docker (production)
-
-```bash
-docker compose up -d --build
-```
-
-Two-compose-file setup:
-- `docker-compose.yml` - production stack (portfolio + Umami + PostgreSQL behind Traefik)
-- `docker-compose.local.yml` - local override (portfolio only on port 8000, no Umami)
-
-Dockerfile is multi-stage: `Node 22-alpine` (build) → `nginx:alpine` (serve). Build args `VITE_UMAMI_SITE_ID` and `VITE_UMAMI_URL` are baked into the static JS at build time.
-
-### Environment variables
-
-```env
-# Required for Umami analytics to activate
-VITE_UMAMI_SITE_ID=<id>       # If empty, NoopLogger is used
-VITE_UMAMI_URL=https://umami.msarac.me
-```
-
-Vite exposes `VITE_` prefixed variables to client code via `import.meta.env`.
-
-## Routing
-
-No React Router. All navigation uses **hash anchors** (`href="#about"`, `href="#contact"`). The sections are stacked on one page. Nginx SPA fallback (`try_files $uri $uri/ /index.html;`) handles direct URL access.
-
-## Important Gotchas
-
-- **Docker işlemleri yasaktır** - agent'lar `docker`, `docker compose` komutlarını çalıştıramaz. Container build/restart/pull işlemleri için kullanıcıya bilgi verilir, kendisi yapar.
-- **No test framework installed** - don't look for `vitest`, `jest`, or test scripts. There are zero tests.
-- **`bun run build` = `tsc -b && vite build`** - TypeScript check runs first and blocks on errors. Use `bun run build` not just `vite build`.
-- **TypeScript 6.0.3** - very new. `erasableSyntaxOnly: true` in tsconfig means type-only imports/exports use `type` keyword explicitly.
-- **`verbatimModuleSyntax: true`** - imports must use `import type` for type-only imports. The pattern is `import type { X } from './y'` not `import { type X } from './y'`.
-- **`noUnusedLocals` / `noUnusedParameters`** are on - TypeScript build fails on unused variables.
-- **LocalStorage keys** are `portfolio_theme` and `portfolio_lang` (prefixed with `portfolio_`).
-- **Tailwind CSS 4** - uses the new Vite plugin (`@tailwindcss/vite`), not the PostCSS config approach from v3. Custom variants use `@custom-variant dark (&:where(.dark, .dark *));` syntax. No `tailwind.config.js`.
-- **`<html lang>`** is synced to i18n state via `useEffect` in `I18nProvider`.
-- **Commit messages are written in English** - both title and body. Short, one-line summaries only. Use semantic prefixes (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `cleanup:`).
-- **No co-author or contributors** - never include `Co-authored-by` or `Contributors` lines. All commits must be authored as `mtsarac` only.
-- **Umami tracking** is implemented both via the programmatic `UmamiLogger` class and via inline `data-umami-event` HTML attributes (see `HeroSection.tsx` download button).
-- **No em dash (`—`)** - the em dash character must never appear in any source file, translation file, or documentation in this project. Use a regular hyphen (`-`) instead.
-- **No pushing without explicit request** - do not run `git push` unless the user explicitly says "push" or "push it". Committing is fine, but pushing requires approval.
+- `bun run build` = `tsc -b && vite build` - TypeScript errors block build
+- Tailwind CSS 4 via `@tailwindcss/vite` (no PostCSS config, no `tailwind.config.js`)
+- Dark mode variant: `@custom-variant dark (&:where(.dark, .dark *));`
+- `import.meta.env` for `VITE_` prefixed env vars
+- Umami tracking: programmatic via `UmamiLogger.logEvent()` + inline `data-umami-event` HTML attributes
+- GSAP + OGL + react-icons are the only non-React dependencies
+- TypeScript 6.0.3 (very new, careful with incompatibilities)
