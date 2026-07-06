@@ -32,14 +32,14 @@ export function ContactSection() {
             <span className="text-sm text-neutral-500 dark:text-neutral-400">
               {item.label.startsWith('contact.') ? t(item.label) : item.label}
             </span>
-            <span className="font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            <span className="font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
               {item.value}
             </span>
           </a>
         ))}
 
         <p className="text-center text-sm text-neutral-500 dark:text-neutral-500 mt-6">
-          Merkezefendi / Denizli
+          {t('contact.location')}
         </p>
       </div>
     </Section>
