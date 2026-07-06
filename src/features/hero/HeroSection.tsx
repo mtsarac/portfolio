@@ -13,9 +13,11 @@ export function HeroSection() {
       <AnimatedContent distance={40} duration={0.7} threshold={0.12} className="flex flex-col items-center justify-center text-center min-h-[calc(100vh-4rem)]">
         <div className="w-56 h-56 rounded-full overflow-hidden mb-8 shadow-sm isolate">
           <picture>
-            <source srcSet="/myself.webp" type="image/webp" />
+            <source srcSet="/myself-400w.webp 400w, /myself-800w.webp 800w, /myself.webp 1008w" type="image/webp" sizes="224px" />
             <img
               src="/myself.jpg"
+              srcSet="/myself-400w.jpg 400w, /myself-800w.jpg 800w, /myself.jpg 1008w"
+              sizes="224px"
               alt="Muhammet Saraç"
               width={1008}
               height={1008}
@@ -36,7 +38,7 @@ export function HeroSection() {
       <div className="flex gap-4 mt-10">
         <a
           href="#about"
-          className="px-6 py-3 rounded-xl bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 font-medium hover:opacity-90 transition-opacity"
+          className="px-6 py-3 rounded-xl bg-sky-600 dark:bg-sky-500 text-white font-medium hover:bg-sky-700 dark:hover:bg-sky-400 transition-colors"
         >
           {t("nav.about")}
         </a>
