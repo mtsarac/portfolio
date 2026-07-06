@@ -33,7 +33,8 @@
   "contact": {
     "title": "Contact",
     "email": "Email",
-    "phone": "Phone"
+    "phone": "Phone",
+    "location": "Merkezefendi / Denizli"
   },
   "footer": {
     "builtWith": "Built with React & Tailwind CSS"

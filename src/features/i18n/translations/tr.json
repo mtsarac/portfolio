@@ -33,7 +33,8 @@
   "contact": {
     "title": "İletişim",
     "email": "E-posta",
-    "phone": "Telefon"
+    "phone": "Telefon",
+    "location": "Merkezefendi / Denizli"
   },
   "footer": {
     "builtWith": "React & Tailwind CSS ile yapıldı"
