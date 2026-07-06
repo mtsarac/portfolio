@@ -66,7 +66,7 @@ const skillIcons: Record<string, IconType> = {
 function SkillBadge({ name }: { name: string }) {
   const Icon = skillIcons[name];
   return (
-    <span className="inline-flex items-center gap-2.5 px-5 py-2.5 text-base font-medium rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 whitespace-nowrap">
+    <span className="inline-flex items-center gap-2.5 px-5 py-2.5 text-base font-medium rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 whitespace-nowrap ring-1 ring-sky-500/20">
       {Icon && <Icon className="shrink-0" size={20} />}
       {name}
     </span>
