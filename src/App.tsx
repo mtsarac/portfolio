@@ -3,7 +3,7 @@ import { ThemeProvider } from './features/theme/ThemeProvider'
 import { I18nProvider } from './features/i18n/I18nProvider'
 import { LoggingProvider } from './features/logging/LoggingProvider'
 import { Layout } from './components/Layout'
-import { ClickSpark } from './components/ClickSpark'
+import ClickSpark from './components/ClickSpark'
 import { HeroSection } from './features/hero/HeroSection'
 import { AboutSection } from './features/about/AboutSection'
 import { SkillsSection } from './features/skills/SkillsSection'
@@ -13,7 +13,7 @@ import { useLogger } from './hooks/useLogger'
 import { useScrollDepth } from './hooks/useScrollDepth'
 import { useTimeOnPage } from './hooks/useTimeOnPage'
 
-const LightRays = lazy(() => import('./components/LightRays').then((m) => ({ default: m.LightRays })))
+const LightRays = lazy(() => import('./components/LightRays'))
 
 function AppContent() {
   const { theme } = useTheme()

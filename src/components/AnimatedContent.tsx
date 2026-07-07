@@ -19,7 +19,7 @@ interface AnimatedContentProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 
-export function AnimatedContent({
+function AnimatedContent({
   children,
   distance = 100,
   direction = 'vertical',
@@ -40,7 +40,7 @@ export function AnimatedContent({
     const el = ref.current
     if (!el) return
 
-    // ponytail: skip heavy animation + scroll listeners on mobile
+    // skip heavy animation + scroll listeners on mobile or reduced motion
     if (
       window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
       window.matchMedia('(max-width: 767px)').matches
@@ -91,3 +91,5 @@ export function AnimatedContent({
     </div>
   )
 }
+
+export default AnimatedContent

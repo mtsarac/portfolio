@@ -1,5 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react'
-import { AnimatedContent } from './AnimatedContent'
+import AnimatedContent from './AnimatedContent'
 import { useLogger } from '../hooks/useLogger'
 
 interface SectionProps {

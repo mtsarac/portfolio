@@ -18,7 +18,7 @@ interface ClickSparkProps {
   children?: ReactNode
 }
 
-export function ClickSpark({
+function ClickSpark({
   sparkColor = '#fff',
   sparkSize = 10,
   sparkRadius = 15,
@@ -159,3 +159,5 @@ export function ClickSpark({
     </div>
   )
 }
+
+export default ClickSpark

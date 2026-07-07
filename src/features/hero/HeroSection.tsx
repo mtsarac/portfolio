@@ -1,4 +1,4 @@
-import { AnimatedContent } from "../../components/AnimatedContent";
+import AnimatedContent from "../../components/AnimatedContent";
 import { useI18n } from "../../hooks/useI18n";
 
 export function HeroSection() {

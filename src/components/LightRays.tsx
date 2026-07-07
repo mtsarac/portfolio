@@ -83,7 +83,7 @@ interface Uniforms {
   distortion: { value: number }
 }
 
-export function LightRays({
+function LightRays({
   raysOrigin = 'top-center',
   raysColor = DEFAULT_COLOR,
   raysSpeed = 1,
@@ -452,3 +452,5 @@ void main() {
     />
   )
 }
+
+export default LightRays
