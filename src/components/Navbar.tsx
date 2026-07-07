@@ -1,4 +1,5 @@
 import { useI18n } from '../hooks/useI18n'
+import { useLogger } from '../hooks/useLogger'
 import { ThemeToggle } from '../features/theme/ThemeToggle'
 import { LangToggle } from '../features/i18n/LangToggle'
 import { useEffect, useState } from 'react'
@@ -7,6 +8,7 @@ const NAV_ITEMS = ['about', 'skills', 'contact'] as const
 
 export function Navbar() {
   const { t } = useI18n()
+  const { logger } = useLogger()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
@@ -55,6 +57,7 @@ export function Navbar() {
             <a
               key={item}
               href={`#${item}`}
+              onClick={() => logger.logEvent('nav_click', { section: item })}
               className={`text-sm transition-colors ${
                 activeSection === item
                   ? 'text-sky-600 dark:text-sky-400'
@@ -89,7 +92,7 @@ export function Navbar() {
               <a
                 key={item}
                 href={`#${item}`}
-                onClick={close}
+                onClick={() => { logger.logEvent('nav_click', { section: item }); close() }}
                 className={`text-sm transition-colors ${
                   activeSection === item
                     ? 'text-sky-600 dark:text-sky-400'

@@ -1,7 +1,7 @@
 # AGENTS.md - portfolio-site
 
 **Generated:** 2026-07-07
-**Commit:** `5003fc5` (main)
+**Commit:** `f49c12b` (main)
 **Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
 
 Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with dark mode, i18n (TR/EN), Umami analytics, WebGL light rays, canvas click sparkles, and GSAP scroll animations.

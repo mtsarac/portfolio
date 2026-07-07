@@ -13,8 +13,8 @@ export function ContactSection() {
   const { t } = useI18n()
   const { logger } = useLogger()
 
-  const handleClick = (type: string) => {
-    logger.logEvent('contact_click', { type })
+  const handleClick = (type: string, href: string) => {
+    logger.logEvent('contact_click', { type, href })
   }
 
   return (
@@ -26,7 +26,7 @@ export function ContactSection() {
             href={item.href}
             target={item.href.startsWith('http') ? '_blank' : undefined}
             rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            onClick={() => handleClick(item.type)}
+            onClick={() => handleClick(item.type, item.href)}
             className="flex items-center justify-between p-4 rounded-xl bg-white dark:bg-transparent border border-neutral-300 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors group shadow-sm"
           >
             <span className="text-sm text-neutral-600 dark:text-neutral-400">
