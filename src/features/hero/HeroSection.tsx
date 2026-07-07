@@ -32,7 +32,7 @@ export function HeroSection() {
       <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-6">
         {t("hero.subtitle")}
       </p>
-      <p className="max-w-xl text-neutral-500 dark:text-neutral-400 leading-relaxed">
+      <p className="max-w-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
         {t("hero.description")}
       </p>
       <div className="flex gap-4 mt-10">

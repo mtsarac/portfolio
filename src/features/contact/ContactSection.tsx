@@ -27,9 +27,9 @@ export function ContactSection() {
             target={item.href.startsWith('http') ? '_blank' : undefined}
             rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
             onClick={() => handleClick(item.type)}
-            className="flex items-center justify-between p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors group"
+            className="flex items-center justify-between p-4 rounded-xl bg-white dark:bg-transparent border border-neutral-300 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors group shadow-sm"
           >
-            <span className="text-sm text-neutral-500 dark:text-neutral-400">
+            <span className="text-sm text-neutral-600 dark:text-neutral-400">
               {item.label.startsWith('contact.') ? t(item.label) : item.label}
             </span>
             <span className="font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
@@ -38,7 +38,7 @@ export function ContactSection() {
           </a>
         ))}
 
-        <p className="text-center text-sm text-neutral-500 dark:text-neutral-500 mt-6">
+        <p className="text-center text-sm text-neutral-600 dark:text-neutral-500 mt-6">
           {t('contact.location')}
         </p>
       </div>

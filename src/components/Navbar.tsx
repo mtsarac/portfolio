@@ -42,7 +42,7 @@ export function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-shadow ${
-        scrolled ? 'shadow-sm bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md' : 'bg-transparent'
+        scrolled ? 'shadow-sm bg-white/90 dark:bg-neutral-950/80 backdrop-blur-md border-b border-neutral-200/50 dark:border-neutral-800/50' : 'bg-transparent'
       }`}
     >
       <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -83,7 +83,7 @@ export function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="sm:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md">
+        <div className="sm:hidden border-t border-neutral-300 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md">
           <div className="px-4 py-4 flex flex-col items-center gap-4">
             {NAV_ITEMS.map((item) => (
               <a
