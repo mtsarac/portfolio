@@ -40,8 +40,11 @@ export function AnimatedContent({
     const el = ref.current
     if (!el) return
 
-    // ponytail: global media query, per-element check if perf matters
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // ponytail: skip heavy animation + scroll listeners on mobile
+    if (
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      window.matchMedia('(max-width: 767px)').matches
+    ) {
       gsap.set(el, { visibility: 'visible', opacity: 1 })
       return
     }

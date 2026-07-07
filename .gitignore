@@ -31,3 +31,6 @@ dist-ssr
 
 # Analysis
 IMPROVEMENTS.md
+
+# Lighthouse reports
+reports/
