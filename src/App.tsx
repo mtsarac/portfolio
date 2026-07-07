@@ -22,7 +22,7 @@ function AppContent() {
   }, [logger])
 
   const sparkColor = theme === 'dark' ? '#d4d4d4' : '#525252'
-  const raysColor = theme === 'dark' ? '#c8d8ff' : '#fce8d0'
+  const raysColor = theme === 'dark' ? '#c8d8ff' : '#f5ebe6'
 
   return (
     <ClickSpark
