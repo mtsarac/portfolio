@@ -1,5 +1,4 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { ThemeProvider } from './features/theme/ThemeProvider'
 import { I18nProvider } from './features/i18n/I18nProvider'
 import { LoggingProvider } from './features/logging/LoggingProvider'
 import { Layout } from './components/Layout'
@@ -9,7 +8,6 @@ import { AboutSection } from './features/about/AboutSection'
 import { ProjectsSection } from './features/projects/ProjectsSection'
 import { SkillsSection } from './features/skills/SkillsSection'
 import { ContactSection } from './features/contact/ContactSection'
-import { useTheme } from './hooks/useTheme'
 import { useLogger } from './hooks/useLogger'
 import { useScrollDepth } from './hooks/useScrollDepth'
 import { useTimeOnPage } from './hooks/useTimeOnPage'
@@ -17,7 +15,6 @@ import { useTimeOnPage } from './hooks/useTimeOnPage'
 const LightRays = lazy(() => import('./components/LightRays'))
 
 function AppContent() {
-  const { theme } = useTheme()
   const { logger } = useLogger()
   const [isDesktop, setIsDesktop] = useState(false)
 
@@ -36,24 +33,21 @@ function AppContent() {
   useScrollDepth(logger)
   useTimeOnPage(logger)
 
-  const sparkColor = theme === 'dark' ? '#d4d4d4' : '#94a3b8'
-  const raysColor = theme === 'dark' ? '#c8d8ff' : '#e2e8f0'
-
   return (
     <ClickSpark
-      sparkColor={sparkColor}
+      sparkColor="#d4d4d4"
       sparkSize={8}
       sparkRadius={20}
       sparkCount={10}
       duration={500}
     >
       <div className="relative">
-        {isDesktop && theme === 'dark' && (
+        {isDesktop && (
           <div className="fixed inset-x-0 top-16 bottom-0 -z-10">
             <Suspense fallback={null}>
               <LightRays
                 raysOrigin="top-center"
-                raysColor={raysColor}
+                raysColor="#c8d8ff"
                 raysSpeed={0.6}
                 lightSpread={0.8}
                 rayLength={2.5}
@@ -78,13 +72,11 @@ function AppContent() {
 
 function App() {
   return (
-    <ThemeProvider>
-      <I18nProvider>
-        <LoggingProvider>
-          <AppContent />
-        </LoggingProvider>
-      </I18nProvider>
-    </ThemeProvider>
+    <I18nProvider>
+      <LoggingProvider>
+        <AppContent />
+      </LoggingProvider>
+    </I18nProvider>
   )
 }
 

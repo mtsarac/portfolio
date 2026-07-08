@@ -1,6 +1,5 @@
 import { useI18n } from '../hooks/useI18n'
 import { useLogger } from '../hooks/useLogger'
-import { ThemeToggle } from '../features/theme/ThemeToggle'
 import { LangToggle } from '../features/i18n/LangToggle'
 import { useEffect, useState } from 'react'
 
@@ -69,7 +68,6 @@ export function Navbar() {
           ))}
           <div className="flex items-center gap-2 ml-2 border-l border-slate-200 dark:border-neutral-700 pl-3">
             <LangToggle />
-            <ThemeToggle />
           </div>
         </div>
 
@@ -104,7 +102,6 @@ export function Navbar() {
             ))}
             <div className="flex items-center gap-2 pt-2 border-t border-slate-200 dark:border-neutral-800">
               <LangToggle />
-              <ThemeToggle />
             </div>
           </div>
         </div>
