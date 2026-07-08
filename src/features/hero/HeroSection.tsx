@@ -26,13 +26,13 @@ export function HeroSection() {
             />
           </picture>
         </div>
-      <h1 className="text-5xl sm:text-6xl font-bold mb-4 text-slate-900 dark:text-neutral-100">
+      <h1 className="text-5xl sm:text-6xl font-bold mb-4 dark:text-neutral-100">
         {t("hero.title")}
       </h1>
-      <p className="text-xl text-slate-500 dark:text-neutral-400 mb-6">
+      <p className="text-xl dark:text-neutral-400 mb-6">
         {t("hero.subtitle")}
       </p>
-      <p className="max-w-xl text-slate-500 dark:text-neutral-400 leading-relaxed">
+      <p className="max-w-xl dark:text-neutral-400 leading-relaxed">
         {t("hero.description")}
       </p>
       <div className="flex gap-4 mt-10">
@@ -47,13 +47,13 @@ export function HeroSection() {
           download
           data-umami-event="download-cv"
           data-umami-event-cv-lang={lang}
-          className="px-6 py-3 rounded-lg border border-slate-200 text-slate-700 dark:text-neutral-100 font-medium hover:bg-slate-50 dark:hover:bg-neutral-800 transition-colors"
+          className="px-6 py-3 rounded-lg border border-slate-200 dark:text-neutral-100 font-medium dark:hover:bg-neutral-800 transition-colors"
         >
           {t("hero.cv")}
         </a>
         <a
           href="#contact"
-          className="px-6 py-3 rounded-lg border border-slate-200 text-slate-700 dark:text-neutral-100 font-medium hover:bg-slate-50 dark:hover:bg-neutral-800 transition-colors"
+          className="px-6 py-3 rounded-lg border border-slate-200 dark:text-neutral-100 font-medium dark:hover:bg-neutral-800 transition-colors"
         >
           {t("nav.contact")}
         </a>

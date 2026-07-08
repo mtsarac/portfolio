@@ -33,7 +33,7 @@ export function ContactSection() {
         </div>
 
         {/* intro sentence */}
-        <p className="text-sm text-slate-600 dark:text-neutral-400 leading-relaxed max-w-sm mx-auto">
+        <p className="text-sm dark:text-neutral-400 leading-relaxed max-w-sm mx-auto">
           {t('contact.intro')}
         </p>
 
@@ -46,7 +46,7 @@ export function ContactSection() {
               target={item.href.startsWith('http') ? '_blank' : undefined}
               rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               onClick={() => handleClick(item.type, item.href)}
-              className="flex items-center justify-center w-14 h-14 rounded-xl bg-white dark:bg-neutral-800 border border-slate-200 dark:border-neutral-700 hover:shadow-md transition-all"
+              className="flex items-center justify-center w-14 h-14 rounded-xl dark:bg-neutral-800 border dark:border-neutral-700 hover:shadow-md transition-all"
               style={{ color: item.color }}
               title={item.label.startsWith('contact.') ? t(item.label) : item.label}
             >
@@ -55,7 +55,7 @@ export function ContactSection() {
           ))}
         </div>
 
-        <p className="text-xs text-slate-500 dark:text-neutral-500">
+        <p className="text-xs dark:text-neutral-500">
           {t('contact.location')}
         </p>
       </div>

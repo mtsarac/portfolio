@@ -110,7 +110,7 @@ const skillColors: Record<string, string | undefined> = {
 function SkillBadge({ name }: { name: string }) {
   const Icon = skillIcons[name];
   return (
-    <span className="inline-flex items-center gap-2.5 px-5 py-2.5 text-base font-medium rounded-lg bg-white dark:bg-neutral-800 text-slate-700 dark:text-neutral-200 whitespace-nowrap border border-slate-200 dark:border-neutral-700 shadow-sm">
+    <span className="inline-flex items-center gap-2.5 px-5 py-2.5 text-base font-medium rounded-lg dark:bg-neutral-800 dark:text-neutral-200 whitespace-nowrap border dark:border-neutral-700 shadow-sm">
       {Icon && <Icon className="shrink-0" size={20} color={skillColors[name]} />}
       {name}
     </span>
@@ -129,7 +129,7 @@ function SkillRow({ items, titleKey, direction }: { items: string[]; titleKey: s
   return (
     <AnimatedContent distance={40} duration={0.7} threshold={0.12}>
       <div>
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-neutral-400 mb-4 text-center">
+        <h3 className="text-sm font-semibold uppercase tracking-wider dark:text-neutral-400 mb-4 text-center">
           {t(titleKey)}
         </h3>
         <LogoLoop
