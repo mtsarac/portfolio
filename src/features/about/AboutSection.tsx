@@ -26,6 +26,9 @@ export function AboutSection() {
                 {t('about.department')} - {t('about.gpa')}
               </p>
               <p className="text-sm dark:text-neutral-500 mt-1">2022 – 2026</p>
+              <p className="text-xs dark:text-neutral-500 mt-3 leading-relaxed max-w-prose">
+                {t('about.coursework')}
+              </p>
             </div>
             <div className="border-l-2 dark:border-neutral-700 pl-4">
               <h4 className="font-semibold dark:text-neutral-100">

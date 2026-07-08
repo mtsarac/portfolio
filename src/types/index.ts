@@ -21,6 +21,7 @@ export interface Translations {
     gpa: string
     erasmus: string
     erasmusDesc: string
+    coursework: string
     description: string
     interests: string
     fullstack: string
