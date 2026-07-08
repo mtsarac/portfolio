@@ -7,6 +7,7 @@ const contactItems = [
   { label: 'contact.phone', value: '(541) 614-8690', href: 'tel:+905416148690', type: 'phone' as const },
   { label: 'GitHub', value: 'github.com/mtsarac', href: 'https://github.com/mtsarac', type: 'github' as const },
   { label: 'LinkedIn', value: 'linkedin.com/in/mtsarac', href: 'https://linkedin.com/in/mtsarac', type: 'linkedin' as const },
+  { label: 'contact.instagram', value: 'instagram.com/mtsarac0', href: 'https://www.instagram.com/mtsarac0/', type: 'instagram' as const },
 ]
 
 export function ContactSection() {

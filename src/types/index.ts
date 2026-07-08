@@ -38,6 +38,7 @@ export interface Translations {
     title: string
     email: string
     phone: string
+    instagram: string
   }
   footer: {
     builtWith: string
