@@ -21,8 +21,9 @@ import {
   SiGit,
   SiSupabase,
   SiNestjs,
+  SiExpo,
 } from "react-icons/si";
-import { FaAws, FaDatabase } from "react-icons/fa";
+import { FaAws, FaDatabase } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
 const skillData: SkillCategory[] = [
@@ -41,6 +42,8 @@ const skillData: SkillCategory[] = [
       ".NET Web API",
       "MS SQL Server",
       "PostgreSQL",
+      "Expo",
+      "TypeORM",
     ],
   },
   {
@@ -66,6 +69,8 @@ const skillIcons: Record<string, IconType | undefined> = {
   ".NET Web API": SiDotnet,
   "MS SQL Server": FaDatabase,
   PostgreSQL: SiPostgresql,
+  Expo: SiExpo,
+  TypeORM: FaDatabase,
   "Git/GitHub": SiGithub,
   Git: SiGit,
   Supabase: SiSupabase,
@@ -91,6 +96,8 @@ const skillColors: Record<string, string | undefined> = {
   '.NET Web API': '#512BD4',
   'MS SQL Server': '#CC2927',
   PostgreSQL: '#4169E1',
+  Expo: '#000020',
+  TypeORM: '#E05C2E',
   'Git/GitHub': '#666',
   Git: '#F05032',
   Supabase: '#3ECF8E',
@@ -102,7 +109,7 @@ const skillColors: Record<string, string | undefined> = {
 function SkillBadge({ name }: { name: string }) {
   const Icon = skillIcons[name];
   return (
-    <span className="inline-flex items-center gap-2.5 px-5 py-2.5 text-base font-medium rounded-full bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 whitespace-nowrap ring-1 ring-sky-500/20 border border-neutral-200 dark:border-neutral-700 shadow-sm">
+    <span className="inline-flex items-center gap-2.5 px-5 py-2.5 text-base font-medium rounded-lg bg-white dark:bg-neutral-800 text-slate-700 dark:text-neutral-200 whitespace-nowrap border border-slate-200 dark:border-neutral-700 shadow-sm">
       {Icon && <Icon className="shrink-0" size={20} color={skillColors[name]} />}
       {name}
     </span>

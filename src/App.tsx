@@ -6,6 +6,7 @@ import { Layout } from './components/Layout'
 import ClickSpark from './components/ClickSpark'
 import { HeroSection } from './features/hero/HeroSection'
 import { AboutSection } from './features/about/AboutSection'
+import { ProjectsSection } from './features/projects/ProjectsSection'
 import { SkillsSection } from './features/skills/SkillsSection'
 import { ContactSection } from './features/contact/ContactSection'
 import { useTheme } from './hooks/useTheme'
@@ -35,8 +36,8 @@ function AppContent() {
   useScrollDepth(logger)
   useTimeOnPage(logger)
 
-  const sparkColor = theme === 'dark' ? '#d4d4d4' : '#525252'
-  const raysColor = theme === 'dark' ? '#c8d8ff' : '#f5ebe6'
+  const sparkColor = theme === 'dark' ? '#d4d4d4' : '#94a3b8'
+  const raysColor = theme === 'dark' ? '#c8d8ff' : '#e2e8f0'
 
   return (
     <ClickSpark
@@ -47,7 +48,7 @@ function AppContent() {
       duration={500}
     >
       <div className="relative">
-        {isDesktop && (
+        {isDesktop && theme === 'dark' && (
           <div className="fixed inset-x-0 top-16 bottom-0 -z-10">
             <Suspense fallback={null}>
               <LightRays
@@ -66,6 +67,7 @@ function AppContent() {
         <Layout>
           <HeroSection />
           <AboutSection />
+          <ProjectsSection />
           <SkillsSection />
           <ContactSection />
         </Layout>
