@@ -22,7 +22,7 @@ import {
   SiSupabase,
   SiNestjs,
 } from "react-icons/si";
-import { FaAws } from "react-icons/fa";
+import { FaAws, FaDatabase } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
 const skillData: SkillCategory[] = [
@@ -64,7 +64,7 @@ const skillIcons: Record<string, IconType | undefined> = {
   NestJS: SiNestjs,
   "REST API": undefined,
   ".NET Web API": SiDotnet,
-  "MS SQL Server": SiDotnet,
+  "MS SQL Server": FaDatabase,
   PostgreSQL: SiPostgresql,
   "Git/GitHub": SiGithub,
   Git: SiGit,
