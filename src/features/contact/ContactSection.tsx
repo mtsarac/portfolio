@@ -4,20 +4,12 @@ import { useI18n } from '../../hooks/useI18n'
 import { useLogger } from '../../hooks/useLogger'
 import { Section } from '../../components/Section'
 
-interface ContactItem {
-  label: string
-  value: string
-  href: string
-  type: string
-  icon: IconType
-}
-
-const contactItems: ContactItem[] = [
-  { label: 'contact.email', value: 'mtsarac03@gmail.com', href: 'mailto:mtsarac03@gmail.com', type: 'email' as const, icon: FaEnvelope },
-  { label: 'contact.phone', value: '(541) 614-8690', href: 'tel:+905416148690', type: 'phone' as const, icon: FaPhone },
-  { label: 'GitHub', value: 'github.com/mtsarac', href: 'https://github.com/mtsarac', type: 'github' as const, icon: FaGithub },
-  { label: 'LinkedIn', value: 'linkedin.com/in/mtsarac', href: 'https://linkedin.com/in/mtsarac', type: 'linkedin' as const, icon: FaLinkedin },
-  { label: 'contact.instagram', value: 'instagram.com/mtsarac0', href: 'https://www.instagram.com/mtsarac0/', type: 'instagram' as const, icon: FaInstagram },
+const contactItems: { label: string; href: string; type: string; icon: IconType; color: string }[] = [
+  { label: 'contact.email', href: 'mailto:mtsarac03@gmail.com', type: 'email', icon: FaEnvelope, color: '#EA4335' },
+  { label: 'contact.phone', href: 'tel:+905416148690', type: 'phone', icon: FaPhone, color: '#22C55E' },
+  { label: 'GitHub', href: 'https://github.com/mtsarac', type: 'github', icon: FaGithub, color: '#888' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/mtsarac', type: 'linkedin', icon: FaLinkedin, color: '#0A66C2' },
+  { label: 'contact.instagram', href: 'https://www.instagram.com/mtsarac0/', type: 'instagram', icon: FaInstagram, color: '#E4405F' },
 ]
 
 export function ContactSection() {
@@ -30,27 +22,40 @@ export function ContactSection() {
 
   return (
     <Section id="contact" title={t('contact.title')}>
-      <div className="max-w-md mx-auto space-y-4">
-        {contactItems.map((item) => (
-          <a
-            key={item.label}
-            href={item.href}
-            target={item.href.startsWith('http') ? '_blank' : undefined}
-            rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            onClick={() => handleClick(item.type, item.href)}
-            className="flex items-center justify-between p-4 rounded-lg bg-white dark:bg-transparent border border-slate-200 dark:border-neutral-800 hover:bg-slate-50 dark:hover:bg-neutral-900 transition-colors group shadow-sm"
-          >
-            <span className="flex items-center gap-2 text-sm text-slate-500 dark:text-neutral-400">
-              <item.icon className="shrink-0" size={18} />
-              {item.label.startsWith('contact.') ? t(item.label) : item.label}
-            </span>
-            <span className="font-medium text-slate-900 dark:text-neutral-100 group-hover:text-slate-600 dark:group-hover:text-sky-400 transition-colors">
-              {item.value}
-            </span>
-          </a>
-        ))}
+      <div className="max-w-md mx-auto text-center space-y-6">
+        {/* open to work badge */}
+        <div className="flex items-center justify-center gap-2 -mt-6">
+          <span className="relative flex h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
+          </span>
+          <span className="text-sm font-medium text-emerald-500">{t('contact.openToWork')}</span>
+        </div>
 
-        <p className="text-center text-sm text-slate-500 dark:text-neutral-500 mt-6">
+        {/* intro sentence */}
+        <p className="text-sm text-slate-600 dark:text-neutral-400 leading-relaxed max-w-sm mx-auto">
+          {t('contact.intro')}
+        </p>
+
+        {/* icon row */}
+        <div className="flex items-center justify-center gap-5 pt-2">
+          {contactItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              target={item.href.startsWith('http') ? '_blank' : undefined}
+              rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              onClick={() => handleClick(item.type, item.href)}
+              className="flex items-center justify-center w-14 h-14 rounded-xl bg-white dark:bg-neutral-800 border border-slate-200 dark:border-neutral-700 hover:shadow-md transition-all"
+              style={{ color: item.color }}
+              title={item.label.startsWith('contact.') ? t(item.label) : item.label}
+            >
+              <item.icon size={24} />
+            </a>
+          ))}
+        </div>
+
+        <p className="text-xs text-slate-500 dark:text-neutral-500">
           {t('contact.location')}
         </p>
       </div>

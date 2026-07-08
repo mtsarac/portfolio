@@ -49,7 +49,9 @@
     "email": "E-posta",
     "phone": "Telefon",
     "instagram": "Instagram",
-    "location": "Merkezefendi / Denizli"
+    "location": "Merkezefendi / Denizli",
+    "openToWork": "İş arayışına açık",
+    "intro": "İnsanların keyifle kullandığı dijital ürünler geliştiren bir yazılım geliştirici."
   },
   "footer": {
     "builtWith": "React & Tailwind CSS ile yapıldı"

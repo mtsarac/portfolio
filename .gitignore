@@ -32,5 +32,8 @@ dist-ssr
 # Analysis
 IMPROVEMENTS.md
 
+# Playwright test artifacts
+.playwright-mcp/
+
 # Lighthouse reports
 reports/

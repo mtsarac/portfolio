@@ -1,5 +1,6 @@
 import { useI18n } from '../../hooks/useI18n'
 import { Section } from '../../components/Section'
+import SpotlightCard from '../../components/SpotlightCard'
 
 const thesisStack = [
   { name: 'NestJS', color: '#E0234E' },
@@ -33,7 +34,7 @@ function ProjectCard({
   stack: { name: string; color: string }[]
 }) {
   return (
-    <div className="rounded-lg border border-slate-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 p-6 shadow-sm">
+    <SpotlightCard className="rounded-lg border-neutral-700 bg-neutral-800 p-6 shadow-sm">
       <span className="inline-block px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:text-neutral-500 border border-slate-200 dark:border-neutral-600 rounded mb-4">
         {label}
       </span>
@@ -57,7 +58,7 @@ function ProjectCard({
           </span>
         ))}
       </div>
-    </div>
+    </SpotlightCard>
   )
 }
 

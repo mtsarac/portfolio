@@ -49,7 +49,9 @@
     "email": "Email",
     "phone": "Phone",
     "instagram": "Instagram",
-    "location": "Merkezefendi / Denizli"
+    "location": "Merkezefendi / Denizli",
+    "openToWork": "Open to work",
+    "intro": "Software developer who builds digital products people actually enjoy using."
   },
   "footer": {
     "builtWith": "Built with React & Tailwind CSS"
