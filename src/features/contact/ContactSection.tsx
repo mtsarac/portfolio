@@ -38,19 +38,19 @@ export function ContactSection() {
             target={item.href.startsWith('http') ? '_blank' : undefined}
             rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
             onClick={() => handleClick(item.type, item.href)}
-            className="flex items-center justify-between p-4 rounded-xl bg-white dark:bg-transparent border border-neutral-300 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors group shadow-sm"
+            className="flex items-center justify-between p-4 rounded-lg bg-white dark:bg-transparent border border-slate-200 dark:border-neutral-800 hover:bg-slate-50 dark:hover:bg-neutral-900 transition-colors group shadow-sm"
           >
-            <span className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <span className="flex items-center gap-2 text-sm text-slate-500 dark:text-neutral-400">
               <item.icon className="shrink-0" size={18} />
               {item.label.startsWith('contact.') ? t(item.label) : item.label}
             </span>
-            <span className="font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+            <span className="font-medium text-slate-900 dark:text-neutral-100 group-hover:text-slate-600 dark:group-hover:text-sky-400 transition-colors">
               {item.value}
             </span>
           </a>
         ))}
 
-        <p className="text-center text-sm text-neutral-600 dark:text-neutral-500 mt-6">
+        <p className="text-center text-sm text-slate-500 dark:text-neutral-500 mt-6">
           {t('contact.location')}
         </p>
       </div>

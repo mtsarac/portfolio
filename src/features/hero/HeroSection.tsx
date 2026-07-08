@@ -26,19 +26,19 @@ export function HeroSection() {
             />
           </picture>
         </div>
-      <h1 className="text-5xl sm:text-6xl font-bold mb-4 text-neutral-900 dark:text-neutral-100">
+      <h1 className="text-5xl sm:text-6xl font-bold mb-4 text-slate-900 dark:text-neutral-100">
         {t("hero.title")}
       </h1>
-      <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-6">
+      <p className="text-xl text-slate-500 dark:text-neutral-400 mb-6">
         {t("hero.subtitle")}
       </p>
-      <p className="max-w-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
+      <p className="max-w-xl text-slate-500 dark:text-neutral-400 leading-relaxed">
         {t("hero.description")}
       </p>
       <div className="flex gap-4 mt-10">
         <a
           href="#about"
-          className="px-6 py-3 rounded-xl bg-sky-600 dark:bg-sky-500 text-white font-medium hover:bg-sky-700 dark:hover:bg-sky-400 transition-colors"
+          className="px-6 py-3 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800 transition-colors"
         >
           {t("nav.about")}
         </a>
@@ -47,13 +47,13 @@ export function HeroSection() {
           download
           data-umami-event="download-cv"
           data-umami-event-cv-lang={lang}
-          className="px-6 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+          className="px-6 py-3 rounded-lg border border-slate-200 text-slate-700 dark:text-neutral-100 font-medium hover:bg-slate-50 dark:hover:bg-neutral-800 transition-colors"
         >
           {t("hero.cv")}
         </a>
         <a
           href="#contact"
-          className="px-6 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+          className="px-6 py-3 rounded-lg border border-slate-200 text-slate-700 dark:text-neutral-100 font-medium hover:bg-slate-50 dark:hover:bg-neutral-800 transition-colors"
         >
           {t("nav.contact")}
         </a>
