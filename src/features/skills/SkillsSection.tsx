@@ -18,6 +18,9 @@ import {
   SiDocker,
   SiLinux,
   SiSqlite,
+  SiGit,
+  SiSupabase,
+  SiNestjs,
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
 import type { IconType } from "react-icons";
@@ -32,6 +35,9 @@ const skillData: SkillCategory[] = [
     items: [
       "React",
       "Next.js",
+      "React Native",
+      "NestJS",
+      "REST API",
       ".NET Web API",
       "MS SQL Server",
       "PostgreSQL",
@@ -39,11 +45,11 @@ const skillData: SkillCategory[] = [
   },
   {
     title: "skills.tools",
-    items: ["Git/GitHub", "AWS", "Docker", "Linux"],
+    items: ["Git/GitHub", "Git", "Supabase", "AWS", "Docker", "Linux"],
   },
 ];
 
-const skillIcons: Record<string, IconType> = {
+const skillIcons: Record<string, IconType | undefined> = {
   Java: SiOpenjdk,
   "C#": SiDotnet,
   Python: SiPython,
@@ -54,16 +60,21 @@ const skillIcons: Record<string, IconType> = {
   CSS: SiCss,
   React: SiReact,
   "Next.js": SiNextdotjs,
+  "React Native": SiReact,
+  NestJS: SiNestjs,
+  "REST API": undefined,
   ".NET Web API": SiDotnet,
   "MS SQL Server": SiDotnet,
   PostgreSQL: SiPostgresql,
   "Git/GitHub": SiGithub,
+  Git: SiGit,
+  Supabase: SiSupabase,
   AWS: FaAws,
   Docker: SiDocker,
   Linux: SiLinux,
 };
 
-const skillColors: Record<string, string> = {
+const skillColors: Record<string, string | undefined> = {
   Java: '#ED8B00',
   'C#': '#512BD4',
   Python: '#3776AB',
@@ -74,10 +85,15 @@ const skillColors: Record<string, string> = {
   CSS: '#1572B6',
   React: '#61DAFB',
   'Next.js': '#666',
+  'React Native': '#61DAFB',
+  NestJS: '#E0234E',
+  'REST API': undefined,
   '.NET Web API': '#512BD4',
   'MS SQL Server': '#CC2927',
   PostgreSQL: '#4169E1',
   'Git/GitHub': '#666',
+  Git: '#F05032',
+  Supabase: '#3ECF8E',
   AWS: '#FF9900',
   Docker: '#2496ED',
   Linux: '#898A5C',
