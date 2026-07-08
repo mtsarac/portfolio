@@ -51,6 +51,9 @@ export interface Translations {
     email: string
     phone: string
     instagram: string
+    location: string
+    openToWork: string
+    intro: string
   }
   footer: {
     builtWith: string
