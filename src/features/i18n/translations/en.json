@@ -1,6 +1,7 @@
 {
   "nav": {
     "about": "About",
+    "projects": "Projects",
     "skills": "Skills",
     "contact": "Contact"
   },
@@ -29,6 +30,19 @@
     "languages": "Programming Languages",
     "frameworks": "Frameworks & Technologies",
     "tools": "Tools & Software"
+  },
+  "projects": {
+    "title": "Projects",
+    "thesis": {
+      "label": "Thesis Project",
+      "name": "Adrenal Anomaly Detection System",
+      "desc": "A clinical decision support system for detecting adrenal anomalies. NestJS backend with PostgreSQL and JWT authentication, paired with a React Native mobile application for MRI image analysis and AI-powered prediction."
+    },
+    "hobby": {
+      "label": "Homelab",
+      "name": "Raspberry Pi 5 Server",
+      "desc": "A self-hosted infrastructure running on DietPi OS. Traefik reverse proxy with Cloudflare Tunnel, media stack (Jellyfin, Sonarr, Radarr, qBittorrent), Gitea for source control, Paperless-ngx for document management, and monitoring with Uptime Kuma."
+    }
   },
   "contact": {
     "title": "Contact",

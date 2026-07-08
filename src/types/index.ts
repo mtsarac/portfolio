@@ -5,6 +5,7 @@ export type Language = 'tr' | 'en'
 export interface Translations {
   nav: {
     about: string
+    projects: string
     skills: string
     contact: string
   }
@@ -33,6 +34,19 @@ export interface Translations {
     languages: string
     frameworks: string
     tools: string
+  }
+  projects: {
+    title: string
+    thesis: {
+      label: string
+      name: string
+      desc: string
+    }
+    hobby: {
+      label: string
+      name: string
+      desc: string
+    }
   }
   contact: {
     title: string

@@ -1,6 +1,7 @@
 {
   "nav": {
     "about": "Hakkımda",
+    "projects": "Projeler",
     "skills": "Yetenekler",
     "contact": "İletişim"
   },
@@ -29,6 +30,19 @@
     "languages": "Programlama Dilleri",
     "frameworks": "Framework & Teknolojiler",
     "tools": "Araçlar & Yazılımlar"
+  },
+  "projects": {
+    "title": "Projeler",
+    "thesis": {
+      "label": "Tez Projesi",
+      "name": "Adrenal Anomali Tespit Sistemi",
+      "desc": "Adrenal anomali tespiti için klinik karar destek sistemi. PostgreSQL ve JWT kimlik doğrulama ile NestJS backend, MRI görüntü analizi ve yapay zeka destekli tahminler için React Native mobil uygulama."
+    },
+    "hobby": {
+      "label": "Ev Sunucusu",
+      "name": "Raspberry Pi 5 Sunucu",
+      "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Traefik ters proxy ile Cloudflare Tunnel, medya stack'i (Jellyfin, Sonarr, Radarr, qBittorrent), Gitea ile kaynak kod yönetimi, Paperless-ngx ile belge yönetimi ve Uptime Kuma ile izleme."
+    }
   },
   "contact": {
     "title": "İletişim",
