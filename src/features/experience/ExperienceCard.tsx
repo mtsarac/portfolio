@@ -1,6 +1,7 @@
 import { FaRegCalendar, FaLocationDot, FaRegFileLines } from 'react-icons/fa6'
 import { useI18n } from '../../hooks/useI18n'
 import { useLogger } from '../../hooks/useLogger'
+import SpotlightCard from '../../components/SpotlightCard'
 import type { InternshipExperience } from './experienceData'
 
 interface ExperienceCardProps {
@@ -22,7 +23,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
   const hasDocuments = experience.documents.length > 0
 
   return (
-    <article className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/50 md:p-7">
+    <SpotlightCard className="rounded-lg border-neutral-800 bg-neutral-900/50 p-6 shadow-sm md:p-7">
       {/* Header */}
       <div className="mb-4">
         <h3 className="text-lg font-semibold text-slate-900 dark:text-neutral-100">
@@ -148,6 +149,6 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
           </ul>
         </div>
       )}
-    </article>
+    </SpotlightCard>
   )
 }
