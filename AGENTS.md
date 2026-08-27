@@ -1,10 +1,10 @@
 # AGENTS.md - portfolio-site
 
-**Generated:** 2026-07-07
-**Commit:** `f49c12b` (main)
+**Generated:** 2026-08-27
+**Commit:** `491f381` (main)
 **Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
 
-Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with dark mode, i18n (TR/EN), Umami analytics, WebGL light rays, canvas click sparkles, and GSAP scroll animations.
+Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with dark-only theme, i18n (TR/EN), Umami analytics, WebGL light rays, canvas click sparkles, GSAP scroll animations, and Spotlight hover glow.
 
 ## Commands
 
@@ -23,45 +23,53 @@ No test framework. `bun run build` = TypeScript check + production build.
 |------|----------|
 | Provider nesting, section order | `src/App.tsx` |
 | Entry point, DOM mount | `src/main.tsx` |
-| Shared types (LogEvent, SkillCategory, Translations) | `src/types/index.ts` |
+| Shared types (LogEvent, SkillCategory, Translations + experience) | `src/types/index.ts` |
 | Layout shell (Navbar + main + Footer) | `src/components/Layout.tsx` |
-| Fixed top nav with scroll styling | `src/components/Navbar.tsx` |
-| Generic section wrapper | `src/components/Section.tsx` |
+| Fixed top nav with scroll styling + active Section observer | `src/components/Navbar.tsx` |
+| Generic section wrapper (GSAP reveal + section_view event) | `src/components/Section.tsx` |
 | Canvas click sparkle effect | `src/components/ClickSpark.tsx` |
 | WebGL radial light rays | `src/components/LightRays.tsx` |
 | Infinite logo marquee | `src/components/LogoLoop.tsx` |
 | GSAP scroll-triggered fade-in | `src/components/AnimatedContent.tsx` |
-| Theme (dark/light toggle) | `src/features/theme/ThemeProvider.tsx` |
+| Spotlight hover glow | `src/components/SpotlightCard.tsx` |
+| Scroll progress bar | `src/components/ScrollProgress.tsx` |
+| Experience (data-driven internships + documents) | `src/features/experience/` |
 | i18n (TR/EN + translations JSON) | `src/features/i18n/` |
 | Logging (Umami / noop) | `src/features/logging/LoggingProvider.tsx` |
-| Context-consuming hooks with guard | `src/hooks/{useTheme,useI18n,useLogger}.ts` |
+| Context-consuming hooks with guard | `src/hooks/{useI18n,useLogger}.ts` + `useScrollDepth`, `useTimeOnPage` |
 | Docker + Traefik config | `docker-compose.yml`, `Dockerfile` |
 | Nginx SPA fallback | `nginx.conf` |
 | Improvement backlog | `IMPROVEMENTS.md` |
+| Internship PDFs (public URLs) | `public/documents/internships/{adm,tnc}/` |
 
 ## STRUCTURE
 
 ```
 .
 ├── src/
-│   ├── App.tsx              # Root: provider nest + section layout
+│   ├── App.tsx              # Root: provider nest + section layout (Hero > About > Experience > Projects > Skills > Contact)
 │   ├── main.tsx             # Entry
-│   ├── index.css            # Tailwind import + custom variants
-│   ├── types/index.ts       # All shared types
-│   ├── components/          # Reusable UI (Layout, Navbar, Footer, Section, ClickSpark, LightRays, LogoLoop, AnimatedContent)
+│   ├── index.css            # Tailwind import + custom variants (@custom-variant dark)
+│   ├── types/index.ts       # All shared types (Translations includes nav.experience + experience.*)
+│   ├── components/          # Reusable UI (Layout, Navbar, Footer, Section, AnimatedContent, SpotlightCard, ClickSpark, LightRays, LogoLoop, ScrollProgress)
 │   ├── features/            # Self-contained feature modules
 │   │   ├── hero/            # HeroSection: photo, title, CTAs
-│   │   ├── about/           # AboutSection: bio + education
-│   │   ├── skills/          # SkillsSection: badge carousel
+│   │   ├── about/           # AboutSection: bio + education + interests (SpotlightCard + divided list)
+│   │   ├── experience/      # ExperienceSection + ExperienceCard (SpotlightCard) + experienceData (ADM + TNC) + index barrel
+│   │   ├── projects/        # ProjectsSection: thesis + homelab SpotlightCards
+│   │   ├── skills/          # SkillsSection: badge carousel via LogoLoop
 │   │   ├── contact/         # ContactSection: links + Umami events
-│   │   ├── theme/           # ThemeProvider + ThemeToggle
-│   │   ├── i18n/            # I18nProvider + LangToggle + translations/
+│   │   ├── i18n/            # I18nProvider + LangToggle + translations/{en,tr}.json
 │   │   └── logging/         # LoggingProvider + UmamiLogger + LoggingService interface
-│   └── hooks/               # Context hooks (each: useContext + null guard)
+│   └── hooks/               # Context hooks (useI18n/useLogger with null guard) + useScrollDepth/useTimeOnPage
+├── public/
+│   └── documents/internships/
+│       ├── adm/internship-certificate.pdf  -> /documents/internships/adm/internship-certificate.pdf
+│       └── tnc/{certificate.pdf,reference-letter.pdf} -> /documents/internships/tnc/*
 ├── docker-compose.yml       # Production stack (portfolio + Umami + PostgreSQL + Traefik)
 ├── docker-compose.local.yml # Local (portfolio only, port 8000)
 ├── Dockerfile               # Multi-stage: node:22-alpine build → nginx:alpine serve
-├── nginx.conf               # SPA fallback
+├── nginx.conf               # SPA fallback (try_files $uri $uri/ /index.html)
 └── AGENTS.md                # This file
 ```
 
@@ -70,52 +78,61 @@ No test framework. `bun run build` = TypeScript check + production build.
 | Symbol | Type | File | Refs | Role |
 |--------|------|------|------|------|
 | `App` | component | `src/App.tsx` | entry | Root provider nesting + section rendering |
-| `AppContent` | component | `src/App.tsx` | 1 | Theme-aware content with effects |
-| `Layout` | component | `src/components/Layout.tsx` | 1 | Page shell |
-| `Navbar` | component | `src/components/Navbar.tsx` | 1 | Fixed nav with scroll bg |
+| `AppContent` | component | `src/App.tsx` | 1 | Theme-aware content with effects (ClickSpark + LightRays desktop) |
+| `Layout` | component | `src/components/Layout.tsx` | 1 | Page shell (Navbar + ScrollProgress + Footer) |
+| `Navbar` | component | `src/components/Navbar.tsx` | 1 | Fixed nav, scroll bg, active Section observer, 5 items |
 | `Footer` | component | `src/components/Footer.tsx` | 1 | Year + credit |
-| `Section` | component | `src/components/Section.tsx` | 4 | Generic wrapper per section |
+| `Section` | component | `src/components/Section.tsx` | 6 | Generic wrapper per section (h2 + divider + logging) |
 | `ClickSpark` | component | `src/components/ClickSpark.tsx` | 1 | Canvas click particle effect |
-| `LightRays` | component | `src/components/LightRays.tsx` | 1 | WebGL radial rays background |
-| `LogoLoop` | component | `src/components/LogoLoop.tsx` | 1 | Infinite marquee |
-| `AnimatedContent` | component | `src/components/AnimatedContent.tsx` | 4 | GSAP scroll-triggered fade-in |
-| `ThemeProvider` | provider | `src/features/theme/ThemeProvider.tsx` | 1 | Dark/light context + localStorage |
-| `I18nProvider` | provider | `src/features/i18n/I18nProvider.tsx` | 1 | TR/EN context + localStorage |
+| `LightRays` | component | `src/components/LightRays.tsx` | 1 | WebGL radial rays background (lazy, desktop only) |
+| `LogoLoop` | component | `src/components/LogoLoop.tsx` | 1 | Infinite marquee (Skills) |
+| `AnimatedContent` | component | `src/components/AnimatedContent.tsx` | 6 | GSAP scroll-triggered fade-in (mobile/reduced-motion bypass) |
+| `SpotlightCard` | component | `src/components/SpotlightCard.tsx` | 3 | Hover radial glow (About, Projects, Experience) |
+| `ScrollProgress` | component | `src/components/ScrollProgress.tsx` | 1 | Top scroll bar (bg-neutral-800, fill sky-400/70) |
+| `ExperienceSection` | component | `src/features/experience/ExperienceSection.tsx` | 1 | Data-driven internship list (ADM + TNC) |
+| `ExperienceCard` | component | `src/features/experience/ExperienceCard.tsx` | 1 | Per-internship card (SpotlightCard, highlights grid, documents) |
+| `experiences` | data | `src/features/experience/experienceData.ts` | 1 | Internship array + types (ExperienceDocument/Highlight) |
+| `I18nProvider` | provider | `src/features/i18n/I18nProvider.tsx` | 1 | TR/EN context + localStorage `portfolio_lang` |
 | `LoggingProvider` | provider | `src/features/logging/LoggingProvider.tsx` | 1 | Logging service context |
-| `UmamiLogger` | class | `src/features/logging/UmamiLogger.ts` | 1 | Umami script injection + tracking |
-| `useTheme` | hook | `src/hooks/useTheme.ts` | 1 | Consumes ThemeContext |
-| `useI18n` | hook | `src/hooks/useI18n.ts` | 5 | Consumes I18nContext |
-| `useLogger` | hook | `src/hooks/useLogger.ts` | 1 | Consumes LoggingContext |
+| `UmamiLogger` | class | `src/features/logging/UmamiLogger.ts` | 1 | Umami script injection + `track()` tracking |
+| `useI18n` | hook | `src/hooks/useI18n.ts` | 6 | Consumes I18nContext with null guard |
+| `useLogger` | hook | `src/hooks/useLogger.ts` | 3 | Consumes LoggingContext |
+| `useScrollDepth` | hook | `src/hooks/useScrollDepth.ts` | 1 | Scroll-depth analytics |
+| `useTimeOnPage` | hook | `src/hooks/useTimeOnPage.ts` | 1 | Time-on-page analytics |
 
 ## ARCHITECTURE
 
 ### Provider nesting
 
 ```tsx
-<ThemeProvider>   {/* outermost - affects everything */}
-  <I18nProvider>  {/* relies on theme */}
-    <LoggingProvider>  {/* innermost - uses i18n + theme */}
-      <AppContent />
-    </LoggingProvider>
-  </I18nProvider>
-</ThemeProvider>
+<I18nProvider>        {/* TR/EN, localStorage portfolio_lang, navigator.language */}
+  <LoggingProvider>   {/* Umami or noop, depends on VITE_UMAMI_* */}
+    <AppContent />    {/* ClickSpark > LightRays (desktop) > Layout > Sections */}
+  </LoggingProvider>
+</I18nProvider>
 ```
+
+Note: `ThemeProvider` was removed; site is now dark-only (`bg-neutral-950`, `@custom-variant dark`). No light toggle.
 
 ### State
 
-No external lib. Context + Provider only, persisted to `localStorage` (keys: `portfolio_theme`, `portfolio_lang`). `ThemeProvider` respects `prefers-color-scheme`. `I18nProvider` respects `navigator.language`.
+No external lib. Context + Provider only, persisted to `localStorage` (key: `portfolio_lang`). `I18nProvider` respects `navigator.language`. Analytics via `useScrollDepth` / `useTimeOnPage`.
 
 ### Routing
 
-No React Router. Hash anchors (`href="#about"`) on one page. Nginx `try_files $uri $uri/ /index.html;` for direct URL access.
+No React Router. Hash anchors (`href="#about"` etc., 5 nav items: about, experience, projects, skills, contact) on one page. Nginx `try_files $uri $uri/ /index.html;` for direct URL access.
 
 ### Logging
 
-`LoggingService` interface → `UmamiLogger` (injects Umami script) or `noopLogger` object literal. Decision in `LoggingProvider` based on `VITE_UMAMI_SITE_ID` / `VITE_UMAMI_URL` env vars.
+`LoggingService` interface → `UmamiLogger` (injects Umami script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_URL`) or `noopLogger` object literal. Events: `nav_click`, `section_view`, `experience_document_click {experienceId, documentType, action}`, `contact_click`, scroll/time via hooks. Inline `data-umami-event` also used for CV download.
 
 ### Hook pattern
 
 Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if null (provider missing).
+
+### Experience / Documents pattern
+
+`experienceData.ts` is single source of truth. `ExperienceCard` renders `documents: ExperienceDocument[]` generically - adding a document only requires pushing to the array, no component change. Documents stored under `public/documents/internships/{adm,tnc}/` and served at `/documents/internships/...` with `target="_blank" rel="noopener noreferrer"` for view and `download` for download. Empty `documents` renders no broken links; now wired to real PDFs.
 
 ## CONVENTIONS
 
@@ -138,8 +155,10 @@ Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if 
 
 - `bun run build` = `tsc -b && vite build` - TypeScript errors block build
 - Tailwind CSS 4 via `@tailwindcss/vite` (no PostCSS config, no `tailwind.config.js`)
-- Dark mode variant: `@custom-variant dark (&:where(.dark, .dark *));`
+- Dark mode variant: `@custom-variant dark (&:where(.dark, .dark *));` but site is dark-only (`bg-neutral-950`)
 - `import.meta.env` for `VITE_` prefixed env vars
 - Umami tracking: programmatic via `UmamiLogger.logEvent()` + inline `data-umami-event` HTML attributes
 - GSAP + OGL + react-icons are the only non-React dependencies
 - TypeScript 6.0.3 (very new, careful with incompatibilities)
+- `Section` already wraps with `AnimatedContent`; `ExperienceSection` adds staggered `AnimatedContent` per card - double GSAP is intentional
+- `SpotlightCard` base `p-8 rounded-3xl`; callers override with `p-6 rounded-lg` via `className` - works due to Tailwind override pattern used in Projects
