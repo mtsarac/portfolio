@@ -3,7 +3,67 @@
     "about": "About",
     "projects": "Projects",
     "skills": "Skills",
+    "experience": "Experience",
     "contact": "Contact"
+  },
+  "experience": {
+    "title": "Experience",
+    "intro": "Internship experiences spanning software development, business analysis, database design, and enterprise IT workflows.",
+    "documents": "Documents",
+    "certificate": "Certificate",
+    "referenceLetter": "Reference Letter",
+    "view": "View",
+    "download": "Download",
+    "viewDownload": "View / Download",
+    "adm": {
+      "company": "ADM Elektrik Dağıtım",
+      "department": "Information Technologies / Digital Business Applications",
+      "period": "20 July 2026 - 28 August 2026",
+      "location": "Denizli, Türkiye",
+      "description": "Worked on business analysis, database design, web prototyping, and enterprise IT processes within the Digital Business Applications unit. Designed a PostgreSQL-based IT inventory and asset assignment system, built a React prototype for customer request management, and gained hands-on exposure to enterprise workflows involving SAP, Jira, Solution Manager, Qlik, SCADA, and OSOS.",
+      "highlights": {
+        "inventory": {
+          "title": "IT Inventory, Stock and Asset Assignment System",
+          "desc": "Designed a PostgreSQL relational schema for IT inventory and warehouse management with individual and quantity-based asset tracking, employee assignments, constraints, triggers, stored functions, and audit and stock movement history. Covered ER modeling and iterative review cycles."
+        },
+        "crm": {
+          "title": "Customer Request Management CRM",
+          "desc": "Conducted business and functional requirements analysis and defined the approval workflow. Built a React + TypeScript + Vite prototype with Tailwind CSS, driven by mock data and designed for a future REST and PostgreSQL backend. Created wireframes to align stakeholders."
+        },
+        "enterprise": {
+          "title": "Enterprise IT and SAP Processes",
+          "desc": "Observed enterprise IT workflows including SAP ERP and ABAP development workflow, DEV to TEST to PROD transport process, and tooling around Jira, Solution Manager, and Qlik. Gained exposure to information security, KVKK, SCADA, and OSOS operations."
+        },
+        "massguard": {
+          "title": "MASSGuard AI / Watt If? Ideathon",
+          "desc": "Concept proposal analyzing MASS smart meter time-series data to produce risk scores and field inspection priorities for electricity theft and bypass anomalies, unregistered solar generation, and unusual consumption patterns. Designed as a decision-support concept, not an autonomous decision system."
+        }
+      }
+    },
+    "tnc": {
+      "company": "TNC Group / Social Office",
+      "program": "Information Technologies Internship Program",
+      "period": "Term 23 - 2026",
+      "description": "Completed the Information Technologies Internship Program organized by Social Office, covering Python, Excel, AutoCAD, and Blender. Delivered a Python CLI application, an Excel analysis and dashboard project, an AutoCAD technical drawing, and an isometric 3D room project in Blender.",
+      "highlights": {
+        "python": {
+          "title": "Python - CLI To-Do Application",
+          "desc": "Built a menu-driven CLI application with JSON persistence, file I/O, CRUD operations, and input validation."
+        },
+        "excel": {
+          "title": "Excel - Analysis and Dashboard",
+          "desc": "Analyzed approximately 2890 rows with analysis sheets, PivotTable, slicers, charts, dashboard, conditional formulas, and a macro-enabled workbook."
+        },
+        "autocad": {
+          "title": "AutoCAD - Technical Room Plan",
+          "desc": "Created a furnished room plan using layers, blocks, dimensioning, hatch, and technical drawing standards with PDF plot output."
+        },
+        "blender": {
+          "title": "Blender - Isometric 3D Room",
+          "desc": "Modeled an isometric room with modifiers, materials, lighting, camera setup, rendering, and HDRI."
+        }
+      }
+    }
   },
   "hero": {
     "title": "Muhammet Saraç",

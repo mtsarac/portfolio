@@ -5,6 +5,7 @@ import { Layout } from './components/Layout'
 import ClickSpark from './components/ClickSpark'
 import { HeroSection } from './features/hero/HeroSection'
 import { AboutSection } from './features/about/AboutSection'
+import { ExperienceSection } from './features/experience/ExperienceSection'
 import { ProjectsSection } from './features/projects/ProjectsSection'
 import { SkillsSection } from './features/skills/SkillsSection'
 import { ContactSection } from './features/contact/ContactSection'
@@ -61,6 +62,7 @@ function AppContent() {
         <Layout>
           <HeroSection />
           <AboutSection />
+          <ExperienceSection />
           <ProjectsSection />
           <SkillsSection />
           <ContactSection />

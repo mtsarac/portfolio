@@ -3,7 +3,7 @@ import { useLogger } from '../hooks/useLogger'
 import { LangToggle } from '../features/i18n/LangToggle'
 import { useEffect, useState } from 'react'
 
-const NAV_ITEMS = ['about', 'projects', 'skills', 'contact'] as const
+const NAV_ITEMS = ['about', 'experience', 'projects', 'skills', 'contact'] as const
 
 export function Navbar() {
   const { t } = useI18n()

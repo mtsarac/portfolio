@@ -5,7 +5,43 @@ export interface Translations {
     about: string
     projects: string
     skills: string
+    experience: string
     contact: string
+  }
+  experience: {
+    title: string
+    intro: string
+    documents: string
+    certificate: string
+    referenceLetter: string
+    view: string
+    download: string
+    viewDownload: string
+    adm: {
+      company: string
+      department: string
+      period: string
+      location: string
+      description: string
+      highlights: {
+        inventory: { title: string; desc: string }
+        crm: { title: string; desc: string }
+        enterprise: { title: string; desc: string }
+        massguard: { title: string; desc: string }
+      }
+    }
+    tnc: {
+      company: string
+      program: string
+      period: string
+      description: string
+      highlights: {
+        python: { title: string; desc: string }
+        excel: { title: string; desc: string }
+        autocad: { title: string; desc: string }
+        blender: { title: string; desc: string }
+      }
+    }
   }
   hero: {
     title: string

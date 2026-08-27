@@ -3,7 +3,67 @@
     "about": "Hakkımda",
     "projects": "Projeler",
     "skills": "Yetenekler",
+    "experience": "Deneyim",
     "contact": "İletişim"
+  },
+  "experience": {
+    "title": "Deneyim",
+    "intro": "Staj süreçlerimde yazılım geliştirme, iş analizi, veri tabanı tasarımı ve kurumsal BT süreçlerinde uygulamalı deneyim kazandım.",
+    "documents": "Belgeler",
+    "certificate": "Sertifika",
+    "referenceLetter": "Referans Mektubu",
+    "view": "Görüntüle",
+    "download": "İndir",
+    "viewDownload": "Görüntüle / İndir",
+    "adm": {
+      "company": "ADM Elektrik Dağıtım",
+      "department": "Bilgi Teknolojileri / Dijital İş Uygulamaları",
+      "period": "20 Temmuz 2026 - 28 Ağustos 2026",
+      "location": "Denizli, Türkiye",
+      "description": "Dijital İş Uygulamaları biriminde iş analizi, veri tabanı tasarımı, web prototipleme ve kurumsal BT süreçleri üzerine çalıştım. PostgreSQL tabanlı envanter ve zimmet sistemi tasarladım, müşteri talep yönetimi için React tabanlı bir CRM prototipi geliştirdim ve SAP, Jira, Solution Manager, Qlik, SCADA ve OSOS gibi kurumsal sistemlerin işleyişini gözlemledim.",
+      "highlights": {
+        "inventory": {
+          "title": "BT Envanter, Stok ve Zimmet Sistemi",
+          "desc": "BT envanteri ve depo yönetimi için PostgreSQL ilişkisel şema tasarladım. Bireysel ve miktar bazlı zimmet takibi, çalışan zimmetleri, constraintler, triggerlar, saklı fonksiyonlar ve denetim ile stok hareket geçmişi içerir. ER modelleme ve iteratif iyileştirme süreçlerini kapsadı."
+        },
+        "crm": {
+          "title": "Müşteri Talep Yönetimi CRM",
+          "desc": "İş ve fonksiyonel gereksinim analizi yaparak onay akışını tanımladım. React, TypeScript, Vite ve Tailwind CSS ile mock veri üzerinde çalışan bir prototip geliştirdim, REST ve PostgreSQL mimarisi önerdim ve paydaş uyumu için wireframe hazırladım."
+        },
+        "enterprise": {
+          "title": "Kurumsal BT ve SAP Süreçleri",
+          "desc": "SAP ERP ve ABAP geliştirme akışı, DEV'den TEST'e ve PROD'a taşıma süreci, Jira, Solution Manager ve Qlik araçları dahil kurumsal BT akışlarını gözlemledim. Bilgi güvenliği, KVKK, SCADA ve OSOS operasyonları hakkında bilgi edindim."
+        },
+        "massguard": {
+          "title": "MASSGuard AI / Watt If? Ideathon",
+          "desc": "MASS akıllı sayaç zaman serisi verilerini analiz ederek elektrik kaçağı ve bypass anomalileri, kayıt dışı güneş üretimi ve olağandışı tüketim için risk skoru ve saha denetim önceliği üreten bir karar destek konsepti tasarladım. Otonom karar sistemi değil, destek konsepti olarak kurgulandı."
+        }
+      }
+    },
+    "tnc": {
+      "company": "TNC Group / Social Office",
+      "program": "Bilgi Teknolojileri Staj Programı",
+      "period": "23. Dönem - 2026",
+      "description": "Social Office tarafından yürütülen Bilgi Teknolojileri Staj Programı kapsamında Python, Excel, AutoCAD ve Blender modüllerini tamamladım. Program boyunca bir Python CLI uygulaması, veri analizi ve dashboard çalışması, teknik AutoCAD çizimi ve Blender ile izometrik 3D oda projesi geliştirdim.",
+      "highlights": {
+        "python": {
+          "title": "Python - CLI To-Do Uygulaması",
+          "desc": "JSON kalıcılığı, dosya I/O, CRUD işlemleri ve girdi doğrulama içeren menü tabanlı bir CLI uygulaması geliştirdim."
+        },
+        "excel": {
+          "title": "Excel - Analiz ve Dashboard",
+          "desc": "Yaklaşık 2890 satırlık veriyi analiz sayfaları, PivotTable, dilimleyiciler, grafikler, dashboard, koşullu formüller ve makro destekli çalışma kitabı ile işledim."
+        },
+        "autocad": {
+          "title": "AutoCAD - Teknik Oda Planı",
+          "desc": "Katmanlar, bloklar, ölçülendirme, tarama ve teknik çizim standartları ile eşyalı oda planı hazırladım ve PDF çıktı aldım."
+        },
+        "blender": {
+          "title": "Blender - İzometrik 3D Oda",
+          "desc": "Modifier, materyal, ışık, kamera, render ve HDRI kullanarak izometrik bir oda modelleyerek sahne kurulumu yaptım."
+        }
+      }
+    }
   },
   "hero": {
     "title": "Muhammet Saraç",
