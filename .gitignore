@@ -37,3 +37,6 @@ IMPROVEMENTS.md
 
 # Lighthouse reports
 reports/
+
+# CodeGraph
+.cgcignore
