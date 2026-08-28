@@ -1,7 +1,7 @@
 # AGENTS.md - portfolio-site
 
-**Generated:** 2026-08-27
-**Commit:** `491f381` (main)
+**Generated:** 2026-08-28
+**Commit:** `9554bb1` (main)
 **Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
 
 Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with dark-only theme, i18n (TR/EN), Umami analytics, WebGL light rays, canvas click sparkles, GSAP scroll animations, and Spotlight hover glow.
@@ -34,9 +34,9 @@ No test framework. `bun run build` = TypeScript check + production build.
 | Spotlight hover glow | `src/components/SpotlightCard.tsx` |
 | Scroll progress bar | `src/components/ScrollProgress.tsx` |
 | Experience (data-driven internships + documents) | `src/features/experience/` |
-| i18n (TR/EN + translations JSON) | `src/features/i18n/` |
-| Logging (Umami / noop) | `src/features/logging/LoggingProvider.tsx` |
-| Context-consuming hooks with guard | `src/hooks/{useI18n,useLogger}.ts` + `useScrollDepth`, `useTimeOnPage` |
+| i18n (TR/EN + translations JSON) | `src/features/i18n/{I18nContext,I18nProvider}.tsx` + translations |
+| Logging (Umami / noop) | `src/features/logging/{LoggingContext,LoggingProvider}.tsx` + `UmamiLogger` |
+| Context-consuming hooks with guard | `src/hooks/{useI18n,useLogger}.ts` + `useScrollDepth`, `useEngagementTime` |
 | Docker + Traefik config | `docker-compose.yml`, `Dockerfile` |
 | Nginx SPA fallback | `nginx.conf` |
 | Improvement backlog | `IMPROVEMENTS.md` |
@@ -59,9 +59,9 @@ No test framework. `bun run build` = TypeScript check + production build.
 │   │   ├── projects/        # ProjectsSection: thesis + homelab SpotlightCards
 │   │   ├── skills/          # SkillsSection: badge carousel via LogoLoop
 │   │   ├── contact/         # ContactSection: links + Umami events
-│   │   ├── i18n/            # I18nProvider + LangToggle + translations/{en,tr}.json
-│   │   └── logging/         # LoggingProvider + UmamiLogger + LoggingService interface
-│   └── hooks/               # Context hooks (useI18n/useLogger with null guard) + useScrollDepth/useTimeOnPage
+│   │   ├── i18n/            # I18nProvider + I18nContext + LangToggle + translations/{en,tr}.json
+│   │   └── logging/         # LoggingProvider + LoggingContext + UmamiLogger + LoggingService interface
+│   └── hooks/               # Context hooks (useI18n/useLogger with null guard) + useScrollDepth/useEngagementTime
 ├── public/
 │   └── documents/internships/
 │       ├── adm/internship-certificate.pdf  -> /documents/internships/adm/internship-certificate.pdf
@@ -93,12 +93,14 @@ No test framework. `bun run build` = TypeScript check + production build.
 | `ExperienceCard` | component | `src/features/experience/ExperienceCard.tsx` | 1 | Per-internship card (SpotlightCard, highlights grid, documents) |
 | `experiences` | data | `src/features/experience/experienceData.ts` | 1 | Internship array + types (ExperienceDocument/Highlight) |
 | `I18nProvider` | provider | `src/features/i18n/I18nProvider.tsx` | 1 | TR/EN context + localStorage `portfolio_lang` |
-| `LoggingProvider` | provider | `src/features/logging/LoggingProvider.tsx` | 1 | Logging service context |
-| `UmamiLogger` | class | `src/features/logging/UmamiLogger.ts` | 1 | Umami script injection + `track()` tracking |
+| `I18nContext` | context | `src/features/i18n/I18nContext.ts` | 2 | TR/EN context declaration |
+| `LoggingProvider` | provider | `src/features/logging/LoggingProvider.tsx` | 1 | Logging service context (stable via useMemo) |
+| `LoggingContext` | context | `src/features/logging/LoggingContext.ts` | 2 | Logging context declaration |
+| `UmamiLogger` | class | `src/features/logging/UmamiLogger.ts` | 1 | Umami script injection + queued `track()` + `excludeHash`/`performance` |
 | `useI18n` | hook | `src/hooks/useI18n.ts` | 6 | Consumes I18nContext with null guard |
 | `useLogger` | hook | `src/hooks/useLogger.ts` | 3 | Consumes LoggingContext |
-| `useScrollDepth` | hook | `src/hooks/useScrollDepth.ts` | 1 | Scroll-depth analytics |
-| `useTimeOnPage` | hook | `src/hooks/useTimeOnPage.ts` | 1 | Time-on-page analytics |
+| `useScrollDepth` | hook | `src/hooks/useScrollDepth.ts` | 1 | Scroll-depth analytics (25/50/75/100) |
+| `useEngagementTime` | hook | `src/hooks/useEngagementTime.ts` | 1 | Active engagement time (30/60/120, visible-only) |
 
 ## ARCHITECTURE
 
@@ -116,7 +118,7 @@ Note: `ThemeProvider` was removed; site is now dark-only (`bg-neutral-950`, `@cu
 
 ### State
 
-No external lib. Context + Provider only, persisted to `localStorage` (key: `portfolio_lang`). `I18nProvider` respects `navigator.language`. Analytics via `useScrollDepth` / `useTimeOnPage`.
+No external lib. Context + Provider only, persisted to `localStorage` (key: `portfolio_lang`). `I18nProvider` respects `navigator.language`. Analytics via `useScrollDepth` / `useEngagementTime`.
 
 ### Routing
 
@@ -124,7 +126,7 @@ No React Router. Hash anchors (`href="#about"` etc., 5 nav items: about, experie
 
 ### Logging
 
-`LoggingService` interface → `UmamiLogger` (injects Umami script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_URL`) or `noopLogger` object literal. Events: `nav_click`, `section_view`, `experience_document_click {experienceId, documentType, action}`, `contact_click`, scroll/time via hooks. Inline `data-umami-event` also used for CV download.
+`LoggingService` interface → `UmamiLogger` (injects Umami script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_URL` with `excludeHash` and `performance` datasets, in-memory queued `track()`) or `noopLogger` object literal. Events: `nav_click`, `section_view`, `experience_document_click {experienceId, documentType, action}`, `contact_click {type}`, `hero_cta_click {target, lang?}`, `scroll_depth {depth}`, `engagement_time {seconds}` via hooks. Automatic pageview via Umami, hash excluded, no manual `logPageView`.
 
 ### Hook pattern
 
@@ -157,7 +159,7 @@ Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if 
 - Tailwind CSS 4 via `@tailwindcss/vite` (no PostCSS config, no `tailwind.config.js`)
 - Dark mode variant: `@custom-variant dark (&:where(.dark, .dark *));` but site is dark-only (`bg-neutral-950`)
 - `import.meta.env` for `VITE_` prefixed env vars
-- Umami tracking: programmatic via `UmamiLogger.logEvent()` + inline `data-umami-event` HTML attributes
+- Umami tracking: programmatic via `UmamiLogger.logEvent()` only, auto pageview with `excludeHash`, queued until tracker ready
 - GSAP + OGL + react-icons are the only non-React dependencies
 - TypeScript 6.0.3 (very new, careful with incompatibilities)
 - `Section` already wraps with `AnimatedContent`; `ExperienceSection` adds staggered `AnimatedContent` per card - double GSAP is intentional

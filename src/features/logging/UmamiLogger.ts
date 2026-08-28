@@ -34,9 +34,30 @@ export class UmamiLogger implements LoggingService {
   #injectScript(): void {
     if (this.#initialized || typeof document === 'undefined') return
 
-    const existing = document.querySelector(`script[data-website-id="${this.#siteId}"]`)
+    const existing = document.querySelector(
+      `script[data-website-id="${this.#siteId}"]`,
+    ) as HTMLScriptElement | null
     if (existing) {
-      this.#initialized = true
+      if (window.umami) {
+        this.#initialized = true
+        return
+      }
+      existing.addEventListener(
+        'load',
+        () => {
+          this.#initialized = true
+          this.#flushQueue()
+        },
+        { once: true },
+      )
+      existing.addEventListener(
+        'error',
+        () => {
+          this.#failed = true
+          this.#queue = []
+        },
+        { once: true },
+      )
       return
     }
 
@@ -75,10 +96,6 @@ export class UmamiLogger implements LoggingService {
     } else {
       window.umami?.track(event.name, event.data ?? {})
     }
-  }
-
-  logPageView(page: string): void {
-    this.log({ type: 'pageview', name: page, timestamp: new Date().toISOString() })
   }
 
   logEvent(name: string, data?: Record<string, unknown>): void {

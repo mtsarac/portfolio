@@ -53,7 +53,7 @@ src/
 │   ├── projects/    # Projects: thesis + homelab SpotlightCards
 │   └── skills/      # Skills: badge carousel via LogoLoop
 ├── components/      # Shared UI (Layout, Navbar, Footer, Section, AnimatedContent, SpotlightCard, ClickSpark, LightRays, LogoLoop, ScrollProgress)
-├── hooks/           # Context hooks with null guards (useI18n, useLogger, useScrollDepth, useTimeOnPage)
+├── hooks/           # Context hooks with null guards (useI18n, useLogger, useScrollDepth, useEngagementTime)
 └── types/           # Shared TypeScript types
 public/
 └── documents/
@@ -123,7 +123,7 @@ src/
 │   ├── projects/    # Projeler: tez + homelab
 │   └── skills/      # Yetenekler: rozet carousel
 ├── components/      # Ortak UI bileşenleri (Layout, Navbar, Footer, efektler)
-├── hooks/           # Context hook'ları (null guard'lı)
+├── hooks/           # Context hook'ları (null guard'lı) (useI18n, useLogger, useScrollDepth, useEngagementTime)
 └── types/           # Paylaşılan TypeScript tipleri
 public/
 └── documents/

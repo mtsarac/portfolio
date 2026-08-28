@@ -5,7 +5,6 @@ import { LoggingContext } from './LoggingContext'
 
 const noopLogger: LoggingService = {
   log() {},
-  logPageView() {},
   logEvent() {},
 }
 
