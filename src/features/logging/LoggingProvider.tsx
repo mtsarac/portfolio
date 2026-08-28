@@ -1,4 +1,4 @@
-import { useMemo, type ReactNode } from 'react'
+import { useEffect, useMemo, type ReactNode } from 'react'
 import type { LoggingService } from './LoggingService'
 import { UmamiLogger } from './UmamiLogger'
 import { LoggingContext } from './LoggingContext'
@@ -6,6 +6,7 @@ import { LoggingContext } from './LoggingContext'
 const noopLogger: LoggingService = {
   log() {},
   logEvent() {},
+  initialize() {},
 }
 
 function createLogger(): LoggingService {
@@ -21,6 +22,10 @@ function createLogger(): LoggingService {
 
 export function LoggingProvider({ children }: { children: ReactNode }) {
   const logger = useMemo(() => createLogger(), [])
+
+  useEffect(() => {
+    logger.initialize()
+  }, [logger])
 
   return (
     <LoggingContext.Provider value={{ logger }}>

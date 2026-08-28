@@ -1,7 +1,6 @@
 # AGENTS.md - portfolio-site
 
 **Generated:** 2026-08-28
-**Commit:** `9554bb1` (main)
 **Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
 
 Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with dark-only theme, i18n (TR/EN), Umami analytics, WebGL light rays, canvas click sparkles, GSAP scroll animations, and Spotlight hover glow.
@@ -34,8 +33,8 @@ No test framework. `bun run build` = TypeScript check + production build.
 | Spotlight hover glow | `src/components/SpotlightCard.tsx` |
 | Scroll progress bar | `src/components/ScrollProgress.tsx` |
 | Experience (data-driven internships + documents) | `src/features/experience/` |
-| i18n (TR/EN + translations JSON) | `src/features/i18n/{I18nContext,I18nProvider}.tsx` + translations |
-| Logging (Umami / noop) | `src/features/logging/{LoggingContext,LoggingProvider}.tsx` + `UmamiLogger` |
+| i18n (TR/EN + translations JSON) | `src/features/i18n/I18nContext.ts` + `I18nProvider.tsx` + translations |
+| Logging (Umami / noop) | `src/features/logging/LoggingContext.ts` + `LoggingProvider.tsx` + `UmamiLogger` |
 | Context-consuming hooks with guard | `src/hooks/{useI18n,useLogger}.ts` + `useScrollDepth`, `useEngagementTime` |
 | Docker + Traefik config | `docker-compose.yml`, `Dockerfile` |
 | Nginx SPA fallback | `nginx.conf` |

@@ -27,38 +27,61 @@ export class UmamiLogger implements LoggingService {
   constructor(siteId: string, umamiUrl: string) {
     this.#siteId = siteId
     this.#umamiUrl = umamiUrl
-    if (!siteId || !umamiUrl) return
+  }
+
+  initialize(): void {
+    if (this.#initialized || this.#failed) return
+    if (typeof document === 'undefined') return
+    if (!this.#siteId || !this.#umamiUrl) return
     this.#injectScript()
   }
 
   #injectScript(): void {
-    if (this.#initialized || typeof document === 'undefined') return
+    if (this.#initialized || this.#failed) return
 
     const existing = document.querySelector(
       `script[data-website-id="${this.#siteId}"]`,
     ) as HTMLScriptElement | null
+
     if (existing) {
-      if (window.umami) {
-        this.#initialized = true
-        return
-      }
-      existing.addEventListener(
-        'load',
-        () => {
+      const status = existing.dataset.status
+
+      if (!status) {
+        if (window.umami) {
           this.#initialized = true
           this.#flushQueue()
-        },
-        { once: true },
-      )
-      existing.addEventListener(
-        'error',
-        () => {
-          this.#failed = true
-          this.#queue = []
-        },
-        { once: true },
-      )
-      return
+          return
+        }
+        existing.remove()
+      } else if (status === 'failed') {
+        this.#failed = true
+        this.#queue = []
+        return
+      } else if (status === 'loaded' || window.umami) {
+        this.#initialized = true
+        this.#flushQueue()
+        return
+      } else if (status === 'loading') {
+        existing.addEventListener(
+          'load',
+          () => {
+            existing.dataset.status = 'loaded'
+            this.#initialized = true
+            this.#flushQueue()
+          },
+          { once: true },
+        )
+        existing.addEventListener(
+          'error',
+          () => {
+            existing.dataset.status = 'failed'
+            this.#failed = true
+            this.#queue = []
+          },
+          { once: true },
+        )
+        return
+      }
     }
 
     const script = document.createElement('script')
@@ -66,16 +89,27 @@ export class UmamiLogger implements LoggingService {
     script.dataset.websiteId = this.#siteId
     script.dataset.excludeHash = 'true'
     script.dataset.performance = 'true'
+    script.dataset.status = 'loading'
     script.async = true
     script.defer = true
-    script.onload = () => {
-      this.#initialized = true
-      this.#flushQueue()
-    }
-    script.onerror = () => {
-      this.#failed = true
-      this.#queue = []
-    }
+    script.addEventListener(
+      'load',
+      () => {
+        script.dataset.status = 'loaded'
+        this.#initialized = true
+        this.#flushQueue()
+      },
+      { once: true },
+    )
+    script.addEventListener(
+      'error',
+      () => {
+        script.dataset.status = 'failed'
+        this.#failed = true
+        this.#queue = []
+      },
+      { once: true },
+    )
     document.head.appendChild(script)
   }
 

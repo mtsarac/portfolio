@@ -45,6 +45,18 @@ export function useEngagementTime(logger: LoggingService): void {
 
     const stop = () => {
       if (intervalId.current !== null) {
+        const current = now()
+        const previous = lastTick.current
+        if (previous !== null) {
+          const deltaSec = (current - previous) / 1000
+          elapsed.current += deltaSec
+          for (const seconds of MILESTONES) {
+            if (elapsed.current >= seconds && !fired.current.has(seconds)) {
+              fired.current.add(seconds)
+              logger.logEvent('engagement_time', { seconds })
+            }
+          }
+        }
         clearInterval(intervalId.current)
         intervalId.current = null
       }
