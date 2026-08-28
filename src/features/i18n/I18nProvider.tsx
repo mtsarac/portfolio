@@ -1,17 +1,10 @@
-import { createContext, useState, useEffect, type ReactNode } from 'react'
+import { useState, useEffect, type ReactNode } from 'react'
 import type { Language, Translations } from '../../types'
 import tr from './translations/tr.json'
 import en from './translations/en.json'
+import { I18nContext } from './I18nContext'
 
 const translations: Record<Language, Translations> = { tr, en }
-
-export interface I18nContextType {
-  lang: Language
-  t: (path: string) => string
-  toggleLang: () => void
-}
-
-export const I18nContext = createContext<I18nContextType | null>(null)
 
 function getValue(obj: Record<string, unknown>, path: string): string {
   const keys = path.split('.')

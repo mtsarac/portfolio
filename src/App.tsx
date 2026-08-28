@@ -11,28 +11,26 @@ import { SkillsSection } from './features/skills/SkillsSection'
 import { ContactSection } from './features/contact/ContactSection'
 import { useLogger } from './hooks/useLogger'
 import { useScrollDepth } from './hooks/useScrollDepth'
-import { useTimeOnPage } from './hooks/useTimeOnPage'
+import { useEngagementTime } from './hooks/useEngagementTime'
 
 const LightRays = lazy(() => import('./components/LightRays'))
 
 function AppContent() {
   const { logger } = useLogger()
-  const [isDesktop, setIsDesktop] = useState(false)
-
-  useEffect(() => {
-    logger.logPageView('home')
-  }, [logger])
+  const [isDesktop, setIsDesktop] = useState(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return false
+    return window.matchMedia('(min-width: 768px)').matches
+  })
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 768px)')
-    setIsDesktop(mq.matches)
     const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
     mq.addEventListener('change', handler)
     return () => mq.removeEventListener('change', handler)
   }, [])
 
   useScrollDepth(logger)
-  useTimeOnPage(logger)
+  useEngagementTime(logger)
 
   return (
     <ClickSpark

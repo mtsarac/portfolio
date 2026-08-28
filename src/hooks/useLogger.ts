@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { LoggingContext } from '../features/logging/LoggingProvider'
-import type { LoggingContextType } from '../features/logging/LoggingProvider'
+import { LoggingContext } from '../features/logging/LoggingContext'
+import type { LoggingContextType } from '../features/logging/LoggingContext'
 
 export function useLogger(): LoggingContextType {
   const ctx = useContext(LoggingContext)

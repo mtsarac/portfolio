@@ -16,8 +16,8 @@ export function ContactSection() {
   const { t } = useI18n()
   const { logger } = useLogger()
 
-  const handleClick = (type: string, href: string) => {
-    logger.logEvent('contact_click', { type, href })
+  const handleClick = (type: string) => {
+    logger.logEvent('contact_click', { type })
   }
 
   return (
@@ -45,7 +45,7 @@ export function ContactSection() {
               href={item.href}
               target={item.href.startsWith('http') ? '_blank' : undefined}
               rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              onClick={() => handleClick(item.type, item.href)}
+              onClick={() => handleClick(item.type)}
               className="flex items-center justify-center w-14 h-14 rounded-xl dark:bg-neutral-800 border dark:border-neutral-700 hover:shadow-md transition-all"
               style={{ color: item.color }}
               title={item.label.startsWith('contact.') ? t(item.label) : item.label}

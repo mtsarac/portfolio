@@ -19,6 +19,8 @@ declare global {
 
 export class UmamiLogger implements LoggingService {
   #initialized = false
+  #failed = false
+  #queue: LogEvent[] = []
   #siteId: string
   #umamiUrl: string
 
@@ -41,15 +43,38 @@ export class UmamiLogger implements LoggingService {
     const script = document.createElement('script')
     script.src = `${this.#umamiUrl}/script.js`
     script.dataset.websiteId = this.#siteId
+    script.dataset.excludeHash = 'true'
+    script.dataset.performance = 'true'
     script.async = true
     script.defer = true
     script.onload = () => {
       this.#initialized = true
+      this.#flushQueue()
     }
     script.onerror = () => {
-      this.#initialized = false
+      this.#failed = true
+      this.#queue = []
     }
     document.head.appendChild(script)
+  }
+
+  #flushQueue(): void {
+    for (const event of this.#queue) {
+      this.#dispatch(event)
+    }
+    this.#queue = []
+  }
+
+  #dispatch(event: LogEvent): void {
+    if (event.type === 'pageview') {
+      window.umami?.track((props) => ({
+        ...props,
+        url: event.name,
+        title: event.name,
+      }))
+    } else {
+      window.umami?.track(event.name, event.data ?? {})
+    }
   }
 
   logPageView(page: string): void {
@@ -61,16 +86,13 @@ export class UmamiLogger implements LoggingService {
   }
 
   log(event: LogEvent): void {
-    if (!this.#initialized) return
+    if (this.#failed) return
 
-    if (event.type === 'pageview') {
-      window.umami?.track((props) => ({
-        ...props,
-        url: event.name,
-        title: event.name,
-      }))
-    } else {
-      window.umami?.track(event.name, event.data ?? {})
+    if (!this.#initialized) {
+      this.#queue.push(event)
+      return
     }
+
+    this.#dispatch(event)
   }
 }

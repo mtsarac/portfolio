@@ -1,8 +1,10 @@
 import AnimatedContent from "../../components/AnimatedContent";
 import { useI18n } from "../../hooks/useI18n";
+import { useLogger } from "../../hooks/useLogger";
 
 export function HeroSection() {
   const { t, lang } = useI18n();
+  const { logger } = useLogger();
   const cvHref = lang === "en" ? "/cv/CV_English.pdf" : "/cv/CV.pdf";
 
   return (
@@ -38,6 +40,7 @@ export function HeroSection() {
       <div className="flex gap-4 mt-10">
         <a
           href="#about"
+          onClick={() => logger.logEvent('hero_cta_click', { target: 'about' })}
           className="px-6 py-3 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800 transition-colors"
         >
           {t("nav.about")}
@@ -45,14 +48,14 @@ export function HeroSection() {
         <a
           href={cvHref}
           download
-          data-umami-event="download-cv"
-          data-umami-event-cv-lang={lang}
+          onClick={() => logger.logEvent('hero_cta_click', { target: 'cv', lang })}
           className="px-6 py-3 rounded-lg border border-slate-200 dark:text-neutral-100 font-medium dark:hover:bg-neutral-800 transition-colors"
         >
           {t("hero.cv")}
         </a>
         <a
           href="#contact"
+          onClick={() => logger.logEvent('hero_cta_click', { target: 'contact' })}
           className="px-6 py-3 rounded-lg border border-slate-200 dark:text-neutral-100 font-medium dark:hover:bg-neutral-800 transition-colors"
         >
           {t("nav.contact")}
