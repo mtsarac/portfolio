@@ -90,20 +90,6 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
         ))}
       </div>
 
-      {/* Global skills */}
-      {experience.skills.length > 0 && (
-        <div className="mt-5 flex flex-wrap gap-1.5">
-          {experience.skills.map((skill) => (
-            <span
-              key={skill}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md border border-slate-200 bg-white text-slate-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      )}
-
       {/* Documents - data-driven, visually secondary */}
       {hasDocuments && (
         <div className="mt-6 border-t border-slate-200 pt-4 dark:border-neutral-800">

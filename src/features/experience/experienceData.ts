@@ -21,7 +21,6 @@ export interface InternshipExperience {
   locationKey?: string
   descriptionKey: string
   highlights: ExperienceHighlight[]
-  skills: string[]
   documents: ExperienceDocument[]
 }
 
@@ -54,17 +53,6 @@ export const experiences: InternshipExperience[] = [
         descKey: 'experience.adm.highlights.massguard.desc',
         skills: ['Machine Learning', 'Time Series', 'Anomaly Detection', 'React'],
       },
-    ],
-    skills: [
-      'PostgreSQL',
-      'React',
-      'TypeScript',
-      'Business Analysis',
-      'SAP ERP',
-      'Jira',
-      'Qlik',
-      'SCADA',
-      'OSOS',
     ],
     documents: [
       {
@@ -102,7 +90,6 @@ export const experiences: InternshipExperience[] = [
         skills: ['Blender', '3D Modeling'],
       },
     ],
-    skills: ['Python', 'Excel', 'AutoCAD', 'Blender', 'JSON', 'Dashboard'],
     documents: [
       {
         type: 'certificate',
