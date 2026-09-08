@@ -34,6 +34,35 @@ Full stack: portfolio, Umami analytics, PostgreSQL, Traefik. Requires `VITE_UMAM
 
 The Umami dashboard remains at `https://umami.msarac.me`. The tracker script is served through the main domain at `/metrics.js` and data is collected at `/api/metrics` so that ad blockers do not block the third-party `umami.msarac.me/script.js` request.
 
+## Analytics
+
+```text
+browser
+  | GET /metrics.js  POST /api/metrics
+  v
+msarac.me / www.msarac.me
+  v
+Cloudflare Tunnel
+  v
+Traefik
+  |--> portfolio container       everything else
+  |--> umami container           /metrics.js + /api/metrics  (priority 20 router)
+umami.msarac.me
+  |--> umami container           dashboard/admin
+```
+
+The same-origin tracker router has higher priority than the generic portfolio router, so `/metrics.js` and `/api/metrics` reach the Umami container instead of nginx.
+
+### Required environment variables
+
+| Variable | Purpose | Example |
+|----------|---------|---------|
+| `VITE_UMAMI_SITE_ID` | Umami website ID | `e868537e-...` |
+| `VITE_UMAMI_SCRIPT_URL` | Full URL to the first-party tracker | `https://msarac.me/metrics.js` |
+| `UMAMI_DB_PASSWORD` | PostgreSQL password for Umami | (random) |
+| `UMAMI_APP_SECRET` | Umami app secret | (random) |
+| `UMAMI_CORS_ORIGINS` | Allowed origins | `https://msarac.me` |
+
 ### Local (portfolio only)
 
 ```bash
@@ -105,6 +134,35 @@ docker compose up -d --build
 Tam stack: portfolio, Umami analytics, PostgreSQL, Traefik. `VITE_UMAMI_SITE_ID`, `VITE_UMAMI_SCRIPT_URL`, `UMAMI_DB_PASSWORD`, `UMAMI_APP_SECRET` ortam degiskenleri gerekli.
 
 Umami paneli `https://umami.msarac.me` adresinde kalır. Tracker script ana domain üzerinden `/metrics.js` ile sunulur ve veri toplama `/api/metrics` üzerinden yapılır; böylece üçüncü taraf `umami.msarac.me/script.js` isteği reklam engelleyiciler tarafından engellenmez.
+
+## Analytics
+
+```text
+tarayici
+  | GET /metrics.js  POST /api/metrics
+  v
+msarac.me / www.msarac.me
+  v
+Cloudflare Tunnel
+  v
+Traefik
+  |--> portfolio container       diger her sey
+  |--> umami container           /metrics.js + /api/metrics  (priority 20 router)
+umami.msarac.me
+  |--> umami container           panel/admin
+```
+
+Birinci taraf tracker router'i genel portfolio router'inden daha yuksek oncelige sahiptir, bu nedenle `/metrics.js` ve `/api/metrics` nginx yerine Umami container'ina ulasir.
+
+### Gerekli ortam degiskenleri
+
+| Degisken | Amaç | Örnek |
+|----------|------|-------|
+| `VITE_UMAMI_SITE_ID` | Umami website ID | `e868537e-...` |
+| `VITE_UMAMI_SCRIPT_URL` | Birinci taraf tracker icin tam URL | `https://msarac.me/metrics.js` |
+| `UMAMI_DB_PASSWORD` | Umami icin PostgreSQL sifresi | (rastgele) |
+| `UMAMI_APP_SECRET` | Umami app secret | (rastgele) |
+| `UMAMI_CORS_ORIGINS` | Izin verilen origin'ler | `https://msarac.me` |
 
 ### Local (sadece portfolio)
 
