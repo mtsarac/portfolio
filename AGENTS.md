@@ -1,6 +1,8 @@
 # AGENTS.md - portfolio-site
 
-**Generated:** 2026-08-28
+**Generated:** 2026-09-08
+**Commit:** b9dbd03
+**Branch:** main
 **Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
 
 Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with dark-only theme, i18n (TR/EN), Umami analytics served first-party through `/metrics.js` and `/api/metrics`, WebGL light rays, canvas click sparkles, GSAP scroll animations, and Spotlight hover glow.
@@ -34,8 +36,9 @@ No test framework. `bun run build` = TypeScript check + production build.
 | Scroll progress bar | `src/components/ScrollProgress.tsx` |
 | Experience (data-driven internships + documents) | `src/features/experience/` |
 | i18n (TR/EN + translations JSON) | `src/features/i18n/I18nContext.ts` + `I18nProvider.tsx` + translations |
-| Logging (Umami / noop) | `src/features/logging/LoggingContext.ts` + `LoggingProvider.tsx` + `UmamiLogger` |
-| Context-consuming hooks with guard | `src/hooks/{useI18n,useLogger}.ts` + `useScrollDepth`, `useEngagementTime` |
+| Logging (Umami / noop) | `src/features/logging/AGENTS.md` |
+| Context-consuming hooks with guard | `src/hooks/AGENTS.md` |
+| Shared UI details | `src/components/AGENTS.md` |
 | Docker + Traefik config | `docker-compose.yml`, `Dockerfile` |
 | Nginx SPA fallback | `nginx.conf` |
 | Improvement backlog | `IMPROVEMENTS.md` |
@@ -50,7 +53,7 @@ No test framework. `bun run build` = TypeScript check + production build.
 │   ├── main.tsx             # Entry
 │   ├── index.css            # Tailwind import + custom variants (@custom-variant dark)
 │   ├── types/index.ts       # All shared types (Translations includes nav.experience + experience.*)
-│   ├── components/          # Reusable UI (Layout, Navbar, Footer, Section, AnimatedContent, SpotlightCard, ClickSpark, LightRays, LogoLoop, ScrollProgress)
+│   ├── components/          # Reusable UI - see src/components/AGENTS.md
 │   ├── features/            # Self-contained feature modules
 │   │   ├── hero/            # HeroSection: photo, title, CTAs
 │   │   ├── about/           # AboutSection: bio + education + interests (SpotlightCard + divided list)
@@ -59,12 +62,13 @@ No test framework. `bun run build` = TypeScript check + production build.
 │   │   ├── skills/          # SkillsSection: badge carousel via LogoLoop
 │   │   ├── contact/         # ContactSection: links + Umami events
 │   │   ├── i18n/            # I18nProvider + I18nContext + LangToggle + translations/{en,tr}.json
-│   │   └── logging/         # LoggingProvider + LoggingContext + UmamiLogger + LoggingService interface
-│   └── hooks/               # Context hooks (useI18n/useLogger with null guard) + useScrollDepth/useEngagementTime
+│   │   └── logging/         # Umami analytics subsystem - see src/features/logging/AGENTS.md
+│   └── hooks/               # Context hooks + analytics hooks - see src/hooks/AGENTS.md
 ├── public/
+│   ├── cv/                  # CV PDFs served at /cv/*
 │   └── documents/internships/
-│       ├── adm/internship-certificate.pdf  -> /documents/internships/adm/internship-certificate.pdf
-│       └── tnc/{certificate.pdf,reference-letter.pdf} -> /documents/internships/tnc/*
+│       ├── adm/internship-certificate.pdf
+│       └── tnc/{certificate.pdf,reference-letter.pdf}
 ├── docker-compose.yml       # Production stack (portfolio + Umami + PostgreSQL + Traefik)
 ├── docker-compose.local.yml # Local (portfolio only, port 8000)
 ├── Dockerfile               # Multi-stage: node:22-alpine build → nginx:alpine serve
@@ -96,8 +100,8 @@ No test framework. `bun run build` = TypeScript check + production build.
 | `LoggingProvider` | provider | `src/features/logging/LoggingProvider.tsx` | 1 | Logging service context (stable via useMemo) |
 | `LoggingContext` | context | `src/features/logging/LoggingContext.ts` | 2 | Logging context declaration |
 | `UmamiLogger` | class | `src/features/logging/UmamiLogger.ts` | 1 | Umami script injection + queued `track()` + `excludeHash`/`performance` |
-| `useI18n` | hook | `src/hooks/useI18n.ts` | 6 | Consumes I18nContext with null guard |
-| `useLogger` | hook | `src/hooks/useLogger.ts` | 3 | Consumes LoggingContext |
+| `useI18n` | hook | `src/hooks/useI18n.ts` | 9 | Consumes I18nContext with null guard |
+| `useLogger` | hook | `src/hooks/useLogger.ts` | 7 | Consumes LoggingContext |
 | `useScrollDepth` | hook | `src/hooks/useScrollDepth.ts` | 1 | Scroll-depth analytics (25/50/75/100) |
 | `useEngagementTime` | hook | `src/hooks/useEngagementTime.ts` | 1 | Active engagement time (30/60/120, visible-only) |
 
@@ -148,7 +152,7 @@ The same-origin tracker router (`umami-tracker`) has priority `20`, higher than 
 
 ### Hook pattern
 
-Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if null (provider missing).
+Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if null (provider missing). See `src/hooks/AGENTS.md` for details.
 
 ### Experience / Documents pattern
 
