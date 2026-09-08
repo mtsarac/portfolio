@@ -3,7 +3,7 @@
 **Generated:** 2026-08-28
 **Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
 
-Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with dark-only theme, i18n (TR/EN), Umami analytics, WebGL light rays, canvas click sparkles, GSAP scroll animations, and Spotlight hover glow.
+Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with dark-only theme, i18n (TR/EN), Umami analytics served first-party through `/metrics.js` and `/api/metrics`, WebGL light rays, canvas click sparkles, GSAP scroll animations, and Spotlight hover glow.
 
 ## Commands
 
@@ -125,7 +125,26 @@ No React Router. Hash anchors (`href="#about"` etc., 5 nav items: about, experie
 
 ### Logging
 
-`LoggingService` interface → `UmamiLogger` (injects Umami script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_URL` with `excludeHash` and `performance` datasets, in-memory queued `track()`) or `noopLogger` object literal. Events: `nav_click`, `section_view`, `experience_document_click {experienceId, documentType, action}`, `contact_click {type}`, `hero_cta_click {target, lang?}`, `scroll_depth {depth}`, `engagement_time {seconds}` via hooks. Automatic pageview via Umami, hash excluded, no manual `logPageView`.
+`LoggingService` interface → `UmamiLogger` (injects Umami script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_SCRIPT_URL` with `excludeHash` and `performance` datasets, in-memory queued `track()`) or `noopLogger` object literal. Events: `nav_click`, `section_view`, `experience_document_click {experienceId, documentType, action}`, `contact_click {type}`, `hero_cta_click {target, lang?}`, `scroll_depth {depth}`, `engagement_time {seconds}` via hooks. Automatic pageview via Umami, hash excluded, no manual `logPageView`.
+
+### Analytics routing
+
+```text
+browser
+  | GET /metrics.js  POST /api/metrics
+  v
+msarac.me / www.msarac.me
+  v
+Cloudflare Tunnel
+  v
+Traefik
+  |--> portfolio container   everything else
+  |--> umami container       /metrics.js + /api/metrics  (priority 20 router)
+umami.msarac.me
+  |--> umami container       dashboard/admin
+```
+
+The same-origin tracker router (`umami-tracker`) has priority `20`, higher than the generic portfolio router (`priority 10`), so `/metrics.js` and `/api/metrics` never hit nginx.
 
 ### Hook pattern
 

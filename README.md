@@ -6,7 +6,7 @@ Personal portfolio site - Muhammet Saraç ([msarac.me](https://msarac.me))
 
 - **i18n**: TR / EN toggle, respects `navigator.language`
 - **Dark mode**: dark-only theme (`bg-neutral-950`), persisted via `@custom-variant dark`
-- **Visitor logging**: Umami (`VITE_UMAMI_SITE_ID` + `VITE_UMAMI_URL` env vars) or noop fallback
+- **Visitor logging**: Umami (`VITE_UMAMI_SITE_ID` + `VITE_UMAMI_SCRIPT_URL` env vars) or noop fallback. Tracker is served as a first-party resource at `/metrics.js` and collects to `/api/metrics` via Traefik.
 - **Experience**: Data-driven internship section (ADM Elektrik Dagitim, TNC Group / Social Office) with SpotlightCard and document links
 - **Projects**: Thesis + Homelab spotlight cards
 - **Skills**: Infinite logo marquee with categorized badges
@@ -30,7 +30,9 @@ bun run lint       # ESLint
 docker compose up -d --build
 ```
 
-Full stack: portfolio, Umami analytics, PostgreSQL, Traefik. Requires `VITE_UMAMI_SITE_ID`, `VITE_UMAMI_URL`, `UMAMI_DB_PASSWORD`, `UMAMI_APP_SECRET` env vars.
+Full stack: portfolio, Umami analytics, PostgreSQL, Traefik. Requires `VITE_UMAMI_SITE_ID`, `VITE_UMAMI_SCRIPT_URL`, `UMAMI_DB_PASSWORD`, `UMAMI_APP_SECRET` env vars.
+
+The Umami dashboard remains at `https://umami.msarac.me`. The tracker script is served through the main domain at `/metrics.js` and data is collected at `/api/metrics` so that ad blockers do not block the third-party `umami.msarac.me/script.js` request.
 
 ### Local (portfolio only)
 
@@ -76,7 +78,7 @@ Kişisel portfolio sitesi - Muhammet Saraç ([msarac.me](https://msarac.me))
 
 - **Çoklu Dil**: TR / EN geçiş butonu, `navigator.language`'i okur
 - **Karanlık Mod**: dark-only tema (`bg-neutral-950`)
-- **Ziyaretçi Loglama**: Umami (`VITE_UMAMI_SITE_ID` + `VITE_UMAMI_URL` ortam değişkenleri) veya noop
+- **Ziyaretçi Loglama**: Umami (`VITE_UMAMI_SITE_ID` + `VITE_UMAMI_SCRIPT_URL` ortam değişkenleri) veya noop. Traefik üzerinden birinci taraf `/metrics.js` ve `/api/metrics` ile çalışır.
 - **Deneyim**: Veri odaklı staj bölümü (ADM Elektrik Dağıtım, TNC Group / Social Office) SpotlightCard ve belge bağlantıları ile
 - **Projeler**: Tez + Homelab spotlight kartları
 - **Yetenekler**: Kategorize rozetler ve sonsuz logo akışı
@@ -100,7 +102,9 @@ bun run lint       # ESLint
 docker compose up -d --build
 ```
 
-Tam stack: portfolio, Umami analytics, PostgreSQL, Traefik. `VITE_UMAMI_SITE_ID`, `VITE_UMAMI_URL`, `UMAMI_DB_PASSWORD`, `UMAMI_APP_SECRET` ortam degiskenleri gerekli.
+Tam stack: portfolio, Umami analytics, PostgreSQL, Traefik. `VITE_UMAMI_SITE_ID`, `VITE_UMAMI_SCRIPT_URL`, `UMAMI_DB_PASSWORD`, `UMAMI_APP_SECRET` ortam degiskenleri gerekli.
+
+Umami paneli `https://umami.msarac.me` adresinde kalır. Tracker script ana domain üzerinden `/metrics.js` ile sunulur ve veri toplama `/api/metrics` üzerinden yapılır; böylece üçüncü taraf `umami.msarac.me/script.js` isteği reklam engelleyiciler tarafından engellenmez.
 
 ### Local (sadece portfolio)
 

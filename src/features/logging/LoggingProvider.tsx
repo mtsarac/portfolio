@@ -11,10 +11,10 @@ const noopLogger: LoggingService = {
 
 function createLogger(): LoggingService {
   const siteId = import.meta.env.VITE_UMAMI_SITE_ID
-  const umamiUrl = import.meta.env.VITE_UMAMI_URL
+  const scriptUrl = import.meta.env.VITE_UMAMI_SCRIPT_URL
 
-  if (siteId && umamiUrl) {
-    return new UmamiLogger(siteId, umamiUrl)
+  if (siteId && scriptUrl) {
+    return new UmamiLogger(siteId, scriptUrl)
   }
 
   return noopLogger

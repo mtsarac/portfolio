@@ -22,17 +22,17 @@ export class UmamiLogger implements LoggingService {
   #failed = false
   #queue: LogEvent[] = []
   #siteId: string
-  #umamiUrl: string
+  #scriptUrl: string
 
-  constructor(siteId: string, umamiUrl: string) {
+  constructor(siteId: string, scriptUrl: string) {
     this.#siteId = siteId
-    this.#umamiUrl = umamiUrl
+    this.#scriptUrl = scriptUrl
   }
 
   initialize(): void {
     if (this.#initialized || this.#failed) return
     if (typeof document === 'undefined') return
-    if (!this.#siteId || !this.#umamiUrl) return
+    if (!this.#siteId || !this.#scriptUrl) return
     this.#injectScript()
   }
 
@@ -85,7 +85,7 @@ export class UmamiLogger implements LoggingService {
     }
 
     const script = document.createElement('script')
-    script.src = `${this.#umamiUrl}/script.js`
+    script.src = this.#scriptUrl
     script.dataset.websiteId = this.#siteId
     script.dataset.excludeHash = 'true'
     script.dataset.performance = 'true'

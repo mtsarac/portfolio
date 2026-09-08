@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
       args:
         VITE_UMAMI_SITE_ID: ${VITE_UMAMI_SITE_ID}
-        VITE_UMAMI_URL: ${VITE_UMAMI_URL}
+        VITE_UMAMI_SCRIPT_URL: ${VITE_UMAMI_SCRIPT_URL}
     container_name: portfolio-site
     restart: unless-stopped
     networks:
@@ -13,6 +13,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.portfolio.rule=Host(`msarac.me`) || Host(`www.msarac.me`)"
+      - "traefik.http.routers.portfolio.priority=10"
       - "traefik.http.routers.portfolio.middlewares=portfolio-secure-headers"
       - "traefik.http.services.portfolio.loadbalancer.server.port=80"
       - "traefik.http.middlewares.portfolio-secure-headers.headers.forceSTSHeader=true"
@@ -51,12 +52,20 @@ services:
       - traefik-net
     labels:
       - "traefik.enable=true"
+      # Dashboard stays on its own subdomain
       - "traefik.http.routers.umami.rule=Host(`umami.msarac.me`)"
+      - "traefik.http.routers.umami.priority=10"
       - "traefik.http.services.umami.loadbalancer.server.port=3000"
+      # Same-origin tracker on the main domain
+      - "traefik.http.routers.umami-tracker.rule=(Host(`msarac.me`) || Host(`www.msarac.me`)) && (Path(`/metrics.js`) || PathPrefix(`/api/metrics`))"
+      - "traefik.http.routers.umami-tracker.priority=20"
+      - "traefik.http.routers.umami-tracker.service=umami"
     environment:
       DATABASE_URL: postgresql://umami:${UMAMI_DB_PASSWORD:?}@umami-db:5432/umami
       APP_SECRET: ${UMAMI_APP_SECRET:?UMAMI_APP_SECRET is required}
       CORS_ORIGINS: ${UMAMI_CORS_ORIGINS:-https://msarac.me}
+      TRACKER_SCRIPT_NAME: metrics.js
+      COLLECT_API_ENDPOINT: /api/metrics
     depends_on:
       umami-db:
         condition: service_healthy
