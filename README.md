@@ -70,6 +70,19 @@ docker compose -f docker-compose.local.yml up -d --build
 # http://localhost:8000
 ```
 
+### CI (Docker image, no secrets)
+
+`.github/workflows/docker.yml` builds the `Dockerfile` without `VITE_UMAMI_*` build args and pushes to `ghcr.io` on `main` (`latest` + `sha-*`). PRs only build, no push.
+
+The CI image works fine but Umami tracking is disabled (noop logger fallback). For a production image with tracking, build locally with:
+
+```bash
+docker build \
+  --build-arg VITE_UMAMI_SITE_ID=$VITE_UMAMI_SITE_ID \
+  --build-arg VITE_UMAMI_SCRIPT_URL=$VITE_UMAMI_SCRIPT_URL \
+  -t portfolio-site .
+```
+
 ## Project Structure
 
 ```
@@ -169,6 +182,19 @@ Birinci taraf tracker router'i genel portfolio router'inden daha yuksek oncelige
 ```bash
 docker compose -f docker-compose.local.yml up -d --build
 # http://localhost:8000
+```
+
+### CI (Docker imaji, secretsiz)
+
+`.github/workflows/docker.yml` dosyasi `Dockerfile`'i `VITE_UMAMI_*` argumanlari olmadan derler ve `main`'e push olunca `ghcr.io`'ya gonderir (`latest` + `sha-*`). PR'larda sadece derlenir, push yapilmaz.
+
+CI imaji sorunsuz calisir ama Umami takibi kapalidir (noop logger). Takipli production imaji icin yerelde derleyin:
+
+```bash
+docker build \
+  --build-arg VITE_UMAMI_SITE_ID=$VITE_UMAMI_SITE_ID \
+  --build-arg VITE_UMAMI_SCRIPT_URL=$VITE_UMAMI_SCRIPT_URL \
+  -t portfolio-site .
 ```
 
 ## Proje Yapısı
