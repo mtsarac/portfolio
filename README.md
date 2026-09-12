@@ -1,5 +1,8 @@
 # portfolio-site
 
+[![CI](https://github.com/mtsarac/portfolio-site/actions/workflows/ci.yml/badge.svg)](https://github.com/mtsarac/portfolio-site/actions/workflows/ci.yml)
+[![Docker](https://github.com/mtsarac/portfolio-site/actions/workflows/docker.yml/badge.svg)](https://github.com/mtsarac/portfolio-site/actions/workflows/docker.yml)
+
 Personal portfolio site - Muhammet Saraç ([msarac.me](https://msarac.me))
 
 ## Features
