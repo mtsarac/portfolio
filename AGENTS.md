@@ -91,7 +91,7 @@ No test framework. `bun run build` = TypeScript check + production build.
 | `LogoLoop` | component | `src/components/LogoLoop.tsx` | 1 | Infinite marquee (Skills) |
 | `AnimatedContent` | component | `src/components/AnimatedContent.tsx` | 6 | GSAP scroll-triggered fade-in (mobile/reduced-motion bypass) |
 | `SpotlightCard` | component | `src/components/SpotlightCard.tsx` | 3 | Hover radial glow (About, Projects, Experience) |
-| `ScrollProgress` | component | `src/components/ScrollProgress.tsx` | 1 | Top scroll bar (bg-neutral-800, fill sky-400/70) |
+| `ScrollProgress` | component | `src/components/ScrollProgress.tsx` | 1 | Top scroll bar (bg-neutral-800, fill brand `#003DA5`/70) |
 | `ExperienceSection` | component | `src/features/experience/ExperienceSection.tsx` | 1 | Data-driven internship list (ADM + TNC) |
 | `ExperienceCard` | component | `src/features/experience/ExperienceCard.tsx` | 1 | Per-internship card (SpotlightCard, highlights grid, documents) |
 | `experiences` | data | `src/features/experience/experienceData.ts` | 1 | Internship array + types (ExperienceDocument/Highlight) |

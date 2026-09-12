@@ -1,8 +1,5 @@
 import { useI18n } from "../../hooks/useI18n";
 import { Section } from "../../components/Section";
-import { LogoLoop } from "../../components/LogoLoop";
-import AnimatedContent from "../../components/AnimatedContent";
-import type { LogoItem } from "../../components/LogoLoop";
 import type { SkillCategory } from "../../types";
 import {
   SiTypescript,
@@ -19,7 +16,6 @@ import {
   SiDocker,
   SiLinux,
   SiSqlite,
-  SiGit,
   SiSupabase,
   SiNestjs,
   SiExpo,
@@ -30,7 +26,8 @@ import type { IconType } from "react-icons";
 const skillData: SkillCategory[] = [
   {
     title: "skills.languages",
-    items: ["Java", "C#", "Python", "TypeScript", "SQL", "C++", "HTML", "CSS"],
+    // Python and C++ hidden from site for now, icons kept below
+    items: ["Java", "C#", "TypeScript", "SQL", "HTML", "CSS"],
   },
   {
     title: "skills.frameworks",
@@ -44,12 +41,12 @@ const skillData: SkillCategory[] = [
       "MS SQL Server",
       "PostgreSQL",
       "Expo",
-      "TypeORM",
     ],
   },
   {
     title: "skills.tools",
-    items: ["Git/GitHub", "Git", "Supabase", "AWS", "Docker", "Linux"],
+    // AWS and Supabase hidden from site for now, icons kept below
+    items: ["Git/GitHub", "Docker", "Linux"],
   },
 ];
 
@@ -73,7 +70,6 @@ const skillIcons: Record<string, IconType | undefined> = {
   Expo: SiExpo,
   TypeORM: FaDatabase,
   "Git/GitHub": SiGithub,
-  Git: SiGit,
   Supabase: SiSupabase,
   AWS: FaAws,
   Docker: SiDocker,
@@ -100,7 +96,6 @@ const skillColors: Record<string, string | undefined> = {
   Expo: '#000020',
   TypeORM: '#E05C2E',
   'Git/GitHub': '#666',
-  Git: '#F05032',
   Supabase: '#3ECF8E',
   AWS: '#FF9900',
   Docker: '#2496ED',
@@ -117,32 +112,20 @@ function SkillBadge({ name }: { name: string }) {
   );
 }
 
-function SkillRow({ items, titleKey, direction }: { items: string[]; titleKey: string; direction: "left" | "right" }) {
+function SkillGroup({ items, titleKey }: { items: string[]; titleKey: string }) {
   const { t } = useI18n();
-  const logos: LogoItem[] = items.map(
-    (skill): LogoItem => ({
-      node: <SkillBadge name={skill} />,
-      title: skill,
-    }),
-  );
 
   return (
-    <AnimatedContent distance={40} duration={0.7} threshold={0.12}>
-      <div>
-        <h3 className="text-sm font-semibold uppercase tracking-wider dark:text-neutral-400 mb-4 text-center">
-          {t(titleKey)}
-        </h3>
-        <LogoLoop
-          logos={logos}
-          speed={80}
-          direction={direction}
-          logoHeight={48}
-          gap={20}
-          fadeOut
-          pauseOnHover
-        />
+    <div>
+      <h3 className="text-base font-semibold dark:text-neutral-100 mb-4">
+        {t(titleKey)}
+      </h3>
+      <div className="flex flex-wrap gap-2">
+        {items.map((skill) => (
+          <SkillBadge key={skill} name={skill} />
+        ))}
       </div>
-    </AnimatedContent>
+    </div>
   );
 }
 
@@ -150,11 +133,11 @@ export function SkillsSection() {
   const { t } = useI18n();
 
   return (
-    <Section id="skills" title={t("skills.title")}>
+    <Section id="skills" title={t("skills.title")} align="left" width="wide">
       <div className="space-y-10">
-        <SkillRow items={skillData[0].items} titleKey={skillData[0].title} direction="left" />
-        <SkillRow items={skillData[1].items} titleKey={skillData[1].title} direction="right" />
-        <SkillRow items={skillData[2].items} titleKey={skillData[2].title} direction="left" />
+        {skillData.map((category) => (
+          <SkillGroup key={category.title} items={category.items} titleKey={category.title} />
+        ))}
       </div>
     </Section>
   );

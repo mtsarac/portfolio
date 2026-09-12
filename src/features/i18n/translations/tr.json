@@ -69,7 +69,7 @@
     "title": "Muhammet Saraç",
     "subtitle": "Bilgisayar Mühendisliği Öğrencisi",
     "cv": "Özgeçmiş",
-    "description": "İnsanların keyifle kullandığı, gerçekten işe yarayan dijital ürünler yapmayı seviyorum. Full-stack geliştirme, kullanıcı deneyimi, karşıma çıkan sorunları çözmek - her gün yeni bir şey öğreniyorum."
+    "description": "Denizli'de son sınıf bilgisayar mühendisliği öğrencisiyim. NestJS, PostgreSQL ve React ile backend ağırlıklı web uygulamaları geliştiriyor, kendi ev sunucumda öğrendiklerimin üretim ortamında nasıl durduğunu deniyorum."
   },
   "about": {
     "title": "Hakkımda",
@@ -79,8 +79,8 @@
     "gpa": "GPA: 3.32",
     "coursework": "Ders içeriği: veri yapıları, algoritmalar, veritabanı yönetimi, işletim sistemleri, yazılım mühendisliği, web teknolojileri, bilgisayar ağları, makine öğrenmesi, yapay zeka, bilgisayar grafikleri ve bulut bilişim.",
     "erasmus": "Erasmus - Maribor Üniversitesi",
-    "erasmusDesc": "Şubat 2025 – Temmuz 2025 süresince Erasmus programı kapsamında Maribor Üniversitesi'nde eğitim aldım. C++ ve OpenGL ile 3D animasyon üzerine çalıştım, Blender deneyimi edindim.",
-    "description": "Pamukkale Üniversitesi Bilgisayar Mühendisliği öğrencisiyim. Sorumluluk sahibi, uyumlu ve öğrenmeye açık bir kişiliğe sahibim. Güçlü problem çözme becerilerim ve yaratıcı bakış açım ile ekip çalışmasında verimli olmaktan keyif alıyorum.",
+    "erasmusDesc": "Şubat 2025 – Temmuz 2025 süresince Erasmus programı kapsamında Maribor Üniversitesi'nde eğitim aldım. C++ ile OOP programlama yaptım, ayrıca 3D animasyon ve 3D grafik üzerine ayrı bir Blender dersi aldım.",
+    "description": "Pamukkale Üniversitesi'nde dördüncü sınıf bilgisayar mühendisliği öğrencisiyim, NestJS, PostgreSQL ve React ile backend ağırlıklı full-stack geliştirme yapıyorum. Gerçek özellik çıkaracağım junior yazılım pozisyonları ve stajlarla ilgileniyorum.",
     "interests": "İlgi Alanları",
     "fullstack": "Backend ağırlıklı full-stack geliştirme ile ilgileniyorum. Ölçeklenebilir API'ler, veritabanı tasarımı ve uçtan uca web uygulamaları geliştirme konularında deneyim kazanıyorum.",
     "devops": "Docker ve DevOps araçlarına ilgi duyuyorum. CI/CD süreçleri, konteynerizasyon ve altyapı otomasyonu üzerine çalışıyorum.",
@@ -97,12 +97,14 @@
     "thesis": {
       "label": "Tez Projesi",
       "name": "Adrenal Anomali Tespit Sistemi",
-      "desc": "Adrenal anomali tespiti için klinik karar destek sistemi. PostgreSQL ve JWT kimlik doğrulama ile NestJS backend, MRI görüntü analizi ve yapay zeka destekli tahminler için React Native mobil uygulama."
+      "desc": "Adrenal anomali tespiti için klinik karar destek sistemi. PostgreSQL ve JWT kimlik doğrulama ile NestJS backend, MRI görüntü analizi ve yapay zeka destekli tahminler için React Native mobil uygulama.",
+      "destination": "Özel tez projesi, detaylar istek üzerine paylaşılabilir"
     },
     "hobby": {
       "label": "Ev Sunucusu",
       "name": "Raspberry Pi 5 Sunucu",
-      "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Traefik ters proxy ile Cloudflare Tunnel, medya stack'i (Jellyfin, Sonarr, Radarr, qBittorrent), Gitea ile kaynak kod yönetimi, Paperless-ngx ile belge yönetimi ve Uptime Kuma ile izleme."
+      "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Traefik ters proxy ile Cloudflare Tunnel, medya stack'i (Jellyfin, Sonarr, Radarr, qBittorrent), Gitea ile kaynak kod yönetimi, Paperless-ngx ile belge yönetimi ve Uptime Kuma ile izleme.",
+      "destination": "Kişisel sunucu projesi, detaylar istek üzerine paylaşılabilir"
     }
   },
   "contact": {
@@ -112,7 +114,7 @@
     "instagram": "Instagram",
     "location": "Merkezefendi / Denizli",
     "openToWork": "İş arayışına açık",
-    "intro": "İnsanların keyifle kullandığı dijital ürünler geliştiren bir yazılım geliştirici."
+    "intro": "Denizli'deyim. Yazılım geliştirme, staj ve proje fırsatları için Türkçe veya İngilizce iletişime geçebilirsiniz."
   },
   "footer": {
     "builtWith": "React & Tailwind CSS ile yapıldı"

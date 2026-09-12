@@ -8,9 +8,9 @@ export function ExperienceSection() {
   const { t } = useI18n()
 
   return (
-    <Section id="experience" title={t('experience.title')}>
+    <Section id="experience" title={t('experience.title')} align="left" width="wide">
       <div className="space-y-6">
-        <p className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-slate-600 dark:text-neutral-400">
+        <p className="max-w-2xl text-left text-sm leading-relaxed text-slate-600 dark:text-neutral-400">
           {t('experience.intro')}
         </p>
         <div className="space-y-6">

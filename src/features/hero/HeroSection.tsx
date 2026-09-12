@@ -37,19 +37,12 @@ export function HeroSection() {
       <p className="max-w-xl dark:text-neutral-400 leading-relaxed">
         {t("hero.description")}
       </p>
-      <div className="flex gap-4 mt-10">
-        <a
-          href="#about"
-          onClick={() => logger.logEvent('hero_cta_click', { target: 'about' })}
-          className="px-6 py-3 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800 transition-colors"
-        >
-          {t("nav.about")}
-        </a>
+      <div className="flex flex-wrap justify-center gap-4 mt-10 max-w-full">
         <a
           href={cvHref}
           download
           onClick={() => logger.logEvent('hero_cta_click', { target: 'cv', lang })}
-          className="px-6 py-3 rounded-lg border border-slate-200 dark:text-neutral-100 font-medium dark:hover:bg-neutral-800 transition-colors"
+          className="px-6 py-3 rounded-lg bg-brand text-white font-medium hover:opacity-90 transition-colors whitespace-nowrap"
         >
           {t("hero.cv")}
         </a>

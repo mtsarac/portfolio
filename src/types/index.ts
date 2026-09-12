@@ -76,11 +76,13 @@ export interface Translations {
       label: string
       name: string
       desc: string
+      destination: string
     }
     hobby: {
       label: string
       name: string
       desc: string
+      destination: string
     }
   }
   contact: {

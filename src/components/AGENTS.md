@@ -15,7 +15,7 @@ Reusable visual and layout components used across feature sections.
 | `ClickSpark.tsx` | Canvas click particle effect |
 | `LightRays.tsx` | WebGL radial rays background; lazy-loaded, desktop-only |
 | `LogoLoop.tsx` | Infinite marquee (Skills) |
-| `ScrollProgress.tsx` | Top scroll bar (`bg-neutral-800`, fill `sky-400/70`) |
+| `ScrollProgress.tsx` | Top scroll bar (`bg-neutral-800`, fill `brand/70` `#003DA5`) |
 
 ## Conventions
 

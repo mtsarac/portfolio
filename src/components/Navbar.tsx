@@ -59,7 +59,7 @@ export function Navbar() {
               onClick={() => logger.logEvent('nav_click', { section: item })}
               className={`text-sm transition-colors ${
                 activeSection === item
-                  ? 'dark:text-sky-400'
+                  ? 'dark:text-brand-light'
                   : 'dark:text-neutral-400 dark:hover:text-neutral-100'
               }`}
             >
@@ -93,7 +93,7 @@ export function Navbar() {
                 onClick={() => { logger.logEvent('nav_click', { section: item }); close() }}
               className={`text-sm transition-colors ${
                 activeSection === item
-                  ? 'dark:text-sky-400'
+                  ? 'dark:text-brand-light'
                   : 'dark:text-neutral-400 dark:hover:text-neutral-100'
               }`}
               >

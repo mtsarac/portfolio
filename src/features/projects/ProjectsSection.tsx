@@ -27,11 +27,13 @@ function ProjectCard({
   title,
   desc,
   stack,
+  destination,
 }: {
   label: string
   title: string
   desc: string
   stack: { name: string; color: string }[]
+  destination: string
 }) {
   return (
     <SpotlightCard className="rounded-lg border-neutral-700 bg-neutral-800 p-6 shadow-sm">
@@ -58,6 +60,9 @@ function ProjectCard({
           </span>
         ))}
       </div>
+      <p className="mt-4 text-xs text-neutral-500">
+        {destination}
+      </p>
     </SpotlightCard>
   )
 }
@@ -66,19 +71,21 @@ export function ProjectsSection() {
   const { t } = useI18n()
 
   return (
-    <Section id="projects" title={t('projects.title')}>
-      <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5">
+    <Section id="projects" title={t('projects.title')} align="left" width="wide">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <ProjectCard
           label={t('projects.thesis.label')}
           title={t('projects.thesis.name')}
           desc={t('projects.thesis.desc')}
           stack={thesisStack}
+          destination={t('projects.thesis.destination')}
         />
         <ProjectCard
           label={t('projects.hobby.label')}
           title={t('projects.hobby.name')}
           desc={t('projects.hobby.desc')}
           stack={homelabStack}
+          destination={t('projects.hobby.destination')}
         />
       </div>
     </Section>

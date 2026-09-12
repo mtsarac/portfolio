@@ -1,4 +1,3 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
 import { I18nProvider } from './features/i18n/I18nProvider'
 import { LoggingProvider } from './features/logging/LoggingProvider'
 import { Layout } from './components/Layout'
@@ -13,21 +12,8 @@ import { useLogger } from './hooks/useLogger'
 import { useScrollDepth } from './hooks/useScrollDepth'
 import { useEngagementTime } from './hooks/useEngagementTime'
 
-const LightRays = lazy(() => import('./components/LightRays'))
-
 function AppContent() {
   const { logger } = useLogger()
-  const [isDesktop, setIsDesktop] = useState(() => {
-    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return false
-    return window.matchMedia('(min-width: 768px)').matches
-  })
-
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)')
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
-    mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
-  }, [])
 
   useScrollDepth(logger)
   useEngagementTime(logger)
@@ -41,22 +27,6 @@ function AppContent() {
       duration={500}
     >
       <div className="relative">
-        {isDesktop && (
-          <div className="fixed inset-x-0 top-16 bottom-0 -z-10">
-            <Suspense fallback={null}>
-              <LightRays
-                raysOrigin="top-center"
-                raysColor="#c8d8ff"
-                raysSpeed={0.6}
-                lightSpread={0.8}
-                rayLength={2.5}
-                saturation={0.8}
-                mouseInfluence={0.05}
-                fadeDistance={0.6}
-              />
-            </Suspense>
-          </div>
-        )}
         <Layout>
           <HeroSection />
           <AboutSection />
