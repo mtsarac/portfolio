@@ -41,7 +41,6 @@ No test framework. `bun run build` = TypeScript check + production build.
 | Shared UI details | `src/components/AGENTS.md` |
 | Docker + Traefik config | `docker-compose.yml`, `Dockerfile` |
 | Nginx SPA fallback | `nginx.conf` |
-| Improvement backlog | `IMPROVEMENTS.md` |
 | Internship PDFs (public URLs) | `public/documents/internships/{adm,tnc}/` |
 
 ## STRUCTURE
