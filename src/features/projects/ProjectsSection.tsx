@@ -18,7 +18,8 @@ const homelabStack = [
   { name: 'Raspberry Pi', color: '#A22846' },
   { name: 'Jellyfin', color: '#00A4DC' },
   { name: 'Gitea', color: '#5E2C9B' },
-  { name: 'Paperless', color: '#175DDC' },
+  { name: 'Vaultwarden', color: '#4F46E5' },
+  { name: 'SearXNG', color: '#0D9488' },
   { name: 'Cloudflared', color: '#F38020' },
 ]
 

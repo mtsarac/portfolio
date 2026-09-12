@@ -103,7 +103,7 @@
     "hobby": {
       "label": "Ev Sunucusu",
       "name": "Raspberry Pi 5 Sunucu",
-      "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Traefik ters proxy ile Cloudflare Tunnel, medya stack'i (Jellyfin, Sonarr, Radarr, qBittorrent), Gitea ile kaynak kod yönetimi, Paperless-ngx ile belge yönetimi ve Uptime Kuma ile izleme.",
+      "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Traefik ters proxy ile Cloudflare Tunnel, otomatik medya stack'i (Sonarr, Radarr, Prowlarr, Bazarr, Seerr, Jellyfin, qBittorrent), Gitea ile kaynak kod yönetimi, Vaultwarden ile şifre yönetimi, SearXNG ile gizli arama ve Uptime Kuma ile izleme.",
       "destination": "Kişisel sunucu projesi, detaylar istek üzerine paylaşılabilir"
     }
   },
