@@ -86,7 +86,7 @@ export function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="sm:hidden border-t border-neutral-200 bg-white/95 backdrop-blur-lg dark:border-neutral-800 dark:bg-neutral-950/95">
+        <div className="sm:hidden border-t border-neutral-300 bg-white/95 backdrop-blur-lg shadow-md dark:border-neutral-700 dark:bg-neutral-950/95">
           <div className="px-4 py-4 flex flex-col items-center gap-4">
             {NAV_ITEMS.map((item) => (
               <a
@@ -102,7 +102,7 @@ export function Navbar() {
                 {t(`nav.${item}`)}
               </a>
             ))}
-            <div className="flex items-center gap-2 pt-2 border-t border-neutral-200 dark:border-neutral-800">
+            <div className="flex items-center gap-2 pt-2 border-t border-neutral-300 dark:border-neutral-700">
               <ThemeToggle />
               <LangToggle />
             </div>
