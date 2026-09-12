@@ -1,4 +1,5 @@
 import { I18nProvider } from './features/i18n/I18nProvider'
+import { ThemeProvider } from './features/theme/ThemeProvider'
 import { LoggingProvider } from './features/logging/LoggingProvider'
 import { Layout } from './components/Layout'
 import ClickSpark from './components/ClickSpark'
@@ -9,18 +10,20 @@ import { ProjectsSection } from './features/projects/ProjectsSection'
 import { SkillsSection } from './features/skills/SkillsSection'
 import { ContactSection } from './features/contact/ContactSection'
 import { useLogger } from './hooks/useLogger'
+import { useTheme } from './hooks/useTheme'
 import { useScrollDepth } from './hooks/useScrollDepth'
 import { useEngagementTime } from './hooks/useEngagementTime'
 
 function AppContent() {
   const { logger } = useLogger()
+  const { resolved } = useTheme()
 
   useScrollDepth(logger)
   useEngagementTime(logger)
 
   return (
     <ClickSpark
-      sparkColor="#d4d4d4"
+      sparkColor={resolved === 'dark' ? '#d4d4d4' : '#737373'}
       sparkSize={8}
       sparkRadius={20}
       sparkCount={10}
@@ -43,9 +46,11 @@ function AppContent() {
 function App() {
   return (
     <I18nProvider>
-      <LoggingProvider>
-        <AppContent />
-      </LoggingProvider>
+      <ThemeProvider>
+        <LoggingProvider>
+          <AppContent />
+        </LoggingProvider>
+      </ThemeProvider>
     </I18nProvider>
   )
 }

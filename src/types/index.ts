@@ -1,5 +1,8 @@
 export type Language = 'tr' | 'en'
 
+export type ThemeChoice = 'light' | 'dark' | 'system'
+export type ResolvedTheme = 'light' | 'dark'
+
 export interface Translations {
   nav: {
     about: string

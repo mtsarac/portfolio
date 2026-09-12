@@ -36,21 +36,21 @@ function ProjectCard({
   destination: string
 }) {
   return (
-    <SpotlightCard className="rounded-lg border-neutral-700 bg-neutral-800 p-6 shadow-sm">
-      <span className="inline-block px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider dark:text-neutral-500 border dark:border-neutral-600 rounded mb-4">
+    <SpotlightCard className="rounded-lg border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
+      <span className="inline-block px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 border border-neutral-300 rounded mb-4 dark:border-neutral-600">
         {label}
       </span>
-      <h3 className="text-lg font-semibold dark:text-neutral-100 mb-2">
+      <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
         {title}
       </h3>
-      <p className="text-sm dark:text-neutral-400 leading-relaxed mb-5">
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-5">
         {desc}
       </p>
       <div className="flex flex-wrap gap-2">
         {stack.map((tech) => (
           <span
             key={tech.name}
-            className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium dark:text-neutral-300 dark:bg-neutral-700 border dark:border-neutral-600 rounded-md"
+            className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-neutral-700 bg-neutral-100 border border-neutral-200 rounded-md dark:text-neutral-300 dark:bg-neutral-700 dark:border-neutral-600"
           >
             <span
               className="w-2 h-2 rounded-full shrink-0"

@@ -28,13 +28,13 @@ export function HeroSection() {
             />
           </picture>
         </div>
-      <h1 className="text-5xl sm:text-6xl font-bold mb-4 dark:text-neutral-100">
+      <h1 className="text-5xl sm:text-6xl font-bold mb-4 text-neutral-900 dark:text-neutral-100">
         {t("hero.title")}
       </h1>
-      <p className="text-xl dark:text-neutral-400 mb-6">
+      <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-6">
         {t("hero.subtitle")}
       </p>
-      <p className="max-w-xl dark:text-neutral-400 leading-relaxed">
+      <p className="max-w-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
         {t("hero.description")}
       </p>
       <div className="flex flex-wrap justify-center gap-4 mt-10 max-w-full">
@@ -49,7 +49,7 @@ export function HeroSection() {
         <a
           href="#contact"
           onClick={() => logger.logEvent('hero_cta_click', { target: 'contact' })}
-          className="px-6 py-3 rounded-lg border border-slate-200 dark:text-neutral-100 font-medium dark:hover:bg-neutral-800 transition-colors"
+          className="px-6 py-3 rounded-lg border border-neutral-300 text-neutral-800 font-medium hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-800 transition-colors whitespace-nowrap"
         >
           {t("nav.contact")}
         </a>

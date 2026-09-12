@@ -1,4 +1,5 @@
 import { useRef, useState, type ReactNode } from 'react'
+import { useTheme } from '../hooks/useTheme'
 
 interface Position {
   x: number
@@ -14,8 +15,10 @@ interface SpotlightCardProps {
 export default function SpotlightCard({
   children,
   className = '',
-  spotlightColor = 'rgba(255, 255, 255, 0.25)',
+  spotlightColor,
 }: SpotlightCardProps) {
+  const { resolved } = useTheme()
+  const glow = spotlightColor ?? (resolved === 'dark' ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 61, 165, 0.12)')
   const divRef = useRef<HTMLDivElement>(null)
   const [isFocused, setIsFocused] = useState(false)
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 })
@@ -48,13 +51,13 @@ export default function SpotlightCard({
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8 ${className}`}
+      className={`relative rounded-3xl border border-neutral-200 bg-white overflow-hidden p-8 dark:border-neutral-800 dark:bg-neutral-900 ${className}`}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
         style={{
           opacity,
-          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
+          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${glow}, transparent 80%)`,
         }}
       />
       {children}

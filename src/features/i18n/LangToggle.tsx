@@ -14,7 +14,7 @@ export function LangToggle() {
   return (
     <button
       onClick={handleToggle}
-      className="px-3 py-1.5 text-sm font-medium rounded-lg border dark:border-neutral-600 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
+      className="px-3 py-1.5 text-sm font-medium rounded-lg border border-neutral-300 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
       aria-label={lang === 'tr' ? 'EN - Switch to English' : 'TR - Türkçeye geç'}
     >
       {lang === 'tr' ? 'EN' : 'TR'}

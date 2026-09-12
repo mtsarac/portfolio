@@ -5,7 +5,7 @@
 **Branch:** main
 **Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
 
-Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with dark-only theme, i18n (TR/EN), Umami analytics served first-party through `/metrics.js` and `/api/metrics`, WebGL light rays, canvas click sparkles, GSAP scroll animations, and Spotlight hover glow.
+Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with light/dark/system theme (`portfolio_theme`, default system), i18n (TR/EN), Umami analytics served first-party through `/metrics.js` and `/api/metrics`, canvas click sparkles, GSAP scroll animations, and Spotlight hover glow.
 
 ## Commands
 
@@ -117,7 +117,7 @@ No test framework. `bun run build` = TypeScript check + production build.
 </I18nProvider>
 ```
 
-Note: `ThemeProvider` was removed; site is now dark-only (`bg-neutral-950`, `@custom-variant dark`). No light toggle.
+Note: `ThemeProvider` (`src/features/theme/`) owns light/dark/system with `portfolio_theme` defaulting to system; `.dark` class on `documentElement`, anti-FOUC inline script in `index.html`. Accent tokens `--color-brand` (`#003DA5`, fills) and `--color-brand-light` (`#8FB4FF`, text/icons on dark).
 
 ### State
 
@@ -179,7 +179,7 @@ Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if 
 
 - `bun run build` = `tsc -b && vite build` - TypeScript errors block build
 - Tailwind CSS 4 via `@tailwindcss/vite` (no PostCSS config, no `tailwind.config.js`)
-- Dark mode variant: `@custom-variant dark (&:where(.dark, .dark *));` but site is dark-only (`bg-neutral-950`)
+- Dark mode variant: `@custom-variant dark (&:where(.dark, .dark *));` with light defaults + `dark:` overrides on every surface
 - `import.meta.env` for `VITE_` prefixed env vars
 - Umami tracking: programmatic via `UmamiLogger.logEvent()` only, auto pageview with `excludeHash`, queued until tracker ready
 - GSAP + OGL + react-icons are the only non-React dependencies

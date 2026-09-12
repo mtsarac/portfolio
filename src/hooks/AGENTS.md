@@ -8,6 +8,7 @@ All custom hooks live here. Two kinds: context consumers with null guards, and a
 |------|------|
 | `useI18n.ts` | Consumes `I18nContext`; throws if provider missing |
 | `useLogger.ts` | Consumes `LoggingContext`; throws if provider missing |
+| `useTheme.ts` | Consumes `ThemeContext`; throws if provider missing |
 | `useScrollDepth.ts` | Fires `scroll_depth {depth}` at 25/50/75/100 |
 | `useEngagementTime.ts` | Fires `engagement_time {seconds}` at 30/60/120; visibility-only |
 

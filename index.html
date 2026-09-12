@@ -17,6 +17,14 @@
     <meta name="twitter:description" content="Computer Engineering student and full-stack developer. Portfolio showcasing skills, projects, and experience." />
     <meta name="twitter:image" content="https://msarac.me/myself.webp" />
     <title>Muhammet Saraç - Portfolio</title>
+    <script>
+      try {
+        var t = localStorage.getItem('portfolio_theme') || 'system';
+        if (t === 'dark' || (t === 'system' && matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

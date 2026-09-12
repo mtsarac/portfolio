@@ -33,4 +33,3 @@ Reusable visual and layout components used across feature sections.
 ## Anti-patterns
 
 - Do not add logic that belongs inside a feature module (data, translations, section-specific events).
-- Do not introduce a light-mode fallback; the site is dark-only.

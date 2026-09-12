@@ -1,6 +1,7 @@
 import { useI18n } from '../hooks/useI18n'
 import { useLogger } from '../hooks/useLogger'
 import { LangToggle } from '../features/i18n/LangToggle'
+import { ThemeToggle } from '../features/theme/ThemeToggle'
 import { useEffect, useState } from 'react'
 
 const NAV_ITEMS = ['about', 'experience', 'projects', 'skills', 'contact'] as const
@@ -43,11 +44,11 @@ export function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-shadow ${
-        scrolled ? 'shadow-sm dark:bg-neutral-950/80 backdrop-blur-lg border-b dark:border-neutral-800/50' : 'bg-transparent'
+        scrolled ? 'shadow-sm bg-white/80 backdrop-blur-lg border-b border-neutral-200/50 dark:bg-neutral-950/80 dark:border-neutral-800/50' : 'bg-transparent'
       }`}
     >
       <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="#hero" className="text-lg font-semibold dark:text-neutral-100" onClick={close}>
+        <a href="#hero" className="text-lg font-semibold text-neutral-900 dark:text-neutral-100" onClick={close}>
           MS
         </a>
 
@@ -59,20 +60,21 @@ export function Navbar() {
               onClick={() => logger.logEvent('nav_click', { section: item })}
               className={`text-sm transition-colors ${
                 activeSection === item
-                  ? 'dark:text-brand-light'
-                  : 'dark:text-neutral-400 dark:hover:text-neutral-100'
+                  ? 'text-brand dark:text-brand-light'
+                  : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100'
               }`}
             >
               {t(`nav.${item}`)}
             </a>
           ))}
-          <div className="flex items-center gap-2 ml-2 border-l dark:border-neutral-700 pl-3">
+          <div className="flex items-center gap-2 ml-2 border-l border-neutral-200 dark:border-neutral-700 pl-3">
+            <ThemeToggle />
             <LangToggle />
           </div>
         </div>
 
         <button
-          className="sm:hidden p-2 dark:text-neutral-400 dark:hover:text-neutral-100"
+          className="sm:hidden p-2 text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
@@ -84,7 +86,7 @@ export function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="sm:hidden border-t dark:border-neutral-800 dark:bg-neutral-950/95 backdrop-blur-lg">
+        <div className="sm:hidden border-t border-neutral-200 bg-white/95 backdrop-blur-lg dark:border-neutral-800 dark:bg-neutral-950/95">
           <div className="px-4 py-4 flex flex-col items-center gap-4">
             {NAV_ITEMS.map((item) => (
               <a
@@ -93,14 +95,15 @@ export function Navbar() {
                 onClick={() => { logger.logEvent('nav_click', { section: item }); close() }}
               className={`text-sm transition-colors ${
                 activeSection === item
-                  ? 'dark:text-brand-light'
-                  : 'dark:text-neutral-400 dark:hover:text-neutral-100'
+                  ? 'text-brand dark:text-brand-light'
+                  : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100'
               }`}
               >
                 {t(`nav.${item}`)}
               </a>
             ))}
-            <div className="flex items-center gap-2 pt-2 border-t dark:border-neutral-800">
+            <div className="flex items-center gap-2 pt-2 border-t border-neutral-200 dark:border-neutral-800">
+              <ThemeToggle />
               <LangToggle />
             </div>
           </div>
