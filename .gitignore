@@ -30,7 +30,7 @@ dist-ssr
 *.sw?
 
 # Analysis
-IMPROVEMENTS.md
+IMPROVEMENTS*.md
 
 # Playwright test artifacts
 .playwright-mcp/
