@@ -12,7 +12,7 @@ Only the latest commit on the `main` branch is supported with security updates.
 ## Reporting a Vulnerability
 
 Please report security vulnerabilities privately via
-[GitHub private vulnerability reporting](https://github.com/mtsarac/portfolio-site/security/advisories/new).
+[GitHub private vulnerability reporting](https://github.com/mtsarac/portfolio/security/advisories/new).
 
 Do not open a public issue for a suspected vulnerability.
 
