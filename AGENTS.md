@@ -129,7 +129,7 @@ No React Router. Hash anchors (`href="#about"` etc., 5 nav items: about, experie
 
 ### Logging
 
-`LoggingService` interface → `UmamiLogger` (injects Umami script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_SCRIPT_URL` with `excludeHash` and `performance` datasets, optional `VITE_UMAMI_DOMAINS` allowlist as `data-domains`, in-memory queued `track()`) or `noopLogger` object literal. Events: `nav_click`, `section_view`, `experience_document_click {experienceId, documentType, action}`, `contact_click {type}`, `hero_cta_click {target}`, `cv_download {lang}`, `project_interest {project, target, lang}`, `scroll_depth {depth}`, `engagement_time {seconds}` via hooks. Automatic pageview via Umami, hash excluded, query params preserved for UTM attribution, no manual `logPageView`.
+`LoggingService` interface → `UmamiLogger` (injects Umami script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_SCRIPT_URL` with `excludeHash` and `performance` datasets, optional `VITE_UMAMI_DOMAINS` allowlist as `data-domains`, in-memory queued `track()`) or `noopLogger` object literal. Events: `nav_click {section}`, `section_view {section}`, `experience_document_click {experienceId, documentType, action}`, `contact_click {type}`, `hero_cta_click {target}`, `cv_download {lang}`, `project_interest {project, target, lang}`, `scroll_depth {depth}`, `engagement_time {seconds}`, `lang_toggle {lang}`, `theme_change {theme}` via hooks. Automatic pageview via Umami, hash excluded, query params preserved for UTM attribution, no manual `logPageView`.
 
 ### Analytics routing
 
