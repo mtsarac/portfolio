@@ -43,3 +43,9 @@ reports/
 
 # Local tooling
 scripts/cv/
+
+# Superpowers specs (local-only)
+docs/superpowers/specs/
+
+# Local-only assets (untracked, stays on disk)
+public/myself_backup.jpg
