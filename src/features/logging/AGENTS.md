@@ -24,7 +24,7 @@ If site ID or script URL is missing, `LoggingProvider` returns `noopLogger` rega
 ## Events
 
 - `nav_click {section}`
-- `section_view {name}`
+- `section_view {section}`
 - `experience_document_click {experienceId, documentType, action}`
 - `contact_click {type}`
 - `hero_cta_click {target}`
@@ -32,6 +32,8 @@ If site ID or script URL is missing, `LoggingProvider` returns `noopLogger` rega
 - `project_interest {project, target, lang}`
 - `scroll_depth {depth}`
 - `engagement_time {seconds}`
+- `lang_toggle {lang}`
+- `theme_change {theme}`
 
 Pageviews are automatic via Umami; hash is excluded. Query params are left untouched so UTM attribution (`utm_source`, `utm_medium`, `utm_campaign`) keeps working. No session replay or heatmaps.
 
