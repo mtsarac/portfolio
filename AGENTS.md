@@ -1,7 +1,7 @@
-# AGENTS.md - portfolio-site
+# AGENTS.md - portfolio
 
-**Generated:** 2026-09-08
-**Commit:** b9dbd03
+**Generated:** 2026-09-13
+**Commit:** 459b68f
 **Branch:** main
 **Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
 
@@ -64,7 +64,8 @@ No test framework. `bun run build` = TypeScript check + production build.
 │   │   └── logging/         # Umami analytics subsystem - see src/features/logging/AGENTS.md
 │   └── hooks/               # Context hooks + analytics hooks - see src/hooks/AGENTS.md
 ├── public/
-│   ├── cv/                  # CV PDFs served at /cv/*
+│   ├── cv/                  # CV PDFs (linked) + DOCX sources served at /cv/*
+│   ├── favicon* + site.webmanifest  # PWA icons + manifest
 │   └── documents/internships/
 │       ├── adm/internship-certificate.pdf
 │       └── tnc/{certificate.pdf,reference-letter.pdf}

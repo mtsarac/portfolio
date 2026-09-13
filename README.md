@@ -1,9 +1,9 @@
-# portfolio-site
+# portfolio
 
-[![CI](https://github.com/mtsarac/portfolio-site/actions/workflows/ci.yml/badge.svg)](https://github.com/mtsarac/portfolio-site/actions/workflows/ci.yml)
-[![Docker](https://github.com/mtsarac/portfolio-site/actions/workflows/docker.yml/badge.svg)](https://github.com/mtsarac/portfolio-site/actions/workflows/docker.yml)
+[![CI](https://github.com/mtsarac/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/mtsarac/portfolio/actions/workflows/ci.yml)
+[![Docker](https://github.com/mtsarac/portfolio/actions/workflows/docker.yml/badge.svg)](https://github.com/mtsarac/portfolio/actions/workflows/docker.yml)
 
-Personal site of Muhammet Saraç, live at [msarac.me](https://msarac.me). Single-page React app in Turkish and English, with light/dark theme, internship entries with documents, and Umami analytics served first-party.
+Personal site of Muhammet Saraç, live at [msarac.me](https://msarac.me). Single-page React app in Turkish and English, with light/dark theme, internship entries with documents, downloadable CV, PWA support, and Umami analytics served first-party.
 
 Türkçe sürüm için: [README.TR.md](README.TR.md).
 
