@@ -6,6 +6,7 @@ services:
       args:
         VITE_UMAMI_SITE_ID: ${VITE_UMAMI_SITE_ID}
         VITE_UMAMI_SCRIPT_URL: ${VITE_UMAMI_SCRIPT_URL}
+        VITE_UMAMI_DOMAINS: ${VITE_UMAMI_DOMAINS:-}
     container_name: portfolio-local
     ports:
       - "8000:80"

@@ -80,12 +80,14 @@ export interface Translations {
       name: string
       desc: string
       destination: string
+      cta: string
     }
     hobby: {
       label: string
       name: string
       desc: string
       destination: string
+      cta: string
     }
   }
   contact: {

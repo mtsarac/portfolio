@@ -1,4 +1,5 @@
 import { useI18n } from '../../hooks/useI18n'
+import { useLogger } from '../../hooks/useLogger'
 import { Section } from '../../components/Section'
 import SpotlightCard from '../../components/SpotlightCard'
 
@@ -24,18 +25,25 @@ const homelabStack = [
 ]
 
 function ProjectCard({
+  projectId,
   label,
   title,
   desc,
   stack,
   destination,
+  cta,
 }: {
+  projectId: 'thesis' | 'homelab'
   label: string
   title: string
   desc: string
   stack: { name: string; color: string }[]
   destination: string
+  cta: string
 }) {
+  const { lang } = useI18n()
+  const { logger } = useLogger()
+
   return (
     <SpotlightCard className="rounded-lg border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
       <span className="inline-block px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 border border-neutral-300 rounded mb-4 dark:border-neutral-600">
@@ -64,6 +72,19 @@ function ProjectCard({
       <p className="mt-4 text-xs text-neutral-500">
         {destination}
       </p>
+      <a
+        href="#contact"
+        onClick={() =>
+          logger.logEvent('project_interest', {
+            project: projectId,
+            target: 'contact',
+            lang,
+          })
+        }
+        className="mt-3 inline-block text-sm font-medium text-brand hover:underline dark:text-brand-light"
+      >
+        {cta} {"->"}
+      </a>
     </SpotlightCard>
   )
 }
@@ -75,18 +96,22 @@ export function ProjectsSection() {
     <Section id="projects" title={t('projects.title')} align="left" width="wide">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <ProjectCard
+          projectId="thesis"
           label={t('projects.thesis.label')}
           title={t('projects.thesis.name')}
           desc={t('projects.thesis.desc')}
           stack={thesisStack}
           destination={t('projects.thesis.destination')}
+          cta={t('projects.thesis.cta')}
         />
         <ProjectCard
+          projectId="homelab"
           label={t('projects.hobby.label')}
           title={t('projects.hobby.name')}
           desc={t('projects.hobby.desc')}
           stack={homelabStack}
           destination={t('projects.hobby.destination')}
+          cta={t('projects.hobby.cta')}
         />
       </div>
     </Section>
