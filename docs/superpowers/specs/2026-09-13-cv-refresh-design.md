@@ -44,7 +44,9 @@ paragraph text first.
 
 Allowed extra tools: `pandoc` (md/HTML → .docx for the extra designs) and
 `ocrmypdf --optimize` on the final PDFs. Both verified present
-(pandoc 3.10.2, ocrmypdf).
+(pandoc 3.10.2, ocrmypdf). Note: ocrmypdf was evaluated and skipped, all
+outputs are born-digital tagged PDFs (LibreOffice/Chromium) with nothing to
+OCR; force-OCR would only discard structure.
 
 **B. Rebuild from HTML + Chromium PDF.** Clean output and full layout control,
 but a from-scratch design plus a new HTML-to-PDF toolchain for a content sync.
