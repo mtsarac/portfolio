@@ -66,6 +66,21 @@ Overkill; rejected unless A proves unworkable.
 5. Commit `docs: refresh CVs to match website` (content commit for binaries is
    separate from this spec commit).
 
+## Typography (research: Microsoft 2026, Novoresume 2026, LiveCareer, Yale OCS)
+
+- One family, two weights max: **Carlito** (metric-compatible with Calibri, the
+  corporate gold standard; installed everywhere here, ATS-safe).
+- Name 22pt / section headings 12-13pt bold / body 10-11pt / bullets 10pt.
+  Never below 10pt; fit by trimming words and tightening margins instead.
+- Bold sparingly (job titles only); action-driven bullets, not narrative.
+
+## Links and experience bullets
+
+- Contact items are real hyperlinks: email (mailto), GitHub, LinkedIn,
+  msarac.me. Verified as URI annotations in all 6 PDFs.
+- Each experience is a bold header line plus bulleted achievements, never a
+  single inline paragraph.
+
 ## Deliverables
 
 - Original design, refreshed content: `CV.docx`, `CV.pdf`, `CV_English.docx`,
