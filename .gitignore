@@ -40,3 +40,6 @@ reports/
 
 # CodeGraph
 .cgcignore
+
+# Local tooling
+scripts/cv/
