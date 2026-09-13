@@ -17,16 +17,26 @@ declare global {
   }
 }
 
+function parseDomains(raw: string): string {
+  return raw
+    .split(',')
+    .map((d) => d.trim().toLowerCase())
+    .filter((d) => d.length > 0)
+    .join(',')
+}
+
 export class UmamiLogger implements LoggingService {
   #initialized = false
   #failed = false
   #queue: LogEvent[] = []
   #siteId: string
   #scriptUrl: string
+  #domains: string
 
-  constructor(siteId: string, scriptUrl: string) {
+  constructor(siteId: string, scriptUrl: string, domains = '') {
     this.#siteId = siteId
     this.#scriptUrl = scriptUrl
+    this.#domains = parseDomains(domains)
   }
 
   initialize(): void {
@@ -89,6 +99,9 @@ export class UmamiLogger implements LoggingService {
     script.dataset.websiteId = this.#siteId
     script.dataset.excludeHash = 'true'
     script.dataset.performance = 'true'
+    if (this.#domains) {
+      script.dataset.domains = this.#domains
+    }
     script.dataset.status = 'loading'
     script.async = true
     script.defer = true

@@ -98,13 +98,15 @@
       "label": "Tez Projesi",
       "name": "Adrenal Anomali Tespit Sistemi",
       "desc": "Adrenal anomali tespiti için klinik karar destek sistemi. PostgreSQL ve JWT kimlik doğrulama ile NestJS backend, MRI görüntü analizi ve yapay zeka destekli tahminler için React Native mobil uygulama.",
-      "destination": "Özel tez projesi, detaylar istek üzerine paylaşılabilir"
+      "destination": "Özel tez projesi, detaylar istek üzerine paylaşılabilir",
+      "cta": "Detayları sor"
     },
     "hobby": {
       "label": "Ev Sunucusu",
       "name": "Raspberry Pi 5 Sunucu",
       "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Traefik ters proxy ile Cloudflare Tunnel, otomatik medya stack'i (Sonarr, Radarr, Prowlarr, Bazarr, Seerr, Jellyfin, qBittorrent), Gitea ile kaynak kod yönetimi, Vaultwarden ile şifre yönetimi, SearXNG ile gizli arama ve Uptime Kuma ile izleme.",
-      "destination": "Kişisel sunucu projesi, detaylar istek üzerine paylaşılabilir"
+      "destination": "Kişisel sunucu projesi, detaylar istek üzerine paylaşılabilir",
+      "cta": "Detayları sor"
     }
   },
   "contact": {
