@@ -1,7 +1,6 @@
 # AGENTS.md - portfolio
 
-**Generated:** 2026-09-13
-**Commit:** 459b68f
+**Updated:** 2026-09-13
 **Branch:** main
 **Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
 
@@ -24,7 +23,7 @@ No test framework. `bun run build` = TypeScript check + production build.
 |------|----------|
 | Provider nesting, section order | `src/App.tsx` |
 | Entry point, DOM mount | `src/main.tsx` |
-| Shared types (LogEvent, SkillCategory, Translations + experience) | `src/types/index.ts` |
+| Shared types (LogEvent, SkillCategory, Translations) | `src/types/index.ts` |
 | Layout shell (Navbar + main + Footer) | `src/components/Layout.tsx` |
 | Fixed top nav with scroll styling + active Section observer | `src/components/Navbar.tsx` |
 | Generic section wrapper (GSAP reveal + section_view event) | `src/components/Section.tsx` |
@@ -71,7 +70,7 @@ No test framework. `bun run build` = TypeScript check + production build.
 │       └── tnc/{certificate.pdf,reference-letter.pdf}
 ├── docker-compose.yml       # Production stack (portfolio + Umami + PostgreSQL + Traefik)
 ├── docker-compose.local.yml # Local (portfolio only, port 8000)
-├── Dockerfile               # Multi-stage: node:22-alpine build → nginx:alpine serve
+├── Dockerfile               # Multi-stage: node:26-alpine build → nginx:alpine serve
 ├── nginx.conf               # SPA fallback (try_files $uri $uri/ /index.html)
 └── AGENTS.md                # This file
 ```
@@ -99,7 +98,7 @@ No test framework. `bun run build` = TypeScript check + production build.
 | `I18nContext` | context | `src/features/i18n/I18nContext.ts` | 2 | TR/EN context declaration |
 | `LoggingProvider` | provider | `src/features/logging/LoggingProvider.tsx` | 1 | Logging service context (stable via useMemo) |
 | `LoggingContext` | context | `src/features/logging/LoggingContext.ts` | 2 | Logging context declaration |
-| `UmamiLogger` | class | `src/features/logging/UmamiLogger.ts` | 1 | Umami script injection + queued `track()` + `excludeHash`/`performance` |
+| `UmamiLogger` | class | `src/features/logging/UmamiLogger.ts` | 1 | Umami script injection + queued `track()` + `excludeHash`/`performance`/`data-domains` |
 | `useI18n` | hook | `src/hooks/useI18n.ts` | 9 | Consumes I18nContext with null guard |
 | `useLogger` | hook | `src/hooks/useLogger.ts` | 7 | Consumes LoggingContext |
 | `useScrollDepth` | hook | `src/hooks/useScrollDepth.ts` | 1 | Scroll-depth analytics (25/50/75/100) |
@@ -129,7 +128,7 @@ No React Router. Hash anchors (`href="#about"` etc., 5 nav items: about, experie
 
 ### Logging
 
-`LoggingService` interface → `UmamiLogger` (injects Umami script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_SCRIPT_URL` with `excludeHash` and `performance` datasets, in-memory queued `track()`) or `noopLogger` object literal. Events: `nav_click`, `section_view`, `experience_document_click {experienceId, documentType, action}`, `contact_click {type}`, `hero_cta_click {target, lang?}`, `scroll_depth {depth}`, `engagement_time {seconds}` via hooks. Automatic pageview via Umami, hash excluded, no manual `logPageView`.
+`LoggingService` interface → `UmamiLogger` (injects Umami script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_SCRIPT_URL` with `excludeHash` and `performance` datasets, optional `VITE_UMAMI_DOMAINS` allowlist as `data-domains`, in-memory queued `track()`) or `noopLogger` object literal. Events: `nav_click {section}`, `section_view {section}`, `experience_document_click {experienceId, documentType, action}`, `contact_click {type}`, `hero_cta_click {target}`, `cv_download {lang}`, `project_interest {project, target, lang}`, `scroll_depth {depth}`, `engagement_time {seconds}`, `lang_toggle {lang}`, `theme_change {theme}` via hooks. Automatic pageview via Umami, hash excluded, query params preserved for UTM attribution, no manual `logPageView`.
 
 ### Analytics routing
 
@@ -158,6 +157,20 @@ Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if 
 
 `experienceData.ts` is single source of truth. `ExperienceCard` renders `documents: ExperienceDocument[]` generically - adding a document only requires pushing to the array, no component change. Documents stored under `public/documents/internships/{adm,tnc}/` and served at `/documents/internships/...` with `target="_blank" rel="noopener noreferrer"` for view and `download` for download. Empty `documents` renders no broken links; now wired to real PDFs.
 
+## GIT WORKFLOW
+
+`main` is protected. All changes go through Pull Requests.
+
+- Work on a dedicated branch from latest `origin/main` (`feat/...`, `fix/...`, `docs/...`, `ci/...`)
+- Every git command uses the `GIT_MASTER=1` prefix
+- Never commit or push directly to `main`
+- Never force-push. Not to `main`, not to feature branches either. If a push is rejected, open a PR instead
+- Never merge your own PR, never enable auto-merge, never touch branch protection settings
+- Never rewrite published history
+- Push only the feature branch, and only when explicitly requested
+- Open the PR with `gh` using the already-authenticated GitHub account (`mtsarac <mtsarac@users.noreply.github.com>`). Do not change git identity, do not impersonate anyone
+- PR targets `base: main`. The owner reviews and merges manually
+
 ## CONVENTIONS
 
 - Feature-based: each module in `src/features/<name>/` (self-contained)
@@ -168,11 +181,12 @@ Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if 
 
 ## ANTI-PATTERNS (THIS PROJECT)
 
-- No `docker` / `docker compose` commands from agents
+- No `docker` / `docker compose` commands from agents (except read-only `docker compose config` when explicitly requested for validation)
 - No `as any`, `@ts-ignore`, `@ts-expect-error`
 - No em dash (`—`) anywhere in source, translations, or docs
 - No `Co-authored-by` or `Contributors` lines in commits
 - No pushing without explicit request
+- No force-push, ever
 - No `vitest` / `jest` / test framework (zero tests)
 
 ## GOTCHAS
@@ -181,7 +195,7 @@ Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if 
 - Tailwind CSS 4 via `@tailwindcss/vite` (no PostCSS config, no `tailwind.config.js`)
 - Dark mode variant: `@custom-variant dark (&:where(.dark, .dark *));` with light defaults + `dark:` overrides on every surface
 - `import.meta.env` for `VITE_` prefixed env vars
-- Umami tracking: programmatic via `UmamiLogger.logEvent()` only, auto pageview with `excludeHash`, queued until tracker ready
+- Umami tracking: programmatic via `UmamiLogger.logEvent()` only, auto pageview with `excludeHash` + `data-domains` allowlist, queued until tracker ready
 - GSAP + OGL + react-icons are the only non-React dependencies
 - TypeScript 6.0.3 (very new, careful with incompatibilities)
 - `Section` already wraps with `AnimatedContent`; `ExperienceSection` adds staggered `AnimatedContent` per card - double GSAP is intentional

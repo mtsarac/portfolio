@@ -41,7 +41,7 @@ export function HeroSection() {
         <a
           href={cvHref}
           download
-          onClick={() => logger.logEvent('hero_cta_click', { target: 'cv', lang })}
+          onClick={() => logger.logEvent('cv_download', { lang })}
           className="px-6 py-3 rounded-lg bg-brand text-white font-medium hover:opacity-90 transition-colors whitespace-nowrap"
         >
           {t("hero.cv")}
