@@ -107,6 +107,13 @@
       "desc": "A self-hosted infrastructure running on DietPi OS. Traefik reverse proxy with Cloudflare Tunnel, automated media stack (Sonarr, Radarr, Prowlarr, Bazarr, Seerr, Jellyfin, qBittorrent), Gitea for source control, Vaultwarden for passwords, SearXNG for private search, and monitoring with Uptime Kuma.",
       "destination": "Self-hosted project, details available on request",
       "cta": "Request details"
+    },
+    "wanetra": {
+      "label": "Open Source",
+      "name": "Wanetra",
+      "desc": "A self-hosted internet and WAN health monitoring app for homelabs. ASP.NET Core backend with SQLite and EF Core, a React/TypeScript frontend, LibreSpeed-compatible tests, and Prometheus metrics, packaged as a single Docker container.",
+      "destination": "Open source, early development",
+      "cta": "View on GitHub"
     }
   },
   "contact": {
