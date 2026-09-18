@@ -1,3 +1,4 @@
+import { FaGithub } from 'react-icons/fa6'
 import { useI18n } from '../../hooks/useI18n'
 import { useLogger } from '../../hooks/useLogger'
 import { Section } from '../../components/Section'
@@ -24,6 +25,16 @@ const homelabStack = [
   { name: 'Cloudflared', color: '#F38020' },
 ]
 
+const wanetraStack = [
+  { name: '.NET', color: '#512BD4' },
+  { name: 'ASP.NET Core', color: '#512BD4' },
+  { name: 'React', color: '#61DAFB' },
+  { name: 'TypeScript', color: '#3178C6' },
+  { name: 'SQLite', color: '#003B57' },
+  { name: 'Docker', color: '#2496ED' },
+  { name: 'Prometheus', color: '#E6522C' },
+]
+
 function ProjectCard({
   projectId,
   label,
@@ -32,14 +43,18 @@ function ProjectCard({
   stack,
   destination,
   cta,
+  href = '#contact',
+  external = false,
 }: {
-  projectId: 'thesis' | 'homelab'
+  projectId: 'thesis' | 'homelab' | 'wanetra'
   label: string
   title: string
   desc: string
   stack: { name: string; color: string }[]
   destination: string
   cta: string
+  href?: string
+  external?: boolean
 }) {
   const { lang } = useI18n()
   const { logger } = useLogger()
@@ -73,16 +88,19 @@ function ProjectCard({
         {destination}
       </p>
       <a
-        href="#contact"
+        href={href}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noopener noreferrer' : undefined}
         onClick={() =>
           logger.logEvent('project_interest', {
             project: projectId,
-            target: 'contact',
+            target: external ? 'github' : 'contact',
             lang,
           })
         }
-        className="mt-3 inline-block text-sm font-medium text-brand hover:underline dark:text-brand-light"
+        className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:underline dark:text-brand-light"
       >
+        {external && <FaGithub size={14} />}
         {cta} {"->"}
       </a>
     </SpotlightCard>
@@ -94,7 +112,7 @@ export function ProjectsSection() {
 
   return (
     <Section id="projects" title={t('projects.title')} align="left" width="wide">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         <ProjectCard
           projectId="thesis"
           label={t('projects.thesis.label')}
@@ -112,6 +130,17 @@ export function ProjectsSection() {
           stack={homelabStack}
           destination={t('projects.hobby.destination')}
           cta={t('projects.hobby.cta')}
+        />
+        <ProjectCard
+          projectId="wanetra"
+          label={t('projects.wanetra.label')}
+          title={t('projects.wanetra.name')}
+          desc={t('projects.wanetra.desc')}
+          stack={wanetraStack}
+          destination={t('projects.wanetra.destination')}
+          cta={t('projects.wanetra.cta')}
+          href="https://github.com/mtsarac/Wanetra"
+          external
         />
       </div>
     </Section>

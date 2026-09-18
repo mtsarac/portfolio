@@ -107,6 +107,13 @@
       "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Traefik ters proxy ile Cloudflare Tunnel, otomatik medya stack'i (Sonarr, Radarr, Prowlarr, Bazarr, Seerr, Jellyfin, qBittorrent), Gitea ile kaynak kod yönetimi, Vaultwarden ile şifre yönetimi, SearXNG ile gizli arama ve Uptime Kuma ile izleme.",
       "destination": "Kişisel sunucu projesi, detaylar istek üzerine paylaşılabilir",
       "cta": "Detayları sor"
+    },
+    "wanetra": {
+      "label": "Açık Kaynak",
+      "name": "Wanetra",
+      "desc": "Ev sunucuları için kendi kendine barındırılan internet ve WAN sağlığı izleme uygulaması. SQLite ve EF Core ile ASP.NET Core backend, React/TypeScript frontend, LibreSpeed uyumlu testler ve Prometheus metrikleri; tek bir Docker container olarak paketlenmiştir.",
+      "destination": "Açık kaynak, erken geliştirme aşamasında",
+      "cta": "GitHub'da görüntüle"
     }
   },
   "contact": {
