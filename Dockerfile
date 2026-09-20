@@ -1,8 +1,6 @@
 # ---- Build ----
-FROM node:26-alpine@sha256:dbaa92e5758cbbcf85d65d5403fdb530fe3442cbe8c6dbfb7ef23365450d5070 AS builder
+FROM oven/bun:1.4.2-alpine@sha256:d888c0ae6c86d7866ff10c5aafdd9077b36aee6455b33dd270fb93c0dd5cef6f AS builder
 WORKDIR /app
-
-RUN npm install -g bun@1.4.2
 
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
