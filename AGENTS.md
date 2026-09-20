@@ -4,7 +4,7 @@
 **Branch:** main
 **Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
 
-Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with light/dark/system theme (`portfolio_theme`, default system), i18n (TR/EN), Umami analytics served first-party through `/metrics.js` and `/api/metrics`, canvas click sparkles, GSAP scroll animations, and Spotlight hover glow.
+Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with light/dark/system theme (`portfolio_theme`, default system), i18n (TR/EN), first-party analytics served through `/metrics.js` and `/api/metrics`, canvas click sparkles, GSAP scroll animations, and Spotlight hover glow.
 
 ## Commands
 
@@ -35,10 +35,11 @@ No test framework. `bun run build` = TypeScript check + production build.
 | Scroll progress bar | `src/components/ScrollProgress.tsx` |
 | Experience (data-driven internships + documents) | `src/features/experience/` |
 | i18n (TR/EN + translations JSON) | `src/features/i18n/I18nContext.ts` + `I18nProvider.tsx` + translations |
-| Logging (Umami / noop) | `src/features/logging/AGENTS.md` |
+| Logging (analytics / noop) | `src/features/logging/AGENTS.md` |
 | Context-consuming hooks with guard | `src/hooks/AGENTS.md` |
 | Shared UI details | `src/components/AGENTS.md` |
 | Docker + Traefik config | `docker-compose.yml`, `Dockerfile` |
+| Analytics tracker (external stack) | Configured via `VITE_*` build args, served first-party |
 | Nginx SPA fallback | `nginx.conf` |
 | Internship PDFs (public URLs) | `public/documents/internships/{adm,tnc}/` |
 
@@ -58,9 +59,9 @@ No test framework. `bun run build` = TypeScript check + production build.
 │   │   ├── experience/      # ExperienceSection + ExperienceCard (SpotlightCard) + experienceData (ADM + TNC) + index barrel
 │   │   ├── projects/        # ProjectsSection: thesis + homelab SpotlightCards
 │   │   ├── skills/          # SkillsSection: badge carousel via LogoLoop
-│   │   ├── contact/         # ContactSection: links + Umami events
+│   │   ├── contact/         # ContactSection: links + tracking events
 │   │   ├── i18n/            # I18nProvider + I18nContext + LangToggle + translations/{en,tr}.json
-│   │   └── logging/         # Umami analytics subsystem - see src/features/logging/AGENTS.md
+│   │   └── logging/         # Analytics subsystem - see src/features/logging/AGENTS.md
 │   └── hooks/               # Context hooks + analytics hooks - see src/hooks/AGENTS.md
 ├── public/
 │   ├── cv/                  # CV PDFs (linked) + DOCX sources served at /cv/*
@@ -68,7 +69,7 @@ No test framework. `bun run build` = TypeScript check + production build.
 │   └── documents/internships/
 │       ├── adm/internship-certificate.pdf
 │       └── tnc/{certificate.pdf,reference-letter.pdf}
-├── docker-compose.yml       # Production stack (portfolio + Umami + PostgreSQL + Traefik)
+├── docker-compose.yml       # Production stack (portfolio only)
 ├── docker-compose.local.yml # Local (portfolio only, port 8000)
 ├── Dockerfile               # Multi-stage: node:26-alpine build → nginx:alpine serve
 ├── nginx.conf               # SPA fallback (try_files $uri $uri/ /index.html)
@@ -98,7 +99,7 @@ No test framework. `bun run build` = TypeScript check + production build.
 | `I18nContext` | context | `src/features/i18n/I18nContext.ts` | 2 | TR/EN context declaration |
 | `LoggingProvider` | provider | `src/features/logging/LoggingProvider.tsx` | 1 | Logging service context (stable via useMemo) |
 | `LoggingContext` | context | `src/features/logging/LoggingContext.ts` | 2 | Logging context declaration |
-| `UmamiLogger` | class | `src/features/logging/UmamiLogger.ts` | 1 | Umami script injection + queued `track()` + `excludeHash`/`performance`/`data-domains` |
+| `UmamiLogger` | class | `src/features/logging/UmamiLogger.ts` | 1 | Tracker script injection + queued `track()` + `excludeHash`/`performance`/`data-domains` |
 | `useI18n` | hook | `src/hooks/useI18n.ts` | 9 | Consumes I18nContext with null guard |
 | `useLogger` | hook | `src/hooks/useLogger.ts` | 7 | Consumes LoggingContext |
 | `useScrollDepth` | hook | `src/hooks/useScrollDepth.ts` | 1 | Scroll-depth analytics (25/50/75/100) |
@@ -110,7 +111,7 @@ No test framework. `bun run build` = TypeScript check + production build.
 
 ```tsx
 <I18nProvider>        {/* TR/EN, localStorage portfolio_lang, navigator.language */}
-  <LoggingProvider>   {/* Umami or noop, depends on VITE_UMAMI_* */}
+  <LoggingProvider>   {/* Tracker or noop, depends on VITE_* */}
     <AppContent />    {/* ClickSpark > LightRays (desktop) > Layout > Sections */}
   </LoggingProvider>
 </I18nProvider>
@@ -128,9 +129,13 @@ No React Router. Hash anchors (`href="#about"` etc., 5 nav items: about, experie
 
 ### Logging
 
-`LoggingService` interface → `UmamiLogger` (injects Umami script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_SCRIPT_URL` with `excludeHash` and `performance` datasets, optional `VITE_UMAMI_DOMAINS` allowlist as `data-domains`, in-memory queued `track()`) or `noopLogger` object literal. Events: `nav_click {section}`, `section_view {section}`, `experience_document_click {experienceId, documentType, action}`, `contact_click {type}`, `hero_cta_click {target}`, `cv_download {lang}`, `project_interest {project, target, lang}`, `scroll_depth {depth}`, `engagement_time {seconds}`, `lang_toggle {lang}`, `theme_change {theme}` via hooks. Automatic pageview via Umami, hash excluded, query params preserved for UTM attribution, no manual `logPageView`.
+`LoggingService` interface → `UmamiLogger` (injects tracker script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_SCRIPT_URL` with `excludeHash` and `performance` datasets, optional `VITE_UMAMI_DOMAINS` allowlist as `data-domains`, in-memory queued `track()`) or `noopLogger` object literal. Events: `nav_click {section}`, `section_view {section}`, `experience_document_click {experienceId, documentType, action}`, `contact_click {type}`, `hero_cta_click {target}`, `cv_download {lang}`, `project_interest {project, target, lang}`, `scroll_depth {depth}`, `engagement_time {seconds}`, `lang_toggle {lang}`, `theme_change {theme}` via hooks. Automatic pageview via the tracker, hash excluded, query params preserved for UTM attribution, no manual `logPageView`.
 
 ### Analytics routing
+
+The tracker is served first-party and managed outside this repo. This
+project only needs the `VITE_*` build args; deploys never manage the
+analytics backend.
 
 ```text
 browser
@@ -142,12 +147,12 @@ Cloudflare Tunnel
   v
 Traefik
   |--> portfolio container   everything else
-  |--> umami container       /metrics.js + /api/metrics  (priority 20 router)
-umami.msarac.me
-  |--> umami container       dashboard/admin
+  |--> tracker service       /metrics.js + /api/metrics  (priority 20 router)
 ```
 
-The same-origin tracker router (`umami-tracker`) has priority `20`, higher than the generic portfolio router (`priority 10`), so `/metrics.js` and `/api/metrics` never hit nginx.
+The same-origin tracker router has priority `20`, higher than the
+generic portfolio router (`priority 10`), so `/metrics.js` and
+`/api/metrics` never hit nginx.
 
 ### Hook pattern
 
@@ -195,7 +200,7 @@ Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if 
 - Tailwind CSS 4 via `@tailwindcss/vite` (no PostCSS config, no `tailwind.config.js`)
 - Dark mode variant: `@custom-variant dark (&:where(.dark, .dark *));` with light defaults + `dark:` overrides on every surface
 - `import.meta.env` for `VITE_` prefixed env vars
-- Umami tracking: programmatic via `UmamiLogger.logEvent()` only, auto pageview with `excludeHash` + `data-domains` allowlist, queued until tracker ready
+- Tracker: programmatic via `UmamiLogger.logEvent()` only, auto pageview with `excludeHash` + `data-domains` allowlist, queued until tracker ready
 - GSAP + OGL + react-icons are the only non-React dependencies
 - TypeScript 6.0.3 (very new, careful with incompatibilities)
 - `Section` already wraps with `AnimatedContent`; `ExperienceSection` adds staggered `AnimatedContent` per card - double GSAP is intentional

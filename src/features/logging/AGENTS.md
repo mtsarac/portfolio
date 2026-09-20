@@ -1,6 +1,6 @@
-# src/features/logging - Umami analytics
+# src/features/logging - analytics
 
-Self-contained analytics feature. Falls back to a noop logger when Umami env vars are missing.
+Self-contained analytics feature. Falls back to a noop logger when tracker env vars are missing.
 
 ## Files
 
@@ -15,9 +15,9 @@ Self-contained analytics feature. Falls back to a noop logger when Umami env var
 
 | Variable | Purpose |
 |----------|---------|
-| `VITE_UMAMI_SITE_ID` | Umami website ID |
+| `VITE_UMAMI_SITE_ID` | Tracker website ID |
 | `VITE_UMAMI_SCRIPT_URL` | Full first-party script URL, e.g. `https://msarac.me/metrics.js` |
-| `VITE_UMAMI_DOMAINS` | Comma-separated allowlist for Umami `data-domains`, e.g. `msarac.me,www.msarac.me`; empty = track everywhere |
+| `VITE_UMAMI_DOMAINS` | Comma-separated allowlist for tracker `data-domains`, e.g. `msarac.me,www.msarac.me`; empty = track everywhere |
 
 If site ID or script URL is missing, `LoggingProvider` returns `noopLogger` regardless of domains.
 
@@ -35,7 +35,7 @@ If site ID or script URL is missing, `LoggingProvider` returns `noopLogger` rega
 - `lang_toggle {lang}`
 - `theme_change {theme}`
 
-Pageviews are automatic via Umami; hash is excluded. Query params are left untouched so UTM attribution (`utm_source`, `utm_medium`, `utm_campaign`) keeps working. No session replay or heatmaps.
+Pageviews are automatic via the tracker; hash is excluded. Query params are left untouched so UTM attribution (`utm_source`, `utm_medium`, `utm_campaign`) keeps working. No session replay or heatmaps.
 
 ## Where to look
 
@@ -45,7 +45,7 @@ Pageviews are automatic via Umami; hash is excluded. Query params are left untou
 
 ## Anti-patterns
 
-- Do not call `umami.track()` directly; always use `useLogger()`.
-- Do not add a manual `logPageView`; Umami handles pageviews.
+- Do not call the tracker global directly; always use `useLogger()`.
+- Do not add a manual `logPageView`; the tracker handles pageviews.
 - Do not expose secrets via `VITE_*` variables.
 - Do not add tests — this project has no test framework.
