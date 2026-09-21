@@ -5,7 +5,7 @@ import { useLogger } from '../../hooks/useLogger'
 import { Section } from '../../components/Section'
 
 const contactItems: { label: string; href: string; type: string; icon: IconType; color: string }[] = [
-  { label: 'contact.email', href: 'mailto:mtsarac03@gmail.com', type: 'email', icon: FaEnvelope, color: '#EA4335' },
+  { label: 'contact.email', href: 'mailto:ben@msarac.me', type: 'email', icon: FaEnvelope, color: '#EA4335' },
   { label: 'contact.phone', href: 'tel:+905416148690', type: 'phone', icon: FaPhone, color: '#22C55E' },
   { label: 'GitHub', href: 'https://github.com/mtsarac', type: 'github', icon: FaGithub, color: '#888' },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/mtsarac', type: 'linkedin', icon: FaLinkedin, color: '#0A66C2' },
