@@ -24,11 +24,11 @@
       "highlights": {
         "inventory": {
           "title": "BT Envanter, Stok ve Zimmet Sistemi",
-          "desc": "BT envanteri ve depo yönetimi için PostgreSQL ilişkisel şema tasarladım. Bireysel ve miktar bazlı zimmet takibi, çalışan zimmetleri, constraintler, triggerlar, saklı fonksiyonlar ve denetim ile stok hareket geçmişi içerir. ER modelleme ve iteratif iyileştirme süreçlerini kapsadı."
+          "desc": "BT envanteri ve depo yönetimi için PostgreSQL ilişkisel şeması tasarladım. Şema bireysel ve miktar bazlı zimmet takibini, çalışan zimmetlerini, kısıtları, tetikleyicileri, saklı fonksiyonları ve denetim ile stok hareket geçmişini içeriyor. Çalışma ER modelleme ve yinelemeli iyileştirme adımlarını da kapsadı."
         },
         "crm": {
           "title": "Müşteri Talep Yönetimi CRM",
-          "desc": "İş ve fonksiyonel gereksinim analizi yaparak onay akışını tanımladım. React, TypeScript, Vite ve Tailwind CSS ile mock veri üzerinde çalışan bir prototip geliştirdim, REST ve PostgreSQL mimarisi önerdim ve paydaş uyumu için wireframe hazırladım."
+          "desc": "İş ve fonksiyonel gereksinim analizi yaparak onay akışını tanımladım. React, TypeScript, Vite ve Tailwind CSS ile mock veri üzerinde çalışan bir prototip geliştirdim, REST ve PostgreSQL mimarisi önerdim ve paydaşlarla ortak anlayış sağlamak için wireframe hazırladım."
         },
         "enterprise": {
           "title": "Kurumsal BT ve SAP Süreçleri",
@@ -36,7 +36,7 @@
         },
         "massguard": {
           "title": "MASSGuard AI / Watt If? Ideathon",
-          "desc": "MASS akıllı sayaç zaman serisi verilerini analiz ederek elektrik kaçağı ve bypass anomalileri, kayıt dışı güneş üretimi ve olağandışı tüketim için risk skoru ve saha denetim önceliği üreten bir karar destek konsepti tasarladım. Otonom karar sistemi değil, destek konsepti olarak kurgulandı."
+          "desc": "MASS akıllı sayaç zaman serisi verilerini analiz ederek elektrik kaçağı ve bypass anomalileri, kayıt dışı güneş üretimi ve olağandışı tüketim için risk skoru ve saha denetim önceliği üreten bir karar destek konsepti tasarladım. Otonom bir karar sistemi değil, karar destek konsepti olarak tasarlandı."
         }
       }
     },
@@ -56,11 +56,11 @@
         },
         "autocad": {
           "title": "AutoCAD - Teknik Oda Planı",
-          "desc": "Katmanlar, bloklar, ölçülendirme, tarama ve teknik çizim standartları ile eşyalı oda planı hazırladım ve PDF çıktı aldım."
+          "desc": "Katmanlar, bloklar, ölçülendirme, tarama ve teknik çizim standartları ile mobilyalı bir oda planı hazırlayıp PDF çıktısı aldım."
         },
         "blender": {
           "title": "Blender - İzometrik 3D Oda",
-          "desc": "Modifier, materyal, ışık, kamera, render ve HDRI kullanarak izometrik bir oda modelleyerek sahne kurulumu yaptım."
+          "desc": "Modifier, materyal, ışık, kamera, render ve HDRI kullanarak izometrik bir oda modelledim ve sahneyi kurdum."
         }
       }
     }
@@ -69,18 +69,18 @@
     "title": "Muhammet Saraç",
     "subtitle": "Bilgisayar Mühendisliği Öğrencisi",
     "cv": "Özgeçmiş",
-    "description": "Denizli'de son sınıf bilgisayar mühendisliği öğrencisiyim. NestJS, PostgreSQL ve React ile backend ağırlıklı web uygulamaları geliştiriyor, kendi ev sunucumda öğrendiklerimin üretim ortamında nasıl durduğunu deniyorum."
+    "description": "Denizli'de son sınıf bilgisayar mühendisliği öğrencisiyim. NestJS, PostgreSQL ve React ile backend ağırlıklı web uygulamaları geliştiriyor, kendi ev sunucumda öğrendiklerimin üretim ortamında nasıl çalıştığını deniyorum."
   },
   "about": {
     "title": "Hakkımda",
     "education": "Eğitim",
     "university": "Pamukkale Üniversitesi",
     "department": "Bilgisayar Mühendisliği",
-    "gpa": "GPA: 3.32",
-    "coursework": "Ders içeriği: veri yapıları, algoritmalar, veritabanı yönetimi, işletim sistemleri, yazılım mühendisliği, web teknolojileri, bilgisayar ağları, makine öğrenmesi, yapay zeka, bilgisayar grafikleri ve bulut bilişim.",
+    "gpa": "Not ortalaması: 3.32",
+    "coursework": "Aldığım dersler: veri yapıları, algoritmalar, veritabanı yönetimi, işletim sistemleri, yazılım mühendisliği, web teknolojileri, bilgisayar ağları, makine öğrenmesi, yapay zeka, bilgisayar grafikleri ve bulut bilişim.",
     "erasmus": "Erasmus - Maribor Üniversitesi",
-    "erasmusDesc": "Şubat 2025 – Temmuz 2025 süresince Erasmus programı kapsamında Maribor Üniversitesi'nde eğitim aldım. C++ ile OOP programlama yaptım, ayrıca 3D animasyon ve 3D grafik üzerine ayrı bir Blender dersi aldım.",
-    "description": "Pamukkale Üniversitesi'nde dördüncü sınıf bilgisayar mühendisliği öğrencisiyim, NestJS, PostgreSQL ve React ile backend ağırlıklı full-stack geliştirme yapıyorum. Gerçek özellik çıkaracağım junior yazılım pozisyonları ve stajlarla ilgileniyorum.",
+    "erasmusDesc": "Şubat 2025 - Temmuz 2025 arasında Erasmus programıyla Maribor Üniversitesi'nde okudum. C++ ile nesne yönelimli programlama yaptım ve 3D animasyon ile 3D grafik üzerine ayrı bir Blender dersi aldım.",
+    "description": "Pamukkale Üniversitesi'nde son sınıf bilgisayar mühendisliği öğrencisiyim, NestJS, PostgreSQL ve React ile backend ağırlıklı full-stack geliştirme yapıyorum. Gerçek özellikler geliştireceğim junior yazılım pozisyonları ve stajlarla ilgileniyorum.",
     "interests": "İlgi Alanları",
     "fullstack": "Backend ağırlıklı full-stack geliştirme ile ilgileniyorum. Ölçeklenebilir API'ler, veritabanı tasarımı ve uçtan uca web uygulamaları geliştirme konularında deneyim kazanıyorum.",
     "devops": "Docker ve DevOps araçlarına ilgi duyuyorum. CI/CD süreçleri, konteynerizasyon ve altyapı otomasyonu üzerine çalışıyorum.",
@@ -97,21 +97,21 @@
     "thesis": {
       "label": "Tez Projesi",
       "name": "Adrenal Anomali Tespit Sistemi",
-      "desc": "Adrenal anomali tespiti için klinik karar destek sistemi. PostgreSQL ve JWT kimlik doğrulama ile NestJS backend, MRI görüntü analizi ve yapay zeka destekli tahminler için React Native mobil uygulama.",
+      "desc": "Adrenal anomali tespiti için geliştirilmiş bir klinik karar destek sistemi. Backend NestJS, PostgreSQL ve JWT kimlik doğrulama ile yazıldı; MRI görüntü analizi ve yapay zeka destekli tahminler için React Native mobil uygulaması var.",
       "destination": "Özel tez projesi, detaylar istek üzerine paylaşılabilir",
       "cta": "Detayları sor"
     },
     "hobby": {
       "label": "Ev Sunucusu",
       "name": "Raspberry Pi 5 Sunucu",
-      "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Traefik ters proxy ile Cloudflare Tunnel, otomatik medya stack'i (Sonarr, Radarr, Prowlarr, Bazarr, Seerr, Jellyfin, qBittorrent), Gitea ile kaynak kod yönetimi, Vaultwarden ile şifre yönetimi, SearXNG ile gizli arama ve Uptime Kuma ile izleme.",
+      "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Traefik ters proxy ile Cloudflare Tunnel, otomatik medya stack'i (Sonarr, Radarr, Prowlarr, Bazarr, Seerr, Jellyfin, qBittorrent), Gitea ile kaynak kod yönetimi, Vaultwarden ile şifre yönetimi, SearXNG ile gizliliğe önem veren arama ve Uptime Kuma ile izleme.",
       "destination": "Kişisel sunucu projesi, detaylar istek üzerine paylaşılabilir",
       "cta": "Detayları sor"
     },
     "wanetra": {
       "label": "Açık Kaynak",
       "name": "Wanetra",
-      "desc": "Ev sunucuları için kendi kendine barındırılan internet ve WAN sağlığı izleme uygulaması. SQLite ve EF Core ile ASP.NET Core backend, React/TypeScript frontend, LibreSpeed uyumlu testler ve Prometheus metrikleri; tek bir Docker container olarak paketlenmiştir.",
+      "desc": "Ev sunucuları için kendi sunucunuzda barındırabileceğiniz internet ve WAN sağlığı izleme uygulaması. SQLite ve EF Core ile ASP.NET Core backend, React/TypeScript frontend, LibreSpeed uyumlu testler ve Prometheus metrikleri; tek bir Docker container olarak paketlenmiştir.",
       "destination": "Açık kaynak, erken geliştirme aşamasında",
       "cta": "GitHub'da görüntüle"
     }
