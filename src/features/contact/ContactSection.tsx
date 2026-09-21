@@ -13,11 +13,11 @@ const contactItems: { label: string; href: string; type: string; icon: IconType;
 ]
 
 export function ContactSection() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const { logger } = useLogger()
 
   const handleClick = (type: string) => {
-    logger.logEvent('contact_click', { type })
+    logger.logEvent('contact_click', { type, lang })
   }
 
   return (

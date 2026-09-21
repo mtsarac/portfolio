@@ -9,7 +9,7 @@ interface ExperienceCardProps {
 }
 
 export function ExperienceCard({ experience }: ExperienceCardProps) {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const { logger } = useLogger()
 
   const handleDocClick = (action: 'view' | 'download', documentType: string) => {
@@ -17,6 +17,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
       experienceId: experience.id,
       documentType,
       action,
+      lang,
     })
   }
 

@@ -19,19 +19,28 @@ export function Section({ id, title, children, className = '', align = 'center',
     const el = document.getElementById(id)
     if (!el) return
 
+    let timer: number | undefined
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !viewed.current) {
+        if (viewed.current) return
+        if (!entry.isIntersecting) {
+          window.clearTimeout(timer)
+          return
+        }
+        timer = window.setTimeout(() => {
           viewed.current = true
           logger.logEvent('section_view', { section: id })
-          observer.unobserve(el)
-        }
+          observer.disconnect()
+        }, 1000)
       },
-      { threshold: 0.1 },
+      { threshold: 0.3 },
     )
 
     observer.observe(el)
-    return () => observer.disconnect()
+    return () => {
+      window.clearTimeout(timer)
+      observer.disconnect()
+    }
   }, [id, logger])
 
   return (

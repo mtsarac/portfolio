@@ -7,6 +7,7 @@ services:
         VITE_UMAMI_SITE_ID: ${VITE_UMAMI_SITE_ID}
         VITE_UMAMI_SCRIPT_URL: ${VITE_UMAMI_SCRIPT_URL}
         VITE_UMAMI_DOMAINS: ${VITE_UMAMI_DOMAINS:-msarac.me,www.msarac.me}
+        VITE_UMAMI_RECORDER_URL: ${VITE_UMAMI_RECORDER_URL:-}
     container_name: portfolio
     restart: unless-stopped
     networks:
