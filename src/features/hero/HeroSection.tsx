@@ -48,7 +48,7 @@ export function HeroSection() {
         </a>
         <a
           href="#contact"
-          onClick={() => logger.logEvent('hero_cta_click', { target: 'contact' })}
+          onClick={() => logger.logEvent('hero_cta_click', { target: 'contact', lang })}
           className="px-6 py-3 rounded-lg border border-neutral-300 text-neutral-800 font-medium hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-800 transition-colors whitespace-nowrap"
         >
           {t("nav.contact")}

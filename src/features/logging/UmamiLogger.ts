@@ -32,11 +32,13 @@ export class UmamiLogger implements LoggingService {
   #siteId: string
   #scriptUrl: string
   #domains: string
+  #recorderUrl: string
 
-  constructor(siteId: string, scriptUrl: string, domains = '') {
+  constructor(siteId: string, scriptUrl: string, domains = '', recorderUrl = '') {
     this.#siteId = siteId
     this.#scriptUrl = scriptUrl
     this.#domains = parseDomains(domains)
+    this.#recorderUrl = recorderUrl
   }
 
   initialize(): void {
@@ -44,6 +46,21 @@ export class UmamiLogger implements LoggingService {
     if (typeof document === 'undefined') return
     if (!this.#siteId || !this.#scriptUrl) return
     this.#injectScript()
+    this.#injectRecorder()
+  }
+
+  // Fire-and-forget: a recorder failure must never affect tracking or the page.
+  #injectRecorder(): void {
+    if (!this.#recorderUrl) return
+    if (document.querySelector('script[data-umami-recorder]')) return
+
+    const script = document.createElement('script')
+    script.src = this.#recorderUrl
+    script.dataset.websiteId = this.#siteId
+    script.dataset.umamiRecorder = 'true'
+    script.async = true
+    script.defer = true
+    document.head.appendChild(script)
   }
 
   #injectScript(): void {

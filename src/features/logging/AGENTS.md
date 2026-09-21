@@ -18,6 +18,7 @@ Self-contained analytics feature. Falls back to a noop logger when tracker env v
 | `VITE_UMAMI_SITE_ID` | Tracker website ID |
 | `VITE_UMAMI_SCRIPT_URL` | Full first-party script URL, e.g. `https://msarac.me/metrics.js` |
 | `VITE_UMAMI_DOMAINS` | Comma-separated allowlist for tracker `data-domains`, e.g. `msarac.me,www.msarac.me`; empty = track everywhere |
+| `VITE_UMAMI_RECORDER_URL` | Optional Session Replay/Heatmap recorder URL, e.g. `https://msarac.me/recorder.js`; empty = no recorder |
 
 If site ID or script URL is missing, `LoggingProvider` returns `noopLogger` regardless of domains.
 
