@@ -76,16 +76,16 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
               {t(item.descKey)}
             </p>
             {item.skills.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-1.5">
+              <ul role="list" className="mt-3 flex flex-wrap gap-1.5">
                 {item.skills.map((skill) => (
-                  <span
+                  <li
                     key={skill}
                     className="inline-flex px-2 py-0.5 text-[11px] font-medium rounded border border-slate-200 bg-white text-slate-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400"
                   >
                     {skill}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             )}
           </div>
         ))}

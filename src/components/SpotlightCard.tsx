@@ -1,11 +1,6 @@
 import { useRef, useState, type ReactNode } from 'react'
 import { useTheme } from '../hooks/useTheme'
 
-interface Position {
-  x: number
-  y: number
-}
-
 interface SpotlightCardProps {
   children: ReactNode
   className?: string
@@ -21,13 +16,14 @@ export default function SpotlightCard({
   const glow = spotlightColor ?? (resolved === 'dark' ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 61, 165, 0.12)')
   const divRef = useRef<HTMLDivElement>(null)
   const [isFocused, setIsFocused] = useState(false)
-  const [position, setPosition] = useState<Position>({ x: 0, y: 0 })
   const [opacity, setOpacity] = useState(0)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!divRef.current || isFocused) return
     const rect = divRef.current.getBoundingClientRect()
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+    // CSS vars via ref: moving the pointer must not re-render the card subtree
+    divRef.current.style.setProperty('--spot-x', `${e.clientX - rect.left}px`)
+    divRef.current.style.setProperty('--spot-y', `${e.clientY - rect.top}px`)
   }
 
   const handleFocus = () => {
@@ -57,7 +53,7 @@ export default function SpotlightCard({
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
         style={{
           opacity,
-          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${glow}, transparent 80%)`,
+          background: `radial-gradient(circle at var(--spot-x, 0px) var(--spot-y, 0px), ${glow}, transparent 80%)`,
         }}
       />
       {children}

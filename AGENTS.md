@@ -1,207 +1,79 @@
 # AGENTS.md - portfolio
 
-**Updated:** 2026-09-13
-**Branch:** main
-**Stack:** React 19, TypeScript 6, Vite 8, Tailwind CSS 4, Bun
-
-Personal portfolio site for **Muhammet Saraç** (`msarac.me`). Single-page app with light/dark/system theme (`portfolio_theme`, default system), i18n (TR/EN), first-party analytics served through `/metrics.js` and `/api/metrics`, canvas click sparkles, GSAP scroll animations, and Spotlight hover glow.
+Personal portfolio site (single-page React app). Stack and versions: see `package.json`.
+Features: light/dark/system theme, TR/EN i18n, first-party analytics, scroll and hover effects.
 
 ## Commands
 
 ```bash
-bun dev           # Vite dev server
-bun run build     # tsc -b && vite build
-bun run lint      # ESLint on .ts/.tsx
-bun run preview   # Preview production build
+bun dev           # dev server
+bun run build     # type check + production build
+bun run lint      # ESLint
+bun run preview   # preview production build
 ```
 
-No test framework. `bun run build` = TypeScript check + production build.
+No test framework. `bun run build` is the type check.
 
-## WHERE TO LOOK
-
-| Task | Location |
-|------|----------|
-| Provider nesting, section order | `src/App.tsx` |
-| Entry point, DOM mount | `src/main.tsx` |
-| Shared types (LogEvent, SkillCategory, Translations) | `src/types/index.ts` |
-| Layout shell (Navbar + main + Footer) | `src/components/Layout.tsx` |
-| Fixed top nav with scroll styling + active Section observer | `src/components/Navbar.tsx` |
-| Generic section wrapper (GSAP reveal + section_view event) | `src/components/Section.tsx` |
-| Canvas click sparkle effect | `src/components/ClickSpark.tsx` |
-| WebGL radial light rays | `src/components/LightRays.tsx` |
-| Infinite logo marquee | `src/components/LogoLoop.tsx` |
-| GSAP scroll-triggered fade-in | `src/components/AnimatedContent.tsx` |
-| Spotlight hover glow | `src/components/SpotlightCard.tsx` |
-| Scroll progress bar | `src/components/ScrollProgress.tsx` |
-| Experience (data-driven internships + documents) | `src/features/experience/` |
-| i18n (TR/EN + translations JSON) | `src/features/i18n/I18nContext.ts` + `I18nProvider.tsx` + translations |
-| Logging (analytics / noop) | `src/features/logging/AGENTS.md` |
-| Context-consuming hooks with guard | `src/hooks/AGENTS.md` |
-| Shared UI details | `src/components/AGENTS.md` |
-| Docker + Traefik config | `docker-compose.yml`, `Dockerfile` |
-| Analytics tracker (external stack) | Configured via `VITE_*` build args, served first-party |
-| Nginx SPA fallback | `nginx.conf` |
-| Internship PDFs (public URLs) | `public/documents/internships/{adm,tnc}/` |
-
-## STRUCTURE
+## Layout
 
 ```
-.
-├── src/
-│   ├── App.tsx              # Root: provider nest + section layout (Hero > About > Experience > Projects > Skills > Contact)
-│   ├── main.tsx             # Entry
-│   ├── index.css            # Tailwind import + custom variants (@custom-variant dark)
-│   ├── types/index.ts       # All shared types (Translations includes nav.experience + experience.*)
-│   ├── components/          # Reusable UI - see src/components/AGENTS.md
-│   ├── features/            # Self-contained feature modules
-│   │   ├── hero/            # HeroSection: photo, title, CTAs
-│   │   ├── about/           # AboutSection: bio + education + interests (SpotlightCard + divided list)
-│   │   ├── experience/      # ExperienceSection + ExperienceCard (SpotlightCard) + experienceData (ADM + TNC) + index barrel
-│   │   ├── projects/        # ProjectsSection: thesis + homelab SpotlightCards
-│   │   ├── skills/          # SkillsSection: badge carousel via LogoLoop
-│   │   ├── contact/         # ContactSection: links + tracking events
-│   │   ├── i18n/            # I18nProvider + I18nContext + LangToggle + translations/{en,tr}.json
-│   │   └── logging/         # Analytics subsystem - see src/features/logging/AGENTS.md
-│   └── hooks/               # Context hooks + analytics hooks - see src/hooks/AGENTS.md
-├── public/
-│   ├── cv/                  # CV PDFs (linked) + DOCX sources served at /cv/*
-│   ├── favicon* + site.webmanifest  # PWA icons + manifest
-│   └── documents/internships/
-│       ├── adm/internship-certificate.pdf
-│       └── tnc/{certificate.pdf,reference-letter.pdf}
-├── docker-compose.yml       # Production stack (portfolio only)
-├── docker-compose.local.yml # Local (portfolio only, port 8000)
-├── Dockerfile               # Multi-stage: node:26-alpine build → nginx:alpine serve
-├── nginx.conf               # SPA fallback (try_files $uri $uri/ /index.html)
-└── AGENTS.md                # This file
+src/
+  App.tsx, main.tsx, index.css   # root composition, entry, global styles
+  types/                         # shared types
+  components/                    # reusable UI (see src/components/AGENTS.md)
+  features/<name>/               # self-contained feature modules (sections, i18n, theme, logging)
+  hooks/                         # context + analytics hooks (see src/hooks/AGENTS.md)
+public/                          # static assets, SEO files, downloadable documents
 ```
 
-## CODE MAP
+Analytics details: `src/features/logging/AGENTS.md`.
+Deploy config (Dockerfile, nginx, compose files) lives at the repo root.
 
-| Symbol | Type | File | Refs | Role |
-|--------|------|------|------|------|
-| `App` | component | `src/App.tsx` | entry | Root provider nesting + section rendering |
-| `AppContent` | component | `src/App.tsx` | 1 | Theme-aware content with effects (ClickSpark + LightRays desktop) |
-| `Layout` | component | `src/components/Layout.tsx` | 1 | Page shell (Navbar + ScrollProgress + Footer) |
-| `Navbar` | component | `src/components/Navbar.tsx` | 1 | Fixed nav, scroll bg, active Section observer, 5 items |
-| `Footer` | component | `src/components/Footer.tsx` | 1 | Year + credit |
-| `Section` | component | `src/components/Section.tsx` | 6 | Generic wrapper per section (h2 + divider + logging) |
-| `ClickSpark` | component | `src/components/ClickSpark.tsx` | 1 | Canvas click particle effect |
-| `LightRays` | component | `src/components/LightRays.tsx` | 1 | WebGL radial rays background (lazy, desktop only) |
-| `LogoLoop` | component | `src/components/LogoLoop.tsx` | 1 | Infinite marquee (Skills) |
-| `AnimatedContent` | component | `src/components/AnimatedContent.tsx` | 6 | GSAP scroll-triggered fade-in (mobile/reduced-motion bypass) |
-| `SpotlightCard` | component | `src/components/SpotlightCard.tsx` | 3 | Hover radial glow (About, Projects, Experience) |
-| `ScrollProgress` | component | `src/components/ScrollProgress.tsx` | 1 | Top scroll bar (bg-neutral-800, fill brand `#003DA5`/70) |
-| `ExperienceSection` | component | `src/features/experience/ExperienceSection.tsx` | 1 | Data-driven internship list (ADM + TNC) |
-| `ExperienceCard` | component | `src/features/experience/ExperienceCard.tsx` | 1 | Per-internship card (SpotlightCard, highlights grid, documents) |
-| `experiences` | data | `src/features/experience/experienceData.ts` | 1 | Internship array + types (ExperienceDocument/Highlight) |
-| `I18nProvider` | provider | `src/features/i18n/I18nProvider.tsx` | 1 | TR/EN context + localStorage `portfolio_lang` |
-| `I18nContext` | context | `src/features/i18n/I18nContext.ts` | 2 | TR/EN context declaration |
-| `LoggingProvider` | provider | `src/features/logging/LoggingProvider.tsx` | 1 | Logging service context (stable via useMemo) |
-| `LoggingContext` | context | `src/features/logging/LoggingContext.ts` | 2 | Logging context declaration |
-| `UmamiLogger` | class | `src/features/logging/UmamiLogger.ts` | 1 | Tracker script injection + queued `track()` + `excludeHash`/`performance`/`data-domains` |
-| `useI18n` | hook | `src/hooks/useI18n.ts` | 9 | Consumes I18nContext with null guard |
-| `useLogger` | hook | `src/hooks/useLogger.ts` | 7 | Consumes LoggingContext |
-| `useScrollDepth` | hook | `src/hooks/useScrollDepth.ts` | 1 | Scroll-depth analytics (25/50/75/100) |
-| `useEngagementTime` | hook | `src/hooks/useEngagementTime.ts` | 1 | Active engagement time (30/60/120, visible-only) |
+## Architecture
 
-## ARCHITECTURE
+- **Providers**: nested in `src/App.tsx`. Read it for the current order.
+- **State**: Context + Provider only, no external state library. Persisted keys are prefixed `portfolio_`.
+- **Routing**: none. Hash anchors on one page; the server falls back to `index.html`.
+- **Content**: section text comes from the translations JSON; data-driven lists (e.g. experience) live in a data file next to their component. Add entries to the data, not the component.
+- **Analytics**: tracker is served first-party and managed outside this repo. This project only consumes `VITE_*` build args. Never call the tracker global directly; use `useLogger()`.
+- **Theme**: `ThemeProvider` toggles the `.dark` class; an inline script in `index.html` sets it before first paint.
 
-### Provider nesting
-
-```tsx
-<I18nProvider>        {/* TR/EN, localStorage portfolio_lang, navigator.language */}
-  <LoggingProvider>   {/* Tracker or noop, depends on VITE_* */}
-    <AppContent />    {/* ClickSpark > LightRays (desktop) > Layout > Sections */}
-  </LoggingProvider>
-</I18nProvider>
-```
-
-Note: `ThemeProvider` (`src/features/theme/`) owns light/dark/system with `portfolio_theme` defaulting to system; `.dark` class on `documentElement`, anti-FOUC inline script in `index.html`. Accent tokens `--color-brand` (`#003DA5`, fills) and `--color-brand-light` (`#8FB4FF`, text/icons on dark).
-
-### State
-
-No external lib. Context + Provider only, persisted to `localStorage` (key: `portfolio_lang`). `I18nProvider` respects `navigator.language`. Analytics via `useScrollDepth` / `useEngagementTime`.
-
-### Routing
-
-No React Router. Hash anchors (`href="#about"` etc., 5 nav items: about, experience, projects, skills, contact) on one page. Nginx `try_files $uri $uri/ /index.html;` for direct URL access.
-
-### Logging
-
-`LoggingService` interface → `UmamiLogger` (injects tracker script via `VITE_UMAMI_SITE_ID`/`VITE_UMAMI_SCRIPT_URL` with `excludeHash` and `performance` datasets, optional `VITE_UMAMI_DOMAINS` allowlist as `data-domains`, in-memory queued `track()`) or `noopLogger` object literal. Events: `nav_click {section}`, `section_view {section}`, `experience_document_click {experienceId, documentType, action}`, `contact_click {type}`, `hero_cta_click {target}`, `cv_download {lang}`, `project_interest {project, target, lang}`, `scroll_depth {depth}`, `engagement_time {seconds}`, `lang_toggle {lang}`, `theme_change {theme}` via hooks. Automatic pageview via the tracker, hash excluded, query params preserved for UTM attribution, no manual `logPageView`.
-
-### Analytics routing
-
-The tracker is served first-party and managed outside this repo. This
-project only needs the `VITE_*` build args; deploys never manage the
-analytics backend.
-
-```text
-browser
-  | GET /metrics.js  POST /api/metrics
-  v
-msarac.me / www.msarac.me
-  v
-Cloudflare Tunnel
-  v
-Traefik
-  |--> portfolio container   everything else
-  |--> tracker service       /metrics.js + /api/metrics  (priority 20 router)
-```
-
-The same-origin tracker router has priority `20`, higher than the
-generic portfolio router (`priority 10`), so `/metrics.js` and
-`/api/metrics` never hit nginx.
-
-### Hook pattern
-
-Every context has a hook in `src/hooks/` that `useContext(Context)` + throws if null (provider missing). See `src/hooks/AGENTS.md` for details.
-
-### Experience / Documents pattern
-
-`experienceData.ts` is single source of truth. `ExperienceCard` renders `documents: ExperienceDocument[]` generically - adding a document only requires pushing to the array, no component change. Documents stored under `public/documents/internships/{adm,tnc}/` and served at `/documents/internships/...` with `target="_blank" rel="noopener noreferrer"` for view and `download` for download. Empty `documents` renders no broken links; now wired to real PDFs.
-
-## GIT WORKFLOW
+## Git workflow
 
 `main` is protected. All changes go through Pull Requests.
 
 - Work on a dedicated branch from latest `origin/main` (`feat/...`, `fix/...`, `docs/...`, `ci/...`)
 - Every git command uses the `GIT_MASTER=1` prefix
 - Never commit or push directly to `main`
-- Never force-push. Not to `main`, not to feature branches either. If a push is rejected, open a PR instead
+- Never force-push, never rewrite published history
 - Never merge your own PR, never enable auto-merge, never touch branch protection settings
-- Never rewrite published history
 - Push only the feature branch, and only when explicitly requested
-- Open the PR with `gh` using the already-authenticated GitHub account (`mtsarac <mtsarac@users.noreply.github.com>`). Do not change git identity, do not impersonate anyone
-- PR targets `base: main`. The owner reviews and merges manually
+- Open the PR with `gh` using the already-authenticated account. Do not change git identity
+- PR targets `main`. The owner reviews and merges manually
 
-## CONVENTIONS
+## Conventions
 
-- Feature-based: each module in `src/features/<name>/` (self-contained)
-- Type-only imports use `import type { X }` syntax (`verbatimModuleSyntax: true`)
-- TypeScript strict: `noUnusedLocals`, `noUnusedParameters`, `erasableSyntaxOnly`
-- LocalStorage keys prefixed `portfolio_`
+- Feature-based modules under `src/features/<name>/`
+- Type-only imports use `import type`
+- TypeScript strict, including unused locals/parameters
 - Commit messages in English, one line, semantic prefix (`feat:`, `fix:`, etc.)
 
-## ANTI-PATTERNS (THIS PROJECT)
+## Anti-patterns
 
-- No `docker` / `docker compose` commands from agents (except read-only `docker compose config` when explicitly requested for validation)
+- No `docker` / `docker compose` commands from agents (read-only `docker compose config` only when explicitly asked)
 - No `as any`, `@ts-ignore`, `@ts-expect-error`
-- No em dash (`—`) anywhere in source, translations, or docs
+- No em dash (`—`) in source, translations, or docs
 - No `Co-authored-by` or `Contributors` lines in commits
-- No pushing without explicit request
-- No force-push, ever
-- No `vitest` / `jest` / test framework (zero tests)
+- No test framework or tests
+- Do not force `.dark` in `main.tsx`; the theme comes from the inline script and `ThemeProvider`
+- No per-scroll or per-mousemove values in React state; use refs, `transform`, or CSS variables
 
-## GOTCHAS
+## Gotchas
 
-- `bun run build` = `tsc -b && vite build` - TypeScript errors block build
-- Tailwind CSS 4 via `@tailwindcss/vite` (no PostCSS config, no `tailwind.config.js`)
-- Dark mode variant: `@custom-variant dark (&:where(.dark, .dark *));` with light defaults + `dark:` overrides on every surface
-- `import.meta.env` for `VITE_` prefixed env vars
-- Tracker: programmatic via `UmamiLogger.logEvent()` only, auto pageview with `excludeHash` + `data-domains` allowlist, queued until tracker ready
-- GSAP + OGL + react-icons are the only non-React dependencies
-- TypeScript 6.0.3 (very new, careful with incompatibilities)
-- `Section` already wraps with `AnimatedContent`; `ExperienceSection` adds staggered `AnimatedContent` per card - double GSAP is intentional
-- `SpotlightCard` base `p-8 rounded-3xl`; callers override with `p-6 rounded-lg` via `className` - works due to Tailwind override pattern used in Projects
+- Tailwind runs through its Vite plugin: no PostCSS config, no `tailwind.config.js`. Dark variant is a custom `@custom-variant` in `index.css`; every surface needs light defaults plus `dark:` overrides.
+- `import.meta.env` only exposes `VITE_`-prefixed variables.
+- `Section` already wraps its children in `AnimatedContent`; extra `AnimatedContent` inside a section (e.g. per card) is intentional.
+- Motion must respect `prefers-reduced-motion`: a global rule in `index.css` covers CSS, `AnimatedContent` and `ClickSpark` handle JS.
+- `AnimatedContent` is visible by default and hidden in a layout effect, so content stays visible without JS.
+- Decorative tag lists use `<ul role="list">`; decorative icons use `aria-hidden`.
+- SEO files: canonical in `index.html`, `public/robots.txt`, `public/sitemap.xml`. Update them when the site URL or pages change.
