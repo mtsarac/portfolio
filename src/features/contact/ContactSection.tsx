@@ -49,8 +49,9 @@ export function ContactSection() {
               className="flex items-center justify-center w-14 h-14 rounded-xl bg-neutral-100 border border-neutral-200 hover:shadow-md transition-colors dark:bg-neutral-800 dark:border-neutral-700"
               style={{ color: item.color }}
               title={item.label.startsWith('contact.') ? t(item.label) : item.label}
+              aria-label={item.label.startsWith('contact.') ? t(item.label) : item.label}
             >
-              <item.icon size={24} />
+              <item.icon size={24} aria-hidden="true" />
             </a>
           ))}
         </div>

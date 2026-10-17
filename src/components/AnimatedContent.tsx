@@ -1,4 +1,4 @@
-import { useRef, useEffect, type ReactNode, type HTMLAttributes } from 'react'
+import { useRef, useLayoutEffect, type ReactNode, type HTMLAttributes } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -36,7 +36,7 @@ function AnimatedContent({
 }: AnimatedContentProps) {
   const ref = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current
     if (!el) return
 
@@ -86,7 +86,7 @@ function AnimatedContent({
   }, [])
 
   return (
-    <div ref={ref} className={`invisible ${className}`} {...props}>
+    <div ref={ref} className={className} {...props}>
       {children}
     </div>
   )

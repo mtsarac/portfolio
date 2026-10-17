@@ -70,20 +70,21 @@ function ProjectCard({
       <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-5">
         {desc}
       </p>
-      <div className="flex flex-wrap gap-2">
+      <ul role="list" className="flex flex-wrap gap-2">
         {stack.map((tech) => (
-          <span
+          <li
             key={tech.name}
             className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-neutral-700 bg-neutral-100 border border-neutral-200 rounded-md dark:text-neutral-300 dark:bg-neutral-700 dark:border-neutral-600"
           >
             <span
               className="w-2 h-2 rounded-full shrink-0"
               style={{ backgroundColor: tech.color }}
+              aria-hidden="true"
             />
             {tech.name}
-          </span>
+          </li>
         ))}
-      </div>
+      </ul>
       <p className="mt-4 text-xs text-neutral-500">
         {destination}
       </p>

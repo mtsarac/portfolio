@@ -30,7 +30,7 @@ function ClickSpark({
 }: ClickSparkProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const sparksRef = useRef<Spark[]>([])
-  const startTimeRef = useRef<number | null>(null)
+  const startLoopRef = useRef<() => void>(() => {})
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -87,12 +87,10 @@ function ClickSpark({
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    let animationId: number
+    let animationId = 0
+    let running = false
 
     const draw = (timestamp: number) => {
-      if (!startTimeRef.current) {
-        startTimeRef.current = timestamp
-      }
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       sparksRef.current = sparksRef.current.filter((spark) => {
@@ -120,17 +118,31 @@ function ClickSpark({
         return true
       })
 
-      animationId = requestAnimationFrame(draw)
+      // loop only while sparks are alive
+      if (sparksRef.current.length > 0) {
+        animationId = requestAnimationFrame(draw)
+      } else {
+        running = false
+      }
     }
 
-    animationId = requestAnimationFrame(draw)
+    startLoopRef.current = () => {
+      if (running) return
+      running = true
+      animationId = requestAnimationFrame(draw)
+    }
+    // resume if the effect re-ran (e.g. theme change) mid-animation
+    if (sparksRef.current.length > 0) startLoopRef.current()
 
     return () => {
       cancelAnimationFrame(animationId)
+      running = false
+      startLoopRef.current = () => {}
     }
   }, [sparkColor, sparkSize, sparkRadius, duration, easeFunc, extraScale])
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>): void => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const canvas = canvasRef.current
     if (!canvas) return
     const rect = canvas.getBoundingClientRect()
@@ -146,6 +158,7 @@ function ClickSpark({
     }))
 
     sparksRef.current.push(...newSparks)
+    startLoopRef.current()
   }
 
   return (
