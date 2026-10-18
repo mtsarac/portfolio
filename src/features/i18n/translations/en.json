@@ -8,7 +8,7 @@
   },
   "experience": {
     "title": "Experience",
-    "intro": "Internship experiences spanning software development, business analysis, database design, and enterprise IT workflows.",
+    "intro": "Internship experiences spanning backend and mobile development, business analysis, database design, and enterprise IT workflows.",
     "documents": "Documents",
     "certificate": "Certificate",
     "referenceLetter": "Reference Letter",
@@ -20,15 +20,15 @@
       "department": "Information Technologies / Digital Business Applications",
       "period": "20 July 2026 - 28 August 2026",
       "location": "Denizli, Türkiye",
-      "description": "Worked on business analysis, database design, web prototyping, and enterprise IT processes within the Digital Business Applications unit. Designed a PostgreSQL-based IT inventory and asset assignment system, built a React prototype for customer request management, and gained hands-on exposure to enterprise workflows involving SAP, Jira, Solution Manager, Qlik, SCADA, and OSOS.",
+      "description": "Worked on business analysis, database design, web prototyping, and enterprise IT processes within the Digital Business Applications unit. Designed and built a PostgreSQL database for IT inventory and asset assignment, completed a customer request management case study with a React prototype, and gained hands-on exposure to enterprise workflows involving SAP, Jira, Solution Manager, Qlik, SCADA, and OSOS. References available on request.",
       "highlights": {
         "inventory": {
           "title": "IT Inventory, Stock and Asset Assignment System",
-          "desc": "Designed a PostgreSQL relational schema for IT inventory and warehouse management with individual and quantity-based asset tracking, employee assignments, constraints, triggers, stored functions, and audit and stock movement history. Covered ER modeling and iterative review cycles."
+          "desc": "Designed and built a complete PostgreSQL database for IT inventory, warehouse stock, and employee asset assignment: 8 tables, 4 enum types, indexes, more than 10 triggers that enforce business rules, and 10 functions for stock entry, assignment, return, transfer, and status changes. Individual devices are tracked by serial number and bulk items by quantity. An immutable movement history records every event with its date and database user, and a view flags critical stock levels. Prepared sample-data scenarios and an ER diagram, and revised the design after review by a senior database specialist."
         },
         "crm": {
-          "title": "Customer Request Management CRM",
-          "desc": "Conducted business and functional requirements analysis and defined the approval workflow. Built a React + TypeScript + Vite prototype with Tailwind CSS, driven by mock data and designed for a future REST and PostgreSQL backend. Created wireframes to align stakeholders."
+          "title": "Customer Request Management System Case Study",
+          "desc": "Completed an internal case study for a screen that manages customer requests from several channels in one place. Wrote the scope document: goals, in-scope and out-of-scope functions, user roles, assumptions and dependencies, and the approval process. Added functional requirements and wireframes for the request list, detail, and new request screens. Proposed the architecture and technology stack, designed a seven-table PostgreSQL data model with DDL, and built a working React + TypeScript + Vite prototype with Tailwind CSS on mock data."
         },
         "enterprise": {
           "title": "Enterprise IT and SAP Processes",
@@ -37,6 +37,27 @@
         "massguard": {
           "title": "MASSGuard AI / Watt If? Ideathon",
           "desc": "Concept proposal analyzing MASS smart meter time-series data to produce risk scores and field inspection priorities for electricity theft and bypass anomalies, unregistered solar generation, and unusual consumption patterns. Designed as a decision-support concept, not an autonomous decision system."
+        }
+      }
+    },
+    "flap": {
+      "company": "FLAP Yazılım / Teknolya Bilgi Teknolojileri A.Ş.",
+      "department": "Software Development",
+      "period": "7 September 2026 - 16 October 2026",
+      "location": "Denizli, Türkiye",
+      "description": "Built a SQL Server backup management platform and an offline-first mail client, and made a small contribution to a company web app. Work covered backend services, databases, CI, and React and Flutter clients. References available on request.",
+      "highlights": {
+        "backup": {
+          "title": "Backup Platform for Microsoft SQL Server",
+          "desc": "Built a centralized backup platform: an ASP.NET Core multi-tenant backend with Quartz.NET scheduling and PostgreSQL state, a Windows and Linux agent that polls for work, replica storage to local, central, SFTP, or Google Drive targets, and a React interface for jobs, runs, and restores. Set up CI and Docker packaging."
+        },
+        "kaydetmail": {
+          "title": "Kaydetmail Mail Client",
+          "desc": "Built an offline-first, multi-account IMAP/SMTP mail client: a .NET 10 and PostgreSQL backend with incremental sync, server-first mutations, idempotent sends and push notifications, and a Flutter app with local cache, search, labels, snooze, and queued offline actions."
+        },
+        "emutabakat": {
+          "title": "E-Mutabakat Web App (small contribution)",
+          "desc": "Contributed to the company's account reconciliation web app with backend fixes for tenant boundaries, transactions and logging, configuration cleanup, and an accessible, high-contrast UI refresh."
         }
       }
     },
@@ -79,10 +100,10 @@
     "gpa": "GPA: 3.32",
     "coursework": "Coursework includes data structures, algorithms, database management, operating systems, software engineering, web technologies, computer networks, machine learning, AI, computer graphics, and cloud computing.",
     "erasmus": "Erasmus - University of Maribor",
-    "erasmusDesc": "During February 2025 – July 2025, I studied at the University of Maribor as part of the Erasmus program. I did OOP programming with C++ and took a separate Blender course on 3D animation and 3D graphics.",
+    "erasmusDesc": "From February 2025 to July 2025, I studied at the University of Maribor as part of the Erasmus program. I did OOP programming with C++ and took a separate Blender course on 3D animation and 3D graphics.",
     "description": "I am a fourth-year computer engineering student at Pamukkale University focused on backend-heavy full-stack development with NestJS, PostgreSQL and React. I am looking for junior software roles and internships where I can ship real features.",
     "interests": "Areas of Interest",
-    "fullstack": "I focus on backend-heavy full-stack development - building scalable APIs, database design, and end-to-end web applications.",
+    "fullstack": "I focus on backend-heavy full-stack development: building scalable APIs, database design, and end-to-end web applications.",
     "devops": "I am interested in Docker and DevOps practices, working on CI/CD pipelines, containerization, and infrastructure automation.",
     "linux": "I have experience with Linux system administration and shell scripting. I work on server configuration, security, and performance optimization."
   },
@@ -100,6 +121,20 @@
       "desc": "A clinical decision support system for detecting adrenal anomalies. NestJS backend with PostgreSQL and JWT authentication, paired with a React Native mobile application for MRI image analysis and AI-powered prediction.",
       "destination": "Private thesis, details available on request",
       "cta": "Request details"
+    },
+    "backup": {
+      "label": "Internship Project",
+      "name": "Backup Platform",
+      "desc": "A centralized backup platform for Microsoft SQL Server. ASP.NET Core multi-tenant backend with Quartz.NET scheduling and PostgreSQL, an agent that polls for work and backs up to local, central, SFTP, or Google Drive targets, SignalR availability hints, and a React interface for jobs, runs, and restores.",
+      "destination": "Open source, built during my internship",
+      "cta": "View on GitHub"
+    },
+    "kaydetmail": {
+      "label": "Internship Project",
+      "name": "Kaydetmail",
+      "desc": "An offline-first, multi-account IMAP/SMTP mail client. A .NET 10 backend with PostgreSQL syncs mail, applies changes on the mail server first and sends push notifications, paired with a Flutter app that has a local cache, search, labels, snooze, and queued offline actions.",
+      "destination": "Open source, built during my internship",
+      "cta": "View on GitHub"
     },
     "hobby": {
       "label": "Homelab",

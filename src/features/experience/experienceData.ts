@@ -63,6 +63,32 @@ export const experiences: InternshipExperience[] = [
     ],
   },
   {
+    id: 'flap',
+    companyKey: 'experience.flap.company',
+    departmentKey: 'experience.flap.department',
+    periodKey: 'experience.flap.period',
+    locationKey: 'experience.flap.location',
+    descriptionKey: 'experience.flap.description',
+    highlights: [
+      {
+        titleKey: 'experience.flap.highlights.backup.title',
+        descKey: 'experience.flap.highlights.backup.desc',
+        skills: ['ASP.NET Core', 'PostgreSQL', 'Quartz.NET', 'SignalR', 'MSSQL', 'React', 'Docker'],
+      },
+      {
+        titleKey: 'experience.flap.highlights.kaydetmail.title',
+        descKey: 'experience.flap.highlights.kaydetmail.desc',
+        skills: ['.NET 10', 'Flutter', 'PostgreSQL', 'IMAP/SMTP', 'SQLite'],
+      },
+      {
+        titleKey: 'experience.flap.highlights.emutabakat.title',
+        descKey: 'experience.flap.highlights.emutabakat.desc',
+        skills: ['ASP.NET Core', 'React', 'Accessibility'],
+      },
+    ],
+    documents: [],
+  },
+  {
     id: 'tnc',
     companyKey: 'experience.tnc.company',
     programKey: 'experience.tnc.program',
