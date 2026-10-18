@@ -14,6 +14,7 @@ import {
   SiPostgresql,
   SiGithub,
   SiDocker,
+  SiFlutter,
   SiLinux,
   SiSqlite,
   SiSupabase,
@@ -35,7 +36,9 @@ const skillData: SkillCategory[] = [
       "React",
       "Next.js",
       "React Native",
+      "Flutter",
       "NestJS",
+      ".NET",
       "REST API",
       ".NET Web API",
       "MS SQL Server",
@@ -74,6 +77,8 @@ const skillIcons: Record<string, IconType | undefined> = {
   AWS: FaAws,
   Docker: SiDocker,
   Linux: SiLinux,
+  Flutter: SiFlutter,
+  ".NET": SiDotnet,
 };
 
 const skillColors: Record<string, string | undefined> = {
@@ -100,6 +105,8 @@ const skillColors: Record<string, string | undefined> = {
   AWS: '#FF9900',
   Docker: '#2496ED',
   Linux: '#898A5C',
+  Flutter: '#02569B',
+  '.NET': '#512BD4',
 };
 
 function SkillBadge({ name }: { name: string }) {
