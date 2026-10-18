@@ -8,7 +8,7 @@ Features: light/dark/system theme, TR/EN i18n, first-party analytics, scroll and
 ```bash
 bun dev           # dev server
 bun run build     # type check + production build
-bun run lint      # ESLint
+bun run lint      # oxlint
 bun run preview   # preview production build
 ```
 
