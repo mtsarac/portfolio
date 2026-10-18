@@ -10,7 +10,7 @@ English version: [README.md](README.md).
 
 ## Çalıştırma
 
-Bun 1.4.2 gerekir (`Dockerfile` ile aynı).
+Bun 1.4.3 gerekir (`Dockerfile` ile aynı).
 
 ```bash
 bun install

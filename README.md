@@ -10,7 +10,7 @@ Türkçe sürüm için: [README.TR.md](README.TR.md).
 
 ## Run
 
-Requires Bun 1.4.2 (matches the `Dockerfile`).
+Requires Bun 1.4.3 (matches the `Dockerfile`).
 
 ```bash
 bun install
