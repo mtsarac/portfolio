@@ -16,7 +16,7 @@ Bun 1.4.3 gerekir (`Dockerfile` ile aynı).
 bun install
 bun dev            # geliştirme sunucusu
 bun run build      # tür denetimi + production derlemesi
-bun run lint       # ESLint
+bun run lint       # oxlint
 ```
 
 ## Yapılandırma

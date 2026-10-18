@@ -16,7 +16,7 @@ Requires Bun 1.4.3 (matches the `Dockerfile`).
 bun install
 bun dev            # dev server
 bun run build      # type check + production build
-bun run lint       # ESLint
+bun run lint       # oxlint
 ```
 
 ## Configure
