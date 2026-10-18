@@ -82,6 +82,7 @@ function AnimatedContent({
       tl.kill()
       gsap.killTweensOf(el)
     }
+    // shortcut: mount-only animation, later prop changes are ignored; add deps if props become dynamic
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

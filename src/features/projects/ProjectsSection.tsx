@@ -3,37 +3,7 @@ import { useI18n } from '../../hooks/useI18n'
 import { useLogger } from '../../hooks/useLogger'
 import { Section } from '../../components/Section'
 import SpotlightCard from '../../components/SpotlightCard'
-
-const thesisStack = [
-  { name: 'NestJS', color: '#E0234E' },
-  { name: 'PostgreSQL', color: '#4169E1' },
-  { name: 'React Native', color: '#61DAFB' },
-  { name: 'TypeScript', color: '#3178C6' },
-  { name: 'Expo', color: '#000020' },
-  { name: 'TypeORM', color: '#E05C2E' },
-]
-
-const homelabStack = [
-  { name: 'Docker', color: '#2496ED' },
-  { name: 'Traefik', color: '#EE5023' },
-  { name: 'DietPi', color: '#27AE60' },
-  { name: 'Raspberry Pi', color: '#A22846' },
-  { name: 'Jellyfin', color: '#00A4DC' },
-  { name: 'Gitea', color: '#5E2C9B' },
-  { name: 'Vaultwarden', color: '#4F46E5' },
-  { name: 'SearXNG', color: '#0D9488' },
-  { name: 'Cloudflared', color: '#F38020' },
-]
-
-const wanetraStack = [
-  { name: '.NET', color: '#512BD4' },
-  { name: 'ASP.NET Core', color: '#512BD4' },
-  { name: 'React', color: '#61DAFB' },
-  { name: 'TypeScript', color: '#3178C6' },
-  { name: 'SQLite', color: '#003B57' },
-  { name: 'Docker', color: '#2496ED' },
-  { name: 'Prometheus', color: '#E6522C' },
-]
+import { projects, type ProjectId, type ProjectStackItem } from './projectsData'
 
 function ProjectCard({
   projectId,
@@ -46,11 +16,11 @@ function ProjectCard({
   href = '#contact',
   external = false,
 }: {
-  projectId: 'thesis' | 'homelab' | 'wanetra'
+  projectId: ProjectId
   label: string
   title: string
   desc: string
-  stack: { name: string; color: string }[]
+  stack: ProjectStackItem[]
   destination: string
   cta: string
   href?: string
@@ -114,35 +84,20 @@ export function ProjectsSection() {
   return (
     <Section id="projects" title={t('projects.title')} align="left" width="wide">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <ProjectCard
-          projectId="thesis"
-          label={t('projects.thesis.label')}
-          title={t('projects.thesis.name')}
-          desc={t('projects.thesis.desc')}
-          stack={thesisStack}
-          destination={t('projects.thesis.destination')}
-          cta={t('projects.thesis.cta')}
-        />
-        <ProjectCard
-          projectId="homelab"
-          label={t('projects.hobby.label')}
-          title={t('projects.hobby.name')}
-          desc={t('projects.hobby.desc')}
-          stack={homelabStack}
-          destination={t('projects.hobby.destination')}
-          cta={t('projects.hobby.cta')}
-        />
-        <ProjectCard
-          projectId="wanetra"
-          label={t('projects.wanetra.label')}
-          title={t('projects.wanetra.name')}
-          desc={t('projects.wanetra.desc')}
-          stack={wanetraStack}
-          destination={t('projects.wanetra.destination')}
-          cta={t('projects.wanetra.cta')}
-          href="https://github.com/mtsarac/Wanetra"
-          external
-        />
+        {projects.map(({ projectId, i18nKey, stack, href, external }) => (
+          <ProjectCard
+            key={projectId}
+            projectId={projectId}
+            label={t(`projects.${i18nKey}.label`)}
+            title={t(`projects.${i18nKey}.name`)}
+            desc={t(`projects.${i18nKey}.desc`)}
+            stack={stack}
+            destination={t(`projects.${i18nKey}.destination`)}
+            cta={t(`projects.${i18nKey}.cta`)}
+            href={href}
+            external={external}
+          />
+        ))}
       </div>
     </Section>
   )

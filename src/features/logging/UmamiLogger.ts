@@ -67,7 +67,7 @@ export class UmamiLogger implements LoggingService {
     if (this.#initialized || this.#failed) return
 
     const existing = document.querySelector(
-      `script[data-website-id="${this.#siteId}"]`,
+      `script[data-website-id="${CSS.escape(this.#siteId)}"]`,
     ) as HTMLScriptElement | null
 
     if (existing) {
