@@ -49,7 +49,7 @@
       "highlights": {
         "backup": {
           "title": "Microsoft SQL Server için Backup Platform",
-          "desc": "Merkezi bir yedekleme platformu geliştirdim: Quartz.NET zamanlamalı ve PostgreSQL durumlu çok kiracılı ASP.NET Core backend, iş için backend'i sorgulayan Windows ve Linux agent'ı, yerel, merkezi, SFTP veya Google Drive hedeflerine replika saklama, görevler, çalıştırmalar ve geri yüklemeler için React arayüzü. CI ve Docker paketlemeyi kurdum."
+          "desc": "Merkezi bir yedekleme platformu geliştirdim: Quartz.NET zamanlamalı çok kiracılı ASP.NET Core backend ve durumu PostgreSQL'de tutan yapı, backend'den düzenli olarak iş çeken Windows ve Linux agent'ı, yerel, merkezi, SFTP veya Google Drive hedeflerine replika saklama, görevler, çalıştırmalar ve geri yüklemeler için React arayüzü. CI ve Docker paketlemeyi kurdum."
         },
         "kaydetmail": {
           "title": "Kaydetmail Mail İstemcisi",
@@ -125,7 +125,7 @@
     "backup": {
       "label": "Staj Projesi",
       "name": "Backup Platform",
-      "desc": "Microsoft SQL Server için merkezi yedekleme platformu. Quartz.NET zamanlamalı ve PostgreSQL destekli çok kiracılı ASP.NET Core backend, iş için backend'i sorgulayan ve yedekleri yerel, merkezi, SFTP veya Google Drive hedeflerine alan bir agent, SignalR ile erişilebilirlik ipuçları ve görevler, çalıştırmalar ile geri yüklemeler için React arayüzü.",
+      "desc": "Microsoft SQL Server için merkezi yedekleme platformu. Quartz.NET zamanlamalı ve PostgreSQL destekli çok kiracılı ASP.NET Core backend, backend'den düzenli olarak iş çeken ve yedekleri yerel, merkezi, SFTP veya Google Drive hedeflerine alan bir agent, SignalR ile erişilebilirlik ipuçları ve görevler, çalıştırmalar ile geri yüklemeler için React arayüzü.",
       "destination": "Açık kaynak, stajım sırasında geliştirildi",
       "cta": "GitHub'da görüntüle"
     },
