@@ -20,15 +20,15 @@
       "department": "Bilgi Teknolojileri / Dijital İş Uygulamaları",
       "period": "20 Temmuz 2026 - 28 Ağustos 2026",
       "location": "Denizli, Türkiye",
-      "description": "Dijital İş Uygulamaları biriminde iş analizi, veri tabanı tasarımı, web prototipleme ve kurumsal BT süreçleri üzerine çalıştım. PostgreSQL tabanlı envanter ve zimmet sistemi tasarladım, müşteri talep yönetimi için React tabanlı bir CRM prototipi geliştirdim ve SAP, Jira, Solution Manager, Qlik, SCADA ve OSOS gibi kurumsal sistemlerin işleyişini gözlemledim.",
+      "description": "Dijital İş Uygulamaları biriminde iş analizi, veri tabanı tasarımı, web prototipleme ve kurumsal BT süreçleri üzerine çalıştım. BT envanteri ve zimmet için PostgreSQL veritabanı tasarlayıp kodladım, müşteri talep yönetimi case study'sini React prototipiyle tamamladım ve SAP, Jira, Solution Manager, Qlik, SCADA ve OSOS gibi kurumsal sistemlerin işleyişini gözlemledim. Referans istenirse paylaşılabilir.",
       "highlights": {
         "inventory": {
           "title": "BT Envanter, Stok ve Zimmet Sistemi",
-          "desc": "BT envanteri ve depo yönetimi için PostgreSQL ilişkisel şeması tasarladım. Şema bireysel ve miktar bazlı zimmet takibini, çalışan zimmetlerini, kısıtları, tetikleyicileri, saklı fonksiyonları ve denetim ile stok hareket geçmişini içeriyor. Çalışma ER modelleme ve yinelemeli iyileştirme adımlarını da kapsadı."
+          "desc": "BT envanteri, depo stoku ve çalışan zimmetleri için eksiksiz bir PostgreSQL veritabanı tasarlayıp kodladım: 8 tablo, 4 enum tipi, indeksler, iş kurallarını uygulayan 10'dan fazla trigger ve stok girişi, zimmet, iade, transfer ve durum değişikliği için 10 fonksiyon. Tekil cihazlar seri numarasıyla, toplu ürünler adetle izleniyor. Değişmez bir hareket geçmişi her olayı tarih ve veritabanı kullanıcısıyla kaydediyor, bir view kritik stok seviyesini işaretliyor. Örnek veri senaryoları ve ER diyagramı hazırladım, tasarımı kıdemli bir veritabanı uzmanının incelemesinden sonra revize ettim."
         },
         "crm": {
-          "title": "Müşteri Talep Yönetimi CRM",
-          "desc": "İş ve fonksiyonel gereksinim analizi yaparak onay akışını tanımladım. React, TypeScript, Vite ve Tailwind CSS ile mock veri üzerinde çalışan bir prototip geliştirdim, REST ve PostgreSQL mimarisi önerdim ve paydaşlarla ortak anlayış sağlamak için wireframe hazırladım."
+          "title": "Müşteri Talep Yönetim Sistemi Case Study'si",
+          "desc": "Farklı kanallardan gelen müşteri taleplerini tek ekrandan yöneten bir sistem için şirket içi case study'yi tamamladım. Kapsam dokümanını hazırladım: amaç, kapsam içi ve dışı fonksiyonlar, kullanıcı rolleri, varsayımlar ve bağımlılıklar, onay süreci. Talep listesi, detay ve yeni talep ekranları için fonksiyonel gereksinimleri ve wireframe'leri ekledim. Mimari ve teknoloji önerisi sundum, DDL'li yedi tablolu bir PostgreSQL veri modeli tasarladım ve Tailwind CSS ile React, TypeScript ve Vite tabanlı, mock veriyle çalışan bir prototip geliştirdim."
         },
         "enterprise": {
           "title": "Kurumsal BT ve SAP Süreçleri",

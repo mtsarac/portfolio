@@ -20,15 +20,15 @@
       "department": "Information Technologies / Digital Business Applications",
       "period": "20 July 2026 - 28 August 2026",
       "location": "Denizli, Türkiye",
-      "description": "Worked on business analysis, database design, web prototyping, and enterprise IT processes within the Digital Business Applications unit. Designed a PostgreSQL-based IT inventory and asset assignment system, built a React prototype for customer request management, and gained hands-on exposure to enterprise workflows involving SAP, Jira, Solution Manager, Qlik, SCADA, and OSOS.",
+      "description": "Worked on business analysis, database design, web prototyping, and enterprise IT processes within the Digital Business Applications unit. Designed and built a PostgreSQL database for IT inventory and asset assignment, completed a customer request management case study with a React prototype, and gained hands-on exposure to enterprise workflows involving SAP, Jira, Solution Manager, Qlik, SCADA, and OSOS. References available on request.",
       "highlights": {
         "inventory": {
           "title": "IT Inventory, Stock and Asset Assignment System",
-          "desc": "Designed a PostgreSQL relational schema for IT inventory and warehouse management with individual and quantity-based asset tracking, employee assignments, constraints, triggers, stored functions, and audit and stock movement history. Covered ER modeling and iterative review cycles."
+          "desc": "Designed and built a complete PostgreSQL database for IT inventory, warehouse stock, and employee asset assignment: 8 tables, 4 enum types, indexes, more than 10 triggers that enforce business rules, and 10 functions for stock entry, assignment, return, transfer, and status changes. Individual devices are tracked by serial number and bulk items by quantity. An immutable movement history records every event with its date and database user, and a view flags critical stock levels. Prepared sample-data scenarios and an ER diagram, and revised the design after review by a senior database specialist."
         },
         "crm": {
-          "title": "Customer Request Management CRM",
-          "desc": "Conducted business and functional requirements analysis and defined the approval workflow. Built a React + TypeScript + Vite prototype with Tailwind CSS, driven by mock data and designed for a future REST and PostgreSQL backend. Created wireframes to align stakeholders."
+          "title": "Customer Request Management System Case Study",
+          "desc": "Completed an internal case study for a screen that manages customer requests from several channels in one place. Wrote the scope document: goals, in-scope and out-of-scope functions, user roles, assumptions and dependencies, and the approval process. Added functional requirements and wireframes for the request list, detail, and new request screens. Proposed the architecture and technology stack, designed a seven-table PostgreSQL data model with DDL, and built a working React + TypeScript + Vite prototype with Tailwind CSS on mock data."
         },
         "enterprise": {
           "title": "Enterprise IT and SAP Processes",
