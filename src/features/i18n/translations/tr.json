@@ -8,7 +8,7 @@
   },
   "experience": {
     "title": "Deneyim",
-    "intro": "Staj süreçlerimde yazılım geliştirme, iş analizi, veri tabanı tasarımı ve kurumsal BT süreçlerinde uygulamalı deneyim kazandım.",
+    "intro": "Staj süreçlerimde backend ve mobil uygulama geliştirme, iş analizi, veri tabanı tasarımı ve kurumsal BT süreçlerinde uygulamalı deneyim kazandım.",
     "documents": "Belgeler",
     "certificate": "Sertifika",
     "referenceLetter": "Referans Mektubu",
@@ -37,6 +37,27 @@
         "massguard": {
           "title": "MASSGuard AI / Watt If? Ideathon",
           "desc": "MASS akıllı sayaç zaman serisi verilerini analiz ederek elektrik kaçağı ve bypass anomalileri, kayıt dışı güneş üretimi ve olağandışı tüketim için risk skoru ve saha denetim önceliği üreten bir karar destek konsepti tasarladım. Otonom bir karar sistemi değil, karar destek konsepti olarak tasarlandı."
+        }
+      }
+    },
+    "flap": {
+      "company": "FLAP Yazılım / Teknolya Bilgi Teknolojileri A.Ş.",
+      "department": "Yazılım Geliştirme",
+      "period": "7 Eylül 2026 - 16 Ekim 2026",
+      "location": "Denizli, Türkiye",
+      "description": "SQL Server yedekleme yönetim platformu ve çevrimdışı öncelikli bir mail istemcisi geliştirdim, firmanın bir web uygulamasına küçük katkı yaptım. Çalışmalar backend servisleri, veri tabanı, CI ile React ve Flutter istemcilerini kapsadı. Referans istenirse paylaşılabilir.",
+      "highlights": {
+        "backup": {
+          "title": "Microsoft SQL Server için Backup Platform",
+          "desc": "Merkezi bir yedekleme platformu geliştirdim: Quartz.NET zamanlamalı ve PostgreSQL durumlu çok kiracılı ASP.NET Core backend, iş için backend'i sorgulayan Windows ve Linux agent'ı, yerel, merkezi, SFTP veya Google Drive hedeflerine replika saklama, görevler, çalıştırmalar ve geri yüklemeler için React arayüzü. CI ve Docker paketlemeyi kurdum."
+        },
+        "kaydetmail": {
+          "title": "Kaydetmail Mail İstemcisi",
+          "desc": "Çevrimdışı öncelikli, çok hesaplı bir IMAP/SMTP mail istemcisi geliştirdim: artımlı senkronizasyon, önce sunucuya uygulanan değişiklikler, idempotent gönderim ve push bildirimi olan PostgreSQL destekli .NET 10 backend ile yerel önbellek, arama, etiket, erteleme ve çevrimdışı kuyruklanan işlemler sunan Flutter uygulaması."
+        },
+        "emutabakat": {
+          "title": "E-Mutabakat Web Uygulaması (küçük katkı)",
+          "desc": "Firmanın cari mutabakat web uygulamasına katkı yaptım: kiracı sınırı, transaction ve loglama düzeltmeleri, yapılandırma temizliği ve erişilebilir, yüksek kontrastlı arayüz yenilemesi."
         }
       }
     },
@@ -100,6 +121,20 @@
       "desc": "Adrenal anomali tespiti için geliştirilmiş bir klinik karar destek sistemi. Backend NestJS, PostgreSQL ve JWT kimlik doğrulama ile yazıldı; MRI görüntü analizi ve yapay zeka destekli tahminler için React Native mobil uygulaması var.",
       "destination": "Özel tez projesi, detaylar istek üzerine paylaşılabilir",
       "cta": "Detayları sor"
+    },
+    "backup": {
+      "label": "Staj Projesi",
+      "name": "Backup Platform",
+      "desc": "Microsoft SQL Server için merkezi yedekleme platformu. Quartz.NET zamanlamalı ve PostgreSQL destekli çok kiracılı ASP.NET Core backend, iş için backend'i sorgulayan ve yedekleri yerel, merkezi, SFTP veya Google Drive hedeflerine alan bir agent, SignalR ile erişilebilirlik ipuçları ve görevler, çalıştırmalar ile geri yüklemeler için React arayüzü.",
+      "destination": "Açık kaynak, stajım sırasında geliştirildi",
+      "cta": "GitHub'da görüntüle"
+    },
+    "kaydetmail": {
+      "label": "Staj Projesi",
+      "name": "Kaydetmail",
+      "desc": "Çevrimdışı öncelikli, çok hesaplı IMAP/SMTP mail istemcisi. PostgreSQL destekli .NET 10 backend postaları senkronize eder, değişiklikleri önce mail sunucusuna uygular ve push bildirimi gönderir; Flutter uygulaması yerel önbellek, arama, etiket, erteleme ve çevrimdışı kuyruklanan işlemler sunar.",
+      "destination": "Açık kaynak, stajım sırasında geliştirildi",
+      "cta": "GitHub'da görüntüle"
     },
     "hobby": {
       "label": "Ev Sunucusu",

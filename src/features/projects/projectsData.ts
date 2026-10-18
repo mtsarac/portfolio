@@ -3,7 +3,7 @@ export interface ProjectStackItem {
   color: string
 }
 
-export type ProjectId = 'thesis' | 'homelab' | 'wanetra'
+export type ProjectId = 'thesis' | 'homelab' | 'wanetra' | 'backup' | 'kaydetmail'
 
 export interface ProjectEntry {
   projectId: ProjectId
@@ -26,6 +26,34 @@ export const projects: ProjectEntry[] = [
       { name: 'Expo', color: '#000020' },
       { name: 'TypeORM', color: '#E05C2E' },
     ],
+  },
+  {
+    projectId: 'backup',
+    i18nKey: 'backup',
+    stack: [
+      { name: 'ASP.NET Core', color: '#512BD4' },
+      { name: 'PostgreSQL', color: '#4169E1' },
+      { name: 'Quartz.NET', color: '#512BD4' },
+      { name: 'SignalR', color: '#512BD4' },
+      { name: 'MSSQL', color: '#CC2927' },
+      { name: 'React', color: '#61DAFB' },
+      { name: 'Docker', color: '#2496ED' },
+    ],
+    href: 'https://github.com/mtsarac/backup-platform',
+    external: true,
+  },
+  {
+    projectId: 'kaydetmail',
+    i18nKey: 'kaydetmail',
+    stack: [
+      { name: '.NET 10', color: '#512BD4' },
+      { name: 'Flutter', color: '#02569B' },
+      { name: 'PostgreSQL', color: '#4169E1' },
+      { name: 'SQLite', color: '#003B57' },
+      { name: 'Docker', color: '#2496ED' },
+    ],
+    href: 'https://github.com/mtsarac/mail-client',
+    external: true,
   },
   {
     projectId: 'homelab',

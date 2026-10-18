@@ -8,7 +8,7 @@
   },
   "experience": {
     "title": "Experience",
-    "intro": "Internship experiences spanning software development, business analysis, database design, and enterprise IT workflows.",
+    "intro": "Internship experiences spanning backend and mobile development, business analysis, database design, and enterprise IT workflows.",
     "documents": "Documents",
     "certificate": "Certificate",
     "referenceLetter": "Reference Letter",
@@ -37,6 +37,27 @@
         "massguard": {
           "title": "MASSGuard AI / Watt If? Ideathon",
           "desc": "Concept proposal analyzing MASS smart meter time-series data to produce risk scores and field inspection priorities for electricity theft and bypass anomalies, unregistered solar generation, and unusual consumption patterns. Designed as a decision-support concept, not an autonomous decision system."
+        }
+      }
+    },
+    "flap": {
+      "company": "FLAP Yazılım / Teknolya Bilgi Teknolojileri A.Ş.",
+      "department": "Software Development",
+      "period": "7 September 2026 - 16 October 2026",
+      "location": "Denizli, Türkiye",
+      "description": "Built a SQL Server backup management platform and an offline-first mail client, and made a small contribution to a company web app. Work covered backend services, databases, CI, and React and Flutter clients. References available on request.",
+      "highlights": {
+        "backup": {
+          "title": "Backup Platform for Microsoft SQL Server",
+          "desc": "Built a centralized backup platform: an ASP.NET Core multi-tenant backend with Quartz.NET scheduling and PostgreSQL state, a Windows and Linux agent that polls for work, replica storage to local, central, SFTP, or Google Drive targets, and a React interface for jobs, runs, and restores. Set up CI and Docker packaging."
+        },
+        "kaydetmail": {
+          "title": "Kaydetmail Mail Client",
+          "desc": "Built an offline-first, multi-account IMAP/SMTP mail client: a .NET 10 and PostgreSQL backend with incremental sync, server-first mutations, idempotent sends and push notifications, and a Flutter app with local cache, search, labels, snooze, and queued offline actions."
+        },
+        "emutabakat": {
+          "title": "E-Mutabakat Web App (small contribution)",
+          "desc": "Contributed to the company's account reconciliation web app with backend fixes for tenant boundaries, transactions and logging, configuration cleanup, and an accessible, high-contrast UI refresh."
         }
       }
     },
@@ -100,6 +121,20 @@
       "desc": "A clinical decision support system for detecting adrenal anomalies. NestJS backend with PostgreSQL and JWT authentication, paired with a React Native mobile application for MRI image analysis and AI-powered prediction.",
       "destination": "Private thesis, details available on request",
       "cta": "Request details"
+    },
+    "backup": {
+      "label": "Internship Project",
+      "name": "Backup Platform",
+      "desc": "A centralized backup platform for Microsoft SQL Server. ASP.NET Core multi-tenant backend with Quartz.NET scheduling and PostgreSQL, an agent that polls for work and backs up to local, central, SFTP, or Google Drive targets, SignalR availability hints, and a React interface for jobs, runs, and restores.",
+      "destination": "Open source, built during my internship",
+      "cta": "View on GitHub"
+    },
+    "kaydetmail": {
+      "label": "Internship Project",
+      "name": "Kaydetmail",
+      "desc": "An offline-first, multi-account IMAP/SMTP mail client. A .NET 10 backend with PostgreSQL syncs mail, applies changes on the mail server first and sends push notifications, paired with a Flutter app that has a local cache, search, labels, snooze, and queued offline actions.",
+      "destination": "Open source, built during my internship",
+      "cta": "View on GitHub"
     },
     "hobby": {
       "label": "Homelab",
