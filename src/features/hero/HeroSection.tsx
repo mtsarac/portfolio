@@ -5,7 +5,7 @@ import { useLogger } from "../../hooks/useLogger";
 export function HeroSection() {
   const { t, lang } = useI18n();
   const { logger } = useLogger();
-  const cvHref = lang === "en" ? "/cv/CV_English.pdf" : "/cv/CV.pdf";
+  const cvHref = lang === "en" ? "/cv/english/CV.pdf" : "/cv/turkish/CV.pdf";
 
   return (
     <section
