@@ -9,10 +9,11 @@ Features: light/dark/system theme, TR/EN i18n, first-party analytics, scroll and
 bun dev           # dev server
 bun run build     # type check + production build
 bun run lint      # oxlint
+bun run test      # vitest, invariants for translations and experience data
 bun run preview   # preview production build
 ```
 
-No test framework. `bun run build` is the type check.
+Tests: Vitest, `src/**/*.test.ts`. `bun run build` is the type check (test files are type-checked via `tsconfig.node.json`).
 
 ## Layout
 
@@ -64,7 +65,7 @@ Deploy config (Dockerfile, nginx, compose files) lives at the repo root.
 - No `as any`, `@ts-ignore`, `@ts-expect-error`
 - No em dash (`—`) in source, translations, or docs
 - No `Co-authored-by` or `Contributors` lines in commits
-- No test framework or tests
+- Tests cover invariants only (translation key parity, data links); no snapshot or wording tests
 - Do not force `.dark` in `main.tsx`; the theme comes from the inline script and `ThemeProvider`
 - No per-scroll or per-mousemove values in React state; use refs, `transform`, or CSS variables
 
