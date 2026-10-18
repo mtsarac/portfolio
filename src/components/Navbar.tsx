@@ -78,6 +78,7 @@ export function Navbar() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
           <div className="w-5 h-0.5 bg-current mb-1 transition-all" />
           <div className="w-5 h-0.5 bg-current mb-1" />
@@ -86,7 +87,7 @@ export function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="sm:hidden border-t border-neutral-300 bg-white/95 backdrop-blur-lg shadow-md dark:border-neutral-700 dark:bg-neutral-950/95">
+        <div id="mobile-menu" className="sm:hidden border-t border-neutral-300 bg-white/95 backdrop-blur-lg shadow-md dark:border-neutral-700 dark:bg-neutral-950/95">
           <div className="px-4 py-4 flex flex-col items-center gap-4">
             {NAV_ITEMS.map((item) => (
               <a

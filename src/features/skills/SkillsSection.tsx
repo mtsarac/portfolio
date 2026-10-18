@@ -105,10 +105,10 @@ const skillColors: Record<string, string | undefined> = {
 function SkillBadge({ name }: { name: string }) {
   const Icon = skillIcons[name];
   return (
-    <span className="inline-flex items-center gap-2.5 px-5 py-2.5 text-base font-medium rounded-lg bg-neutral-100 text-neutral-800 whitespace-nowrap border border-neutral-200 shadow-sm dark:bg-neutral-800 dark:text-neutral-200 dark:border-neutral-700">
-      {Icon && <Icon className="shrink-0" size={20} color={skillColors[name]} />}
+    <li className="inline-flex items-center gap-2.5 px-5 py-2.5 text-base font-medium rounded-lg bg-neutral-100 text-neutral-800 whitespace-nowrap border border-neutral-200 shadow-sm dark:bg-neutral-800 dark:text-neutral-200 dark:border-neutral-700">
+      {Icon && <Icon className="shrink-0" size={20} color={skillColors[name]} aria-hidden="true" />}
       {name}
-    </span>
+    </li>
   );
 }
 
@@ -120,11 +120,11 @@ function SkillGroup({ items, titleKey }: { items: string[]; titleKey: string }) 
       <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 mb-4">
         {t(titleKey)}
       </h3>
-      <div className="flex flex-wrap gap-2">
+      <ul role="list" className="flex flex-wrap gap-2">
         {items.map((skill) => (
           <SkillBadge key={skill} name={skill} />
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

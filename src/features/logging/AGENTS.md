@@ -1,51 +1,31 @@
-# src/features/logging - Umami analytics
+# src/features/logging - analytics
 
-Self-contained analytics feature. Falls back to a noop logger when Umami env vars are missing.
-
-## Files
-
-| File | Role |
-|------|------|
-| `LoggingService.ts` | Interface: `initialize()`, `log(event)`, `logEvent(name, data?)` |
-| `LoggingContext.ts` | React context declaration |
-| `LoggingProvider.tsx` | Creates `UmamiLogger` or `noopLogger` via `useMemo`; calls `initialize()` in effect |
-| `UmamiLogger.ts` | Injects `<script src={VITE_UMAMI_SCRIPT_URL}>` with `data-website-id`, `data-exclude-hash`, `data-performance`, optional `data-domains`; queues `track()` calls until ready |
+Self-contained analytics feature behind a `LoggingService` interface. `LoggingProvider` falls back to a noop logger when the tracker env vars are missing.
 
 ## Environment variables
 
-| Variable | Purpose |
-|----------|---------|
-| `VITE_UMAMI_SITE_ID` | Umami website ID |
-| `VITE_UMAMI_SCRIPT_URL` | Full first-party script URL, e.g. `https://msarac.me/metrics.js` |
-| `VITE_UMAMI_DOMAINS` | Comma-separated allowlist for Umami `data-domains`, e.g. `msarac.me,www.msarac.me`; empty = track everywhere |
+Read `LoggingProvider.tsx` and `UmamiLogger.ts` for the full list. All are `VITE_UMAMI_*`:
 
-If site ID or script URL is missing, `LoggingProvider` returns `noopLogger` regardless of domains.
+- site ID and script URL are required; if either is missing the noop logger is used
+- domains (optional): allowlist passed to the tracker; empty means track everywhere
+- recorder URL (optional): empty means no recorder
+
+Values are public build args. Never put secrets in `VITE_*` variables.
 
 ## Events
 
-- `nav_click {section}`
-- `section_view {section}`
-- `experience_document_click {experienceId, documentType, action}`
-- `contact_click {type}`
-- `hero_cta_click {target}`
-- `cv_download {lang}`
-- `project_interest {project, target, lang}`
-- `scroll_depth {depth}`
-- `engagement_time {seconds}`
-- `lang_toggle {lang}`
-- `theme_change {theme}`
+The source of truth is the `LogEvent` type in `src/types/index.ts` and the `logEvent(...)` callers. Grep for `logEvent(` to list them.
 
-Pageviews are automatic via Umami; hash is excluded. Query params are left untouched so UTM attribution (`utm_source`, `utm_medium`, `utm_campaign`) keeps working. No session replay or heatmaps.
+Pageviews are automatic via the tracker (hash excluded, query params preserved for UTM attribution).
 
 ## Where to look
 
-- Change tracker script loading → `UmamiLogger.ts`
-- Add/remove an event type → update `LogEvent` in `src/types/index.ts` and the callers
-- Toggle analytics on/off per environment → `LoggingProvider.tsx`
+- Tracker script loading → `UmamiLogger.ts`
+- Add or remove an event → update `LogEvent` in `src/types/index.ts` and the callers
+- Enable/disable per environment → `LoggingProvider.tsx`
 
 ## Anti-patterns
 
-- Do not call `umami.track()` directly; always use `useLogger()`.
-- Do not add a manual `logPageView`; Umami handles pageviews.
-- Do not expose secrets via `VITE_*` variables.
-- Do not add tests — this project has no test framework.
+- Do not call the tracker global directly; use `useLogger()`.
+- Do not add a manual pageview call.
+- Do not add tests; the project has no test framework.

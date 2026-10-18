@@ -1,6 +1,9 @@
 # OpenCode
 .omo/
 
+# Serena
+.serena/
+
 # Logs
 logs
 *.log

@@ -1,28 +1,9 @@
+import { FaGithub } from 'react-icons/fa6'
 import { useI18n } from '../../hooks/useI18n'
 import { useLogger } from '../../hooks/useLogger'
 import { Section } from '../../components/Section'
 import SpotlightCard from '../../components/SpotlightCard'
-
-const thesisStack = [
-  { name: 'NestJS', color: '#E0234E' },
-  { name: 'PostgreSQL', color: '#4169E1' },
-  { name: 'React Native', color: '#61DAFB' },
-  { name: 'TypeScript', color: '#3178C6' },
-  { name: 'Expo', color: '#000020' },
-  { name: 'TypeORM', color: '#E05C2E' },
-]
-
-const homelabStack = [
-  { name: 'Docker', color: '#2496ED' },
-  { name: 'Traefik', color: '#EE5023' },
-  { name: 'DietPi', color: '#27AE60' },
-  { name: 'Raspberry Pi', color: '#A22846' },
-  { name: 'Jellyfin', color: '#00A4DC' },
-  { name: 'Gitea', color: '#5E2C9B' },
-  { name: 'Vaultwarden', color: '#4F46E5' },
-  { name: 'SearXNG', color: '#0D9488' },
-  { name: 'Cloudflared', color: '#F38020' },
-]
+import { projects, type ProjectId, type ProjectStackItem } from './projectsData'
 
 function ProjectCard({
   projectId,
@@ -32,14 +13,18 @@ function ProjectCard({
   stack,
   destination,
   cta,
+  href = '#contact',
+  external = false,
 }: {
-  projectId: 'thesis' | 'homelab'
+  projectId: ProjectId
   label: string
   title: string
   desc: string
-  stack: { name: string; color: string }[]
+  stack: ProjectStackItem[]
   destination: string
   cta: string
+  href?: string
+  external?: boolean
 }) {
   const { lang } = useI18n()
   const { logger } = useLogger()
@@ -55,34 +40,38 @@ function ProjectCard({
       <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-5">
         {desc}
       </p>
-      <div className="flex flex-wrap gap-2">
+      <ul role="list" className="flex flex-wrap gap-2">
         {stack.map((tech) => (
-          <span
+          <li
             key={tech.name}
             className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-neutral-700 bg-neutral-100 border border-neutral-200 rounded-md dark:text-neutral-300 dark:bg-neutral-700 dark:border-neutral-600"
           >
             <span
               className="w-2 h-2 rounded-full shrink-0"
               style={{ backgroundColor: tech.color }}
+              aria-hidden="true"
             />
             {tech.name}
-          </span>
+          </li>
         ))}
-      </div>
+      </ul>
       <p className="mt-4 text-xs text-neutral-500">
         {destination}
       </p>
       <a
-        href="#contact"
+        href={href}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noopener noreferrer' : undefined}
         onClick={() =>
           logger.logEvent('project_interest', {
             project: projectId,
-            target: 'contact',
+            target: external ? 'github' : 'contact',
             lang,
           })
         }
-        className="mt-3 inline-block text-sm font-medium text-brand hover:underline dark:text-brand-light"
+        className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:underline dark:text-brand-light"
       >
+        {external && <FaGithub size={14} />}
         {cta} {"->"}
       </a>
     </SpotlightCard>
@@ -94,25 +83,21 @@ export function ProjectsSection() {
 
   return (
     <Section id="projects" title={t('projects.title')} align="left" width="wide">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <ProjectCard
-          projectId="thesis"
-          label={t('projects.thesis.label')}
-          title={t('projects.thesis.name')}
-          desc={t('projects.thesis.desc')}
-          stack={thesisStack}
-          destination={t('projects.thesis.destination')}
-          cta={t('projects.thesis.cta')}
-        />
-        <ProjectCard
-          projectId="homelab"
-          label={t('projects.hobby.label')}
-          title={t('projects.hobby.name')}
-          desc={t('projects.hobby.desc')}
-          stack={homelabStack}
-          destination={t('projects.hobby.destination')}
-          cta={t('projects.hobby.cta')}
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {projects.map(({ projectId, i18nKey, stack, href, external }) => (
+          <ProjectCard
+            key={projectId}
+            projectId={projectId}
+            label={t(`projects.${i18nKey}.label`)}
+            title={t(`projects.${i18nKey}.name`)}
+            desc={t(`projects.${i18nKey}.desc`)}
+            stack={stack}
+            destination={t(`projects.${i18nKey}.destination`)}
+            cta={t(`projects.${i18nKey}.cta`)}
+            href={href}
+            external={external}
+          />
+        ))}
       </div>
     </Section>
   )
