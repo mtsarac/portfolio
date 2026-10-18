@@ -10,6 +10,8 @@ Türkçe sürüm için: [README.TR.md](README.TR.md).
 
 ## Run
 
+Requires Bun 1.4.2 (matches the `Dockerfile`).
+
 ```bash
 bun install
 bun dev            # dev server
@@ -19,20 +21,35 @@ bun run lint       # ESLint
 
 ## Configure
 
-Copy `.env.example` to `.env` and fill in the `VITE_*` tracking values to enable analytics. Without them the site runs with a noop logger and tracking stays off.
+Copy `.env.example` to `.env` and fill in the `VITE_*` values to enable analytics. Without them the site runs with a noop logger and tracking stays off. The values are build-time: they are baked into the bundle, so changing one needs a rebuild.
+
+| Variable | Purpose |
+|---|---|
+| `VITE_UMAMI_SITE_ID` | Umami website ID (required with the script URL) |
+| `VITE_UMAMI_SCRIPT_URL` | Tracker script URL (required) |
+| `VITE_UMAMI_DOMAINS` | Allowed tracker domains; compose default `msarac.me,www.msarac.me` |
+| `VITE_UMAMI_RECORDER_URL` | Optional session recorder script |
 
 ## Deploy
+
+Production is deployed by Dockhand on every push to `main` (GitHub webhook). CI (`.github/workflows/docker.yml`) only builds the image to verify it; nothing is pushed.
+
+Prerequisites: Docker with Compose v2, an external Docker network `traefik-net`, and a `.env` with the `VITE_UMAMI_*` values.
 
 ```bash
 docker compose up -d --build
 ```
 
-The stack is portfolio only (Traefik routing on `traefik-net`), behind Cloudflare Tunnel. The analytics backend is managed separately and is never restarted by portfolio deploys. CI builds the image and pushes it to `ghcr.io` on every push to `main`. See `docker-compose.yml`.
+The stack is portfolio only (Traefik routing on `traefik-net`), behind Cloudflare Tunnel. The analytics backend is managed separately and is never restarted by portfolio deploys. See `docker-compose.yml`.
 
 ## Stack
 
 React 19, TypeScript, Vite, Bun, Tailwind CSS 4, GSAP.
 
+## Contributing and security
+
+All changes go through pull requests; see [AGENTS.md](AGENTS.md) for conventions. Report vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
+
 ## License
 
-MIT.
+[MIT](LICENSE).
