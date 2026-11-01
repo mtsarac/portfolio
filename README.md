@@ -40,7 +40,7 @@ Prerequisites: Docker with Compose v2, an external Docker network `traefik-net`,
 docker compose up -d --build
 ```
 
-The stack is portfolio only (Traefik routing on `traefik-net`), behind Cloudflare Tunnel. The analytics backend is managed separately and is never restarted by portfolio deploys. See `docker-compose.yml`.
+The stack is portfolio only (routed by Traefik file config `dynamic/portfolio.yml` on the server, reachable on `traefik-net`), behind Cloudflare Tunnel. The analytics backend is managed separately and is never restarted by portfolio deploys. See `docker-compose.yml`.
 
 ## Stack
 
