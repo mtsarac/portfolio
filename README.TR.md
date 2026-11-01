@@ -40,7 +40,7 @@ bun run lint       # oxlint
 docker compose up -d --build
 ```
 
-Stack: Cloudflare Tunnel arkasında yalnız portfolio (`traefik-net` üzerinde Traefik yönlendirmesi). Analitik arka ucu ayrı yönetilir, portfolio yayınları onu yeniden başlatmaz. Detay için `docker-compose.yml`.
+Stack: Cloudflare Tunnel arkasında yalnız portfolio (yönlendirme sunucudaki Traefik dosya yapılandırmasında, `dynamic/portfolio.yml`; `traefik-net` üzerinden erişilir). Analitik arka ucu ayrı yönetilir, portfolio yayınları onu yeniden başlatmaz. Detay için `docker-compose.yml`.
 
 ## Teknolojiler
 
