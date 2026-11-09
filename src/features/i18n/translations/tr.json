@@ -18,7 +18,7 @@
     "adm": {
       "company": "ADM Elektrik Dağıtım",
       "department": "Bilgi Teknolojileri / Dijital İş Uygulamaları",
-      "period": "20 Temmuz 2026 - 28 Ağustos 2026",
+      "period": "Temmuz 2026 - Ağustos 2026",
       "location": "Denizli, Türkiye",
       "description": "Dijital İş Uygulamaları biriminde iş analizi, veri tabanı tasarımı, web prototipleme ve kurumsal BT süreçleri üzerine çalıştım. BT envanteri ve zimmet için PostgreSQL veritabanı tasarlayıp kodladım, müşteri talep yönetimi case study'sini React prototipiyle tamamladım ve SAP, Jira, Solution Manager, Qlik, SCADA ve OSOS gibi kurumsal sistemlerin işleyişini gözlemledim. Referans istenirse paylaşılabilir.",
       "highlights": {
@@ -43,7 +43,7 @@
     "flap": {
       "company": "FLAP Yazılım / Teknolya Bilgi Teknolojileri A.Ş.",
       "department": "Yazılım Geliştirme",
-      "period": "7 Eylül 2026 - 16 Ekim 2026",
+      "period": "Eylül 2026 - Ekim 2026",
       "location": "Denizli, Türkiye",
       "description": "SQL Server yedekleme yönetim platformu ve çevrimdışı öncelikli bir mail istemcisi geliştirdim, firmanın bir web uygulamasına küçük katkı yaptım. Çalışmalar backend servisleri, veri tabanı, CI ile React ve Flutter istemcilerini kapsadı. Referans istenirse paylaşılabilir.",
       "highlights": {
