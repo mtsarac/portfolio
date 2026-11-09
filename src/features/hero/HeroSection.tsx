@@ -13,13 +13,13 @@ export function HeroSection() {
       className="min-h-[calc(100vh-4rem)] px-4"
     >
       <AnimatedContent distance={40} duration={0.7} threshold={0.12} className="flex flex-col items-center justify-center text-center min-h-[calc(100vh-4rem)]">
-        <div className="w-56 h-56 rounded-full overflow-hidden mb-8 shadow-sm isolate">
-          <picture>
-            <source srcSet="/myself-400w.webp 400w, /myself-800w.webp 800w, /myself.webp 1008w" type="image/webp" sizes="224px" />
+        <div className="hero-portrait w-56 h-56 mb-8 relative">
+          <picture tabIndex={0} className="hero-portrait-preview block w-full h-full rounded-full overflow-hidden shadow-sm isolate focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand dark:focus-visible:outline-brand-light">
+            <source srcSet="/myself-400w.webp 400w, /myself-800w.webp 800w, /myself.webp 1008w" type="image/webp" sizes="(hover: hover) and (pointer: fine) 480px, 224px" />
             <img
               src="/myself.jpg"
               srcSet="/myself-400w.jpg 400w, /myself-800w.jpg 800w, /myself.jpg 1008w"
-              sizes="224px"
+              sizes="(hover: hover) and (pointer: fine) 480px, 224px"
               alt="Muhammet Saraç"
               width={1008}
               height={1008}
