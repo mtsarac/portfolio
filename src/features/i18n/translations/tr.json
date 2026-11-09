@@ -90,7 +90,7 @@
     "title": "Muhammet Saraç",
     "subtitle": "Bilgisayar Mühendisi",
     "cv": "Özgeçmiş",
-    "description": "Denizli'de bilgisayar mühendisliği mezunuyum. NestJS, PostgreSQL ve React ile backend ağırlıklı web uygulamaları geliştiriyor, kendi ev sunucumda öğrendiklerimin üretim ortamında nasıl çalıştığını deniyorum."
+    "description": "Denizli'de bilgisayar mühendisliği mezunuyum. .NET, PostgreSQL ve React ile backend ağırlıklı web uygulamaları geliştiriyor, kendi ev sunucumda öğrendiklerimin üretim ortamında nasıl çalıştığını deniyorum."
   },
   "about": {
     "title": "Hakkımda",
@@ -102,7 +102,7 @@
     "coursework": "Aldığım dersler: veri yapıları, algoritmalar, veritabanı yönetimi, işletim sistemleri, yazılım mühendisliği, web teknolojileri, bilgisayar ağları, makine öğrenmesi, yapay zeka, bilgisayar grafikleri ve bulut bilişim.",
     "erasmus": "Erasmus - Maribor Üniversitesi",
     "erasmusDesc": "Şubat 2025 - Temmuz 2025 arasında Erasmus programıyla Maribor Üniversitesi'nde okudum. C++ ile nesne yönelimli programlama yaptım ve 3D animasyon ile 3D grafik üzerine ayrı bir Blender dersi aldım.",
-    "description": "Pamukkale Üniversitesi'nden Ekim 2026'da onur öğrencisi olarak bilgisayar mühendisi mezun oldum. NestJS, PostgreSQL ve React ile backend ağırlıklı full-stack geliştirme yapıyorum. Gerçek özellikler geliştireceğim junior yazılım pozisyonlarıyla ilgileniyorum.",
+    "description": "Pamukkale Üniversitesi'nden Ekim 2026'da onur öğrencisi olarak bilgisayar mühendisi mezun oldum. .NET, PostgreSQL ve React ile backend ağırlıklı full-stack geliştirme yapıyorum. Gerçek özellikler geliştireceğim junior yazılım pozisyonlarıyla ilgileniyorum.",
     "interests": "İlgi Alanları",
     "fullstack": "Backend ağırlıklı full-stack geliştirme ile ilgileniyorum. Ölçeklenebilir API'ler, veritabanı tasarımı ve uçtan uca web uygulamaları geliştirme konularında deneyim kazanıyorum.",
     "devops": "Docker ve DevOps araçlarına ilgi duyuyorum. CI/CD süreçleri, konteynerizasyon ve altyapı otomasyonu üzerine çalışıyorum.",
