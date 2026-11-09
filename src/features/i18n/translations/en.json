@@ -140,7 +140,7 @@
     "hobby": {
       "label": "Homelab",
       "name": "Raspberry Pi 5 Server",
-      "desc": "A self-hosted infrastructure running on DietPi OS. Traefik reverse proxy with Cloudflare Tunnel, automated media stack (Sonarr, Radarr, Prowlarr, Bazarr, Seerr, Jellyfin, qBittorrent), Gitea for source control, Vaultwarden for passwords, SearXNG for private search, and monitoring with Uptime Kuma.",
+      "desc": "A self-hosted infrastructure running on DietPi OS. Traefik reverse proxy behind Cloudflare Tunnel and Access, with Pocket ID single sign-on, Technitium split-horizon DNS, and NetBird and AmneziaWG overlay networks. Services include an automated media stack with Sonarr, Radarr, Prowlarr, Bazarr, Seerr, Jellyfin and qBittorrent, Komga for books, Gitea for source control, BookStack for documentation, SearXNG for private search, ntfy for notifications, CouchDB for Obsidian sync, Dynacat as a dashboard, and Dockhand for stack management. Files are backed up daily with versioning.",
       "destination": "Self-hosted project, details available on request",
       "cta": "Request details"
     },
