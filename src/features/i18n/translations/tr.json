@@ -140,7 +140,7 @@
     "hobby": {
       "label": "Ev Sunucusu",
       "name": "Raspberry Pi 5 Sunucu",
-      "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Cloudflare Tunnel ve Access arkasında Traefik ters proxy, Pocket ID ile tek oturum açma, Technitium split-horizon DNS ve NetBird ile AmneziaWG overlay ağları. Servisler arasında Sonarr, Radarr, Prowlarr, Bazarr, Seerr, Jellyfin ve qBittorrent ile otomatik medya stack'i, kitaplar için Komga, kaynak kod için Gitea, dokümantasyon için BookStack, gizliliğe önem veren arama için SearXNG, bildirimler için ntfy, Obsidian senkronu için CouchDB, dashboard olarak Dynacat ve stack yönetimi için Dockhand var. Dosyalar her gün sürümlenerek yedekleniyor.",
+      "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Cloudflare Tunnel ve Access arkasında Traefik ters proxy, Pocket ID ile tek oturum açma, Technitium DNS ve NetBird overlay ağı. Servisler arasında otomatik medya stack'iyle Jellyfin, kitaplar için Komga, kaynak kod için Gitea, dokümantasyon için BookStack, gizliliğe önem veren arama için SearXNG ve bildirimler için ntfy var. Dosyalar her gün yedekleniyor.",
       "destination": "Kişisel sunucu projesi, detaylar istek üzerine paylaşılabilir",
       "cta": "Detayları sor"
     },
