@@ -52,7 +52,7 @@ export const projects: ProjectEntry[] = [
       { name: 'SQLite', color: '#003B57' },
       { name: 'Docker', color: '#2496ED' },
     ],
-    href: 'https://github.com/mtsarac/mail-client',
+    href: 'https://github.com/mtsarac/kaydetmail-mono',
     external: true,
   },
   {

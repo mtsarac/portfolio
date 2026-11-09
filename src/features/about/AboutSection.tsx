@@ -20,9 +20,14 @@ export function AboutSection() {
           </h3>
           <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
             <div className="pb-6">
-              <span className="inline-block px-2 py-0.5 text-[11px] font-medium rounded bg-neutral-100 text-neutral-600 mb-3 dark:bg-neutral-800 dark:text-neutral-400">
-                2022 – 2026
-              </span>
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className="inline-block px-2 py-0.5 text-[11px] font-medium rounded bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400">
+                  2022 – 2026
+                </span>
+                <span className="inline-block px-2 py-0.5 text-[11px] font-medium rounded bg-brand/10 text-brand dark:text-brand-light">
+                  {t('about.graduated')}
+                </span>
+              </div>
               <h4 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
                 <FaGraduationCap className="text-brand dark:text-brand-light shrink-0" size={20} />
                 {t('about.university')}
