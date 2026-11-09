@@ -18,7 +18,7 @@
     "adm": {
       "company": "ADM Elektrik Dağıtım",
       "department": "Bilgi Teknolojileri / Dijital İş Uygulamaları",
-      "period": "20 Temmuz 2026 - 28 Ağustos 2026",
+      "period": "Temmuz 2026 - Ağustos 2026",
       "location": "Denizli, Türkiye",
       "description": "Dijital İş Uygulamaları biriminde iş analizi, veri tabanı tasarımı, web prototipleme ve kurumsal BT süreçleri üzerine çalıştım. BT envanteri ve zimmet için PostgreSQL veritabanı tasarlayıp kodladım, müşteri talep yönetimi case study'sini React prototipiyle tamamladım ve SAP, Jira, Solution Manager, Qlik, SCADA ve OSOS gibi kurumsal sistemlerin işleyişini gözlemledim. Referans istenirse paylaşılabilir.",
       "highlights": {
@@ -36,14 +36,14 @@
         },
         "massguard": {
           "title": "MASSGuard AI / Watt If? Ideathon",
-          "desc": "MASS akıllı sayaç zaman serisi verilerini analiz ederek elektrik kaçağı ve bypass anomalileri, kayıt dışı güneş üretimi ve olağandışı tüketim için risk skoru ve saha denetim önceliği üreten bir karar destek konsepti tasarladım. Otonom bir karar sistemi değil, karar destek konsepti olarak tasarlandı."
+          "desc": "Takımımın bir üyesi olarak, MASS akıllı sayaç zaman serisi verilerini analiz ederek elektrik kaçağı ve bypass anomalileri, kayıt dışı güneş üretimi ve olağandışı tüketim için risk skoru ve saha denetim önceliği üreten bir karar destek konseptinin tasarımına katkıda bulundum. Otonom bir karar sistemi değil, karar destek konsepti olarak tasarlandı."
         }
       }
     },
     "flap": {
       "company": "FLAP Yazılım / Teknolya Bilgi Teknolojileri A.Ş.",
       "department": "Yazılım Geliştirme",
-      "period": "7 Eylül 2026 - 16 Ekim 2026",
+      "period": "Eylül 2026 - Ekim 2026",
       "location": "Denizli, Türkiye",
       "description": "SQL Server yedekleme yönetim platformu ve çevrimdışı öncelikli bir mail istemcisi geliştirdim, firmanın bir web uygulamasına küçük katkı yaptım. Çalışmalar backend servisleri, veri tabanı, CI ile React ve Flutter istemcilerini kapsadı. Referans istenirse paylaşılabilir.",
       "highlights": {
@@ -56,7 +56,7 @@
           "desc": "Çevrimdışı öncelikli, çok hesaplı bir IMAP/SMTP mail istemcisi geliştirdim: artımlı senkronizasyon, önce sunucuya uygulanan değişiklikler, idempotent gönderim ve push bildirimi olan PostgreSQL destekli .NET 10 backend ile yerel önbellek, arama, etiket, erteleme ve çevrimdışı kuyruklanan işlemler sunan Flutter uygulaması."
         },
         "emutabakat": {
-          "title": "E-Mutabakat Web Uygulaması (küçük katkı)",
+          "title": "E-Mutabakat Web Uygulaması: küçük katkı",
           "desc": "Firmanın cari mutabakat web uygulamasına katkı yaptım: kiracı sınırı, transaction ve loglama düzeltmeleri, yapılandırma temizliği ve erişilebilir, yüksek kontrastlı arayüz yenilemesi."
         }
       }
@@ -88,20 +88,21 @@
   },
   "hero": {
     "title": "Muhammet Saraç",
-    "subtitle": "Bilgisayar Mühendisliği Öğrencisi",
+    "subtitle": "Bilgisayar Mühendisi",
     "cv": "Özgeçmiş",
-    "description": "Denizli'de son sınıf bilgisayar mühendisliği öğrencisiyim. NestJS, PostgreSQL ve React ile backend ağırlıklı web uygulamaları geliştiriyor, kendi ev sunucumda öğrendiklerimin üretim ortamında nasıl çalıştığını deniyorum."
+    "description": "Denizli'de bilgisayar mühendisliği mezunuyum. .NET, PostgreSQL ve React ile backend ağırlıklı web uygulamaları geliştiriyor, kendi ev sunucumda öğrendiklerimin üretim ortamında nasıl çalıştığını deniyorum."
   },
   "about": {
     "title": "Hakkımda",
     "education": "Eğitim",
     "university": "Pamukkale Üniversitesi",
     "department": "Bilgisayar Mühendisliği",
-    "gpa": "Not ortalaması: 3.32",
+    "gpa": "Not ortalaması: 3.34 · Onur Öğrencisi",
+    "graduated": "Ekim 2026'da mezun oldu",
     "coursework": "Aldığım dersler: veri yapıları, algoritmalar, veritabanı yönetimi, işletim sistemleri, yazılım mühendisliği, web teknolojileri, bilgisayar ağları, makine öğrenmesi, yapay zeka, bilgisayar grafikleri ve bulut bilişim.",
     "erasmus": "Erasmus - Maribor Üniversitesi",
     "erasmusDesc": "Şubat 2025 - Temmuz 2025 arasında Erasmus programıyla Maribor Üniversitesi'nde okudum. C++ ile nesne yönelimli programlama yaptım ve 3D animasyon ile 3D grafik üzerine ayrı bir Blender dersi aldım.",
-    "description": "Pamukkale Üniversitesi'nde son sınıf bilgisayar mühendisliği öğrencisiyim, NestJS, PostgreSQL ve React ile backend ağırlıklı full-stack geliştirme yapıyorum. Gerçek özellikler geliştireceğim junior yazılım pozisyonları ve stajlarla ilgileniyorum.",
+    "description": "Pamukkale Üniversitesi'nden Ekim 2026'da onur öğrencisi olarak bilgisayar mühendisi mezun oldum. .NET, PostgreSQL ve React ile backend ağırlıklı full-stack geliştirme yapıyorum. Gerçek özellikler geliştireceğim junior yazılım pozisyonlarıyla ilgileniyorum.",
     "interests": "İlgi Alanları",
     "fullstack": "Backend ağırlıklı full-stack geliştirme ile ilgileniyorum. Ölçeklenebilir API'ler, veritabanı tasarımı ve uçtan uca web uygulamaları geliştirme konularında deneyim kazanıyorum.",
     "devops": "Docker ve DevOps araçlarına ilgi duyuyorum. CI/CD süreçleri, konteynerizasyon ve altyapı otomasyonu üzerine çalışıyorum.",
@@ -139,7 +140,7 @@
     "hobby": {
       "label": "Ev Sunucusu",
       "name": "Raspberry Pi 5 Sunucu",
-      "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Traefik ters proxy ile Cloudflare Tunnel, otomatik medya stack'i (Sonarr, Radarr, Prowlarr, Bazarr, Seerr, Jellyfin, qBittorrent), Gitea ile kaynak kod yönetimi, Vaultwarden ile şifre yönetimi, SearXNG ile gizliliğe önem veren arama ve Uptime Kuma ile izleme.",
+      "desc": "DietPi OS üzerinde çalışan kişisel altyapı. Cloudflare Tunnel ve Access arkasında Traefik ters proxy, Pocket ID ile tek oturum açma, Technitium DNS ve NetBird overlay ağı. Servisler arasında otomatik medya stack'iyle Jellyfin, kitaplar için Komga, kaynak kod için Gitea, dokümantasyon için BookStack, gizliliğe önem veren arama için SearXNG ve bildirimler için ntfy var. Dosyalar her gün yedekleniyor.",
       "destination": "Kişisel sunucu projesi, detaylar istek üzerine paylaşılabilir",
       "cta": "Detayları sor"
     },

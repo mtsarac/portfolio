@@ -18,7 +18,7 @@
     "adm": {
       "company": "ADM Elektrik Dağıtım",
       "department": "Information Technologies / Digital Business Applications",
-      "period": "20 July 2026 - 28 August 2026",
+      "period": "July 2026 - August 2026",
       "location": "Denizli, Türkiye",
       "description": "Worked on business analysis, database design, web prototyping, and enterprise IT processes within the Digital Business Applications unit. Designed and built a PostgreSQL database for IT inventory and asset assignment, completed a customer request management case study with a React prototype, and gained hands-on exposure to enterprise workflows involving SAP, Jira, Solution Manager, Qlik, SCADA, and OSOS. References available on request.",
       "highlights": {
@@ -36,14 +36,14 @@
         },
         "massguard": {
           "title": "MASSGuard AI / Watt If? Ideathon",
-          "desc": "Concept proposal analyzing MASS smart meter time-series data to produce risk scores and field inspection priorities for electricity theft and bypass anomalies, unregistered solar generation, and unusual consumption patterns. Designed as a decision-support concept, not an autonomous decision system."
+          "desc": "As a member of a team, helped design a concept proposal analyzing MASS smart meter time-series data to produce risk scores and field inspection priorities for electricity theft and bypass anomalies, unregistered solar generation, and unusual consumption patterns. Designed as a decision-support concept, not an autonomous decision system."
         }
       }
     },
     "flap": {
       "company": "FLAP Yazılım / Teknolya Bilgi Teknolojileri A.Ş.",
       "department": "Software Development",
-      "period": "7 September 2026 - 16 October 2026",
+      "period": "September 2026 - October 2026",
       "location": "Denizli, Türkiye",
       "description": "Built a SQL Server backup management platform and an offline-first mail client, and made a small contribution to a company web app. Work covered backend services, databases, CI, and React and Flutter clients. References available on request.",
       "highlights": {
@@ -56,7 +56,7 @@
           "desc": "Built an offline-first, multi-account IMAP/SMTP mail client: a .NET 10 and PostgreSQL backend with incremental sync, server-first mutations, idempotent sends and push notifications, and a Flutter app with local cache, search, labels, snooze, and queued offline actions."
         },
         "emutabakat": {
-          "title": "E-Mutabakat Web App (small contribution)",
+          "title": "E-Mutabakat Web App: small contribution",
           "desc": "Contributed to the company's account reconciliation web app with backend fixes for tenant boundaries, transactions and logging, configuration cleanup, and an accessible, high-contrast UI refresh."
         }
       }
@@ -88,20 +88,21 @@
   },
   "hero": {
     "title": "Muhammet Saraç",
-    "subtitle": "Computer Engineering Student",
+    "subtitle": "Computer Engineer",
     "cv": "Download CV",
-    "description": "Final-year computer engineering student in Denizli. I build backend-heavy web apps with NestJS, PostgreSQL and React, and run my own homelab to see how things hold up in production."
+    "description": "Computer engineering graduate in Denizli. I build backend-heavy web apps with .NET, PostgreSQL and React, and run my own homelab to see how things hold up in production."
   },
   "about": {
     "title": "About Me",
     "education": "Education",
     "university": "Pamukkale University",
     "department": "Computer Engineering",
-    "gpa": "GPA: 3.32",
+    "gpa": "GPA: 3.34 · Honor Student",
+    "graduated": "Graduated October 2026",
     "coursework": "Coursework includes data structures, algorithms, database management, operating systems, software engineering, web technologies, computer networks, machine learning, AI, computer graphics, and cloud computing.",
     "erasmus": "Erasmus - University of Maribor",
     "erasmusDesc": "From February 2025 to July 2025, I studied at the University of Maribor as part of the Erasmus program. I did OOP programming with C++ and took a separate Blender course on 3D animation and 3D graphics.",
-    "description": "I am a fourth-year computer engineering student at Pamukkale University focused on backend-heavy full-stack development with NestJS, PostgreSQL and React. I am looking for junior software roles and internships where I can ship real features.",
+    "description": "I graduated from Pamukkale University as a computer engineer in October 2026, as an honor student. I focus on backend-heavy full-stack development with .NET, PostgreSQL and React. I am looking for junior software roles where I can ship real features.",
     "interests": "Areas of Interest",
     "fullstack": "I focus on backend-heavy full-stack development: building scalable APIs, database design, and end-to-end web applications.",
     "devops": "I am interested in Docker and DevOps practices, working on CI/CD pipelines, containerization, and infrastructure automation.",
@@ -139,7 +140,7 @@
     "hobby": {
       "label": "Homelab",
       "name": "Raspberry Pi 5 Server",
-      "desc": "A self-hosted infrastructure running on DietPi OS. Traefik reverse proxy with Cloudflare Tunnel, automated media stack (Sonarr, Radarr, Prowlarr, Bazarr, Seerr, Jellyfin, qBittorrent), Gitea for source control, Vaultwarden for passwords, SearXNG for private search, and monitoring with Uptime Kuma.",
+      "desc": "A self-hosted infrastructure running on DietPi OS. Traefik reverse proxy behind Cloudflare Tunnel and Access, with Pocket ID single sign-on, Technitium DNS, and NetBird overlay networking. Services include Jellyfin with an automated media stack, Komga for books, Gitea for source control, BookStack for documentation, SearXNG for private search, and ntfy for notifications. Files are backed up daily.",
       "destination": "Self-hosted project, details available on request",
       "cta": "Request details"
     },

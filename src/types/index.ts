@@ -58,6 +58,7 @@ export interface Translations {
     university: string
     department: string
     gpa: string
+    graduated: string
     erasmus: string
     erasmusDesc: string
     coursework: string

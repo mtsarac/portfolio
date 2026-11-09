@@ -2,7 +2,6 @@
 
 [![CI](https://github.com/mtsarac/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/mtsarac/portfolio/actions/workflows/ci.yml)
 [![Docker](https://github.com/mtsarac/portfolio/actions/workflows/docker.yml/badge.svg)](https://github.com/mtsarac/portfolio/actions/workflows/docker.yml)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/mtsarac/portfolio/badge)](https://securityscorecards.dev/viewer/?uri=github.com/mtsarac/portfolio)
 
 Muhammet Saraç'ın kişisel sitesi, [msarac.me](https://msarac.me) adresinde yayında. Türkçe ve İngilizce tek sayfa React uygulaması; aydınlık/karanlık tema, belgeli staj kayıtları ve birinci taraf üzerinden sunulan analitik, indirilebilir CV ve PWA desteği içerir.
 
@@ -10,7 +9,7 @@ English version: [README.md](README.md).
 
 ## Çalıştırma
 
-Bun 1.4.3 gerekir (`Dockerfile` ile aynı).
+Bun 1.4.4 gerekir (`Dockerfile` ile aynı).
 
 ```bash
 bun install

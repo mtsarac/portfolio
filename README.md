@@ -2,15 +2,16 @@
 
 [![CI](https://github.com/mtsarac/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/mtsarac/portfolio/actions/workflows/ci.yml)
 [![Docker](https://github.com/mtsarac/portfolio/actions/workflows/docker.yml/badge.svg)](https://github.com/mtsarac/portfolio/actions/workflows/docker.yml)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/mtsarac/portfolio/badge)](https://securityscorecards.dev/viewer/?uri=github.com/mtsarac/portfolio)
 
 Personal site of Muhammet Saraç, live at [msarac.me](https://msarac.me). Single-page React app in Turkish and English, with light/dark theme, internship entries with documents, downloadable CV, PWA support, and first-party analytics.
 
 Türkçe sürüm için: [README.TR.md](README.TR.md).
 
+The hero portrait previews at a larger size after a short mouse hover or keyboard focus on desktop, using a higher-resolution image. Touch and reduced-motion users keep the static portrait.
+
 ## Run
 
-Requires Bun 1.4.3 (matches the `Dockerfile`).
+Requires Bun 1.4.4 (matches the `Dockerfile`).
 
 ```bash
 bun install

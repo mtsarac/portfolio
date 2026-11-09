@@ -15,6 +15,7 @@ function ProjectCard({
   cta,
   href = '#contact',
   external = false,
+  className = '',
 }: {
   projectId: ProjectId
   label: string
@@ -25,12 +26,13 @@ function ProjectCard({
   cta: string
   href?: string
   external?: boolean
+  className?: string
 }) {
   const { lang } = useI18n()
   const { logger } = useLogger()
 
   return (
-    <SpotlightCard className="rounded-lg border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
+    <SpotlightCard className={`rounded-lg border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 ${className}`}>
       <span className="inline-block px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 border border-neutral-300 rounded mb-4 dark:border-neutral-600">
         {label}
       </span>
@@ -83,8 +85,8 @@ export function ProjectsSection() {
 
   return (
     <Section id="projects" title={t('projects.title')} align="left" width="wide">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {projects.map(({ projectId, i18nKey, stack, href, external }) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5">
+        {projects.map(({ projectId, i18nKey, stack, href, external }, i) => (
           <ProjectCard
             key={projectId}
             projectId={projectId}
@@ -96,6 +98,7 @@ export function ProjectsSection() {
             cta={t(`projects.${i18nKey}.cta`)}
             href={href}
             external={external}
+            className={i < 3 ? 'lg:col-span-2' : 'lg:col-span-3'}
           />
         ))}
       </div>

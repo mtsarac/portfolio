@@ -28,19 +28,19 @@ const skillData: SkillCategory[] = [
   {
     title: "skills.languages",
     // Python and C++ hidden from site for now, icons kept below
-    items: ["Java", "C#", "TypeScript", "SQL", "HTML", "CSS"],
+    items: ["C#", "Java", "TypeScript", "SQL", "HTML", "CSS"],
   },
   {
     title: "skills.frameworks",
     items: [
+      ".NET",
+      ".NET Web API",
+      "NestJS",
+      "REST API",
       "React",
       "Next.js",
       "React Native",
       "Flutter",
-      "NestJS",
-      ".NET",
-      "REST API",
-      ".NET Web API",
       "MS SQL Server",
       "PostgreSQL",
       "Expo",

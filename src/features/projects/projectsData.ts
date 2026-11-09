@@ -52,7 +52,7 @@ export const projects: ProjectEntry[] = [
       { name: 'SQLite', color: '#003B57' },
       { name: 'Docker', color: '#2496ED' },
     ],
-    href: 'https://github.com/mtsarac/mail-client',
+    href: 'https://github.com/mtsarac/kaydetmail-mono',
     external: true,
   },
   {
@@ -65,9 +65,10 @@ export const projects: ProjectEntry[] = [
       { name: 'Raspberry Pi', color: '#A22846' },
       { name: 'Jellyfin', color: '#00A4DC' },
       { name: 'Gitea', color: '#5E2C9B' },
-      { name: 'Vaultwarden', color: '#4F46E5' },
+      { name: 'Pocket ID', color: '#6366F1' },
       { name: 'SearXNG', color: '#0D9488' },
       { name: 'Cloudflared', color: '#F38020' },
+      { name: 'NetBird', color: '#F68330' },
     ],
   },
   {
