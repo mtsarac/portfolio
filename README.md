@@ -12,7 +12,7 @@ The hero portrait previews at a larger size after a short mouse hover or keyboar
 
 ## Run
 
-Requires Bun 1.4.3 (matches the `Dockerfile`).
+Requires Bun 1.4.4 (matches the `Dockerfile`).
 
 ```bash
 bun install
